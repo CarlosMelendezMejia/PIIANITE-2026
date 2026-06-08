@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIIANITE · Programa de Inducción e Integración del Alumnado de Nuevo Ingreso y Trayectorias Escolares — FES
+        Aragón UNAM</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google Fonts: Poppins -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <style>
+        /* ─── Variables ────────────────────────────────────────────── */
+        :root {
+            --navy: #171717;
+            --navy-md: #303030;
+            --teal: #1982c4;   /* AZUL  */
+            --amber: #ffca3a; /* AMARILLO */
+            --blush: #ff595e; /* ROJO */
+            --verde: #8ac926; /* VERDE */
+            --light: #F4F6FB;
+            --white: #FFFFFF;
+            --text: #1E2235;
+            --muted: #7A8099;
+            --border: #E4E8F0;
+            --card-bg: #FFFFFF;
+            --radius: 14px;
+            --radius-sm: 8px;
+        }
+
+        /* ─── Base ─────────────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ─── Navbar ───────────────────────────────────────────────── */
+        .navbar {
+            background: var(--navy);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            color: var(--white) !important;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: .03em;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .navbar-brand .brand-piianite {
+            color: var(--teal);
+            font-weight: 800;
+        }
+
+        .navbar-brand .brand-divider {
+            color: rgba(255, 255, 255, .35);
+            font-weight: 300;
+        }
+
+        .navbar-logo {
+            height: 44px;
+            width: auto;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .navbar-logo-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(255, 255, 255, .25);
+            flex-shrink: 0;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, .7) !important;
+            font-size: .85rem;
+            font-weight: 500;
+            padding: .4rem 1rem !important;
+            transition: color .2s;
+        }
+
+        .nav-link:hover {
+            color: var(--teal) !important;
+        }
+
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, .3);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .btn-nav {
+            background: var(--teal);
+            color: var(--navy) !important;
+            font-weight: 700;
+            padding: .4rem 1.2rem !important;
+            border-radius: 50px;
+            font-size: .82rem;
+            transition: opacity .2s;
+        }
+
+        .btn-nav:hover {
+            opacity: .85;
+            color: var(--navy) !important;
+        }
+
+        /* ─── Hero ─────────────────────────────────────────────────── */
+        .hero {
+            background: var(--navy);
+            min-height: 88vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 5rem 0 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 420px;
+            height: 420px;
+            background: var(--teal);
+            opacity: .07;
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -120px;
+            left: -60px;
+            width: 320px;
+            height: 320px;
+            background: var(--amber);
+            opacity: .06;
+            border-radius: 50%;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: var(--teal);
+            color: var(--navy);
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: .35rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: clamp(1.6rem, 4vw, 2.9rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 .accent {
+            color: var(--teal);
+        }
+
+        .hero p.lead {
+            color: rgba(255, 255, 255, .65);
+            font-size: 1rem;
+            font-weight: 400;
+            max-width: 540px;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary-custom {
+            background: var(--teal);
+            color: var(--navy);
+            font-weight: 700;
+            border: none;
+            padding: .85rem 2rem;
+            border-radius: 50px;
+            font-size: .9rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: opacity .2s, transform .15s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary-custom:hover {
+            opacity: .88;
+            transform: translateY(-2px);
+            color: var(--navy);
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: rgba(255, 255, 255, .85);
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, .25);
+            padding: .82rem 2rem;
+            border-radius: 50px;
+            font-size: .9rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: border-color .2s, color .2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+
+        /* Stats strip in hero */
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-num {
+            color: var(--teal);
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, .5);
+            font-size: .72rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-top: .3rem;
+        }
+
+        /* Hero visual side */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-card {
+            background: var(--navy-md);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: var(--radius);
+            padding: 1.8rem;
+            max-width: 380px;
+            width: 100%;
+        }
+
+        .hero-card-label {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 1rem;
+        }
+
+        .module-list-preview {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .module-list-preview li {
+            color: rgba(255, 255, 255, .85);
+            font-size: .82rem;
+            font-weight: 500;
+            padding: .75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            display: flex;
+            align-items: flex-start;
+            gap: .75rem;
+        }
+
+        .module-list-preview li:last-child {
+            border-bottom: none;
+        }
+
+        .module-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--teal);
+            flex-shrink: 0;
+            margin-top: .45rem;
+        }
+
+        .module-dot.amber {
+            background: var(--amber);
+        }
+
+        .module-dot.blush {
+            background: var(--blush);
+        }
+
+        .preinscripcion-card {
+            border-color: rgba(25, 130, 196, .35);
+            box-shadow: 0 0 0 1px rgba(25, 130, 196, .15), 0 8px 40px rgba(0, 0, 0, .3);
+        }
+
+        .preinscripcion-card .btn-primary-custom {
+            display: block;
+            text-align: center;
+            font-size: .88rem;
+        }
+
+        /* ─── Section base ─────────────────────────────────────────── */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: var(--teal);
+            color: var(--navy);
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: .28rem .9rem;
+            border-radius: 50px;
+            margin-bottom: .9rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: .8rem;
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            font-size: .95rem;
+            font-weight: 400;
+            max-width: 600px;
+            line-height: 1.75;
+        }
+
+        /* ─── Trámites (audience-style) ────────────────────────────── */
+        .tramites-section {
+            background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tramites-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: var(--teal);
+            opacity: .03;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .tramite-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 992px) {
+            .tramite-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .tramite-card {
+            background: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            padding: 2rem 1.6rem;
+            height: 100%;
+            position: relative;
+            transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(11, 17, 32, .04);
+            overflow: hidden;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .tramite-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--teal) 0%, var(--amber) 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tramite-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(25, 130, 196, .15);
+        }
+
+        .tramite-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tramite-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-md) 100%);
+            color: var(--teal);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.3rem;
+            transition: all .3s ease;
+        }
+
+        .tramite-card:hover .tramite-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--teal) 0%, #1a6ad4 100%);
+            color: var(--white);
+        }
+
+        .tramite-card h5 {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: .65rem;
+            color: var(--navy);
+            transition: color .3s ease;
+        }
+
+        .tramite-card:hover h5 {
+            color: var(--teal);
+        }
+
+        .tramite-card p {
+            font-size: .85rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin: 0 0 1.2rem 0;
+        }
+
+        .tramite-card .tramite-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--teal);
+            transition: gap .25s ease;
+        }
+
+        .tramite-card:hover .tramite-cta {
+            gap: .65rem;
+        }
+
+        /* ─── Aviso destacado ──────────────────────────────────────── */
+        .aviso-section {
+            background: var(--light);
+            padding: 4rem 0;
+        }
+
+        .aviso-card {
+            background: var(--white);
+            border-left: 6px solid var(--blush);
+            border-radius: var(--radius);
+            padding: 2rem 2.2rem;
+            box-shadow: 0 4px 24px rgba(11, 17, 32, .06);
+        }
+
+        .aviso-card .aviso-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--blush);
+            margin-bottom: .8rem;
+        }
+
+        .aviso-card h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1.4;
+            margin-bottom: .8rem;
+        }
+
+        .aviso-card p {
+            font-size: .9rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ─── Documentos clave (CTA pair) ──────────────────────────── */
+        .docs-section {
+            background: var(--light);
+            padding-top: 1rem;
+        }
+
+        .doc-cta {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.6rem 1.8rem;
+            transition: border-color .25s, transform .2s, box-shadow .25s;
+            height: 100%;
+        }
+
+        .doc-cta:hover {
+            border-color: var(--teal);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(25, 130, 196, .08);
+        }
+
+        .doc-cta-icon {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-md) 100%);
+            color: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: all .3s ease;
+        }
+
+        .doc-cta:hover .doc-cta-icon {
+            background: linear-gradient(135deg, var(--teal) 0%, #1a6ad4 100%);
+            color: var(--white);
+        }
+
+        .doc-cta-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .doc-cta h6 {
+            font-size: .95rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 0 0 .2rem 0;
+        }
+
+        .doc-cta p {
+            font-size: .8rem;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .doc-cta-arrow {
+            color: var(--teal);
+            font-size: 1.2rem;
+            transition: transform .25s;
+        }
+
+        .doc-cta:hover .doc-cta-arrow {
+            transform: translateX(4px);
+        }
+
+        /* ─── Actividades (module-card style) ──────────────────────── */
+        .actividades-section {
+            background: var(--white);
+        }
+
+        .actividad-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: border-color .25s, transform .2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .actividad-card:hover {
+            border-color: var(--teal);
+            transform: translateY(-4px);
+        }
+
+        .actividad-num {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.4rem;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--border);
+            line-height: 1;
+            user-select: none;
+        }
+
+        .actividad-badge {
+            display: inline-block;
+            background: var(--navy);
+            color: var(--teal);
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .22rem .8rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .actividad-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: .55rem;
+            line-height: 1.35;
+            padding-right: 2.2rem;
+        }
+
+        .actividad-card p {
+            font-size: .85rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin: 0 0 1.2rem 0;
+            flex-grow: 1;
+        }
+
+        .actividad-meta {
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .actividad-fecha {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .72rem;
+            color: var(--blush);
+            font-weight: 700;
+            letter-spacing: .02em;
+            text-transform: uppercase;
+        }
+
+        .actividad-fecha i {
+            font-size: .85rem;
+        }
+
+        .actividad-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            background: var(--teal);
+            color: var(--navy);
+            font-weight: 700;
+            font-size: .8rem;
+            padding: .45rem 1rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: opacity .2s, transform .15s;
+        }
+
+        .actividad-btn:hover {
+            opacity: .88;
+            transform: translateY(-1px);
+            color: var(--navy);
+        }
+
+        .actividad-btn.disabled {
+            background: var(--border);
+            color: var(--muted);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Spotlight card for "actividad permanente" */
+        .actividad-card.permanente {
+            border-color: rgba(138, 201, 38, .35);
+        }
+
+        .actividad-card.permanente .actividad-fecha {
+            color: var(--verde);
+        }
+
+        /* ─── Ubicación / Mapa ─────────────────────────────────────── */
+        .ubicacion-section {
+            background: var(--light);
+        }
+
+        .leaflet-map-4x3 {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            min-height: 360px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(11, 17, 32, .08);
+            border: 1.5px solid var(--border);
+        }
+
+        .leaflet-tooltip.leaflet-label-tooltip {
+            background: var(--navy);
+            color: var(--white);
+            border: 0;
+            border-radius: 10px;
+            padding: 4px 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: .75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            pointer-events: none;
+        }
+
+        .leaflet-tooltip.leaflet-label-tooltip:before {
+            border-top-color: var(--navy);
+        }
+
+        .leaflet-tooltip.leaflet-label-tooltip.leaflet-label-tooltip--green {
+            background: #198754;
+        }
+
+        .leaflet-tooltip.leaflet-label-tooltip.leaflet-label-tooltip--green:before {
+            border-top-color: #198754;
+        }
+
+        /* ─── Contacto (dark section) ──────────────────────────────── */
+        .contacto-section {
+            background: var(--navy);
+            padding: 4rem 0;
+        }
+
+        .contacto-section .section-title {
+            color: var(--white);
+        }
+
+        .contacto-section .section-subtitle {
+            color: rgba(255, 255, 255, .55);
+        }
+
+        .contacto-box {
+            background: rgba(255, 255, 255, .04);
+            border: 1.5px solid rgba(255, 255, 255, .1);
+            border-radius: var(--radius);
+            padding: 2rem 2.4rem;
+        }
+
+        .contacto-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: .85rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            flex-wrap: wrap;
+        }
+
+        .contacto-row:last-child {
+            border-bottom: none;
+        }
+
+        .contacto-key {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .45);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .contacto-val {
+            font-size: .88rem;
+            color: var(--white);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .contacto-val a {
+            color: var(--teal);
+        }
+
+        .contacto-val a:hover {
+            color: var(--white);
+        }
+
+        .contacto-val.teal {
+            color: var(--teal);
+        }
+
+        /* ─── Footer ──────────────────────────────────────────────── */
+        footer {
+            background: var(--navy-md);
+            color: rgba(255, 255, 255, .55);
+            padding: 2.5rem 0;
+            font-size: .85rem;
+        }
+
+        footer strong {
+            color: var(--white);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* ─── Floating social ─────────────────────────────────────── */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1050;
+            cursor: pointer;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-float img {
+            border-radius: 50%;
+            display: block;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px 4px rgba(0, 255, 0, 0.8);
+        }
+
+        .facebook-float {
+            position: fixed;
+            bottom: 20px;
+            right: 80px;
+            z-index: 1040;
+            cursor: pointer;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(29, 112, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .facebook-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px 4px rgba(29, 112, 255, 0.8);
+        }
+
+        .qr-container {
+            max-width: 220px;
+            margin: 0 auto;
+        }
+
+        .qr-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* ─── Hero color strip ─────────────────────────────────────── */
+        .hero-color-strip {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            display: flex;
+            z-index: 2;
+        }
+
+        .hero-color-strip span {
+            flex: 1;
+        }
+
+        /* ─── Tramite card per-color accents ────────────────────────── */
+        .tramite-card.tc-rojo .tramite-icon { color: var(--blush); }
+        .tramite-card.tc-amarillo .tramite-icon { color: var(--amber); }
+        .tramite-card.tc-verde .tramite-icon { color: var(--verde); }
+
+        .tramite-card.tc-rojo::before { background: var(--blush); }
+        .tramite-card.tc-amarillo::before { background: var(--amber); }
+        .tramite-card.tc-verde::before { background: var(--verde); }
+        .tramite-card.tc-azul::before { background: var(--teal); }
+
+        .tramite-card.tc-rojo:hover { box-shadow: 0 12px 32px rgba(255, 89, 94, .18); }
+        .tramite-card.tc-amarillo:hover { box-shadow: 0 12px 32px rgba(255, 202, 58, .18); }
+        .tramite-card.tc-verde:hover { box-shadow: 0 12px 32px rgba(138, 201, 38, .18); }
+
+        .tramite-card.tc-rojo:hover .tramite-icon {
+            background: linear-gradient(135deg, var(--blush) 0%, #c93a3e 100%);
+            color: var(--white);
+        }
+
+        .tramite-card.tc-amarillo:hover .tramite-icon {
+            background: linear-gradient(135deg, var(--amber) 0%, #d4a200 100%);
+            color: var(--navy);
+        }
+
+        .tramite-card.tc-verde:hover .tramite-icon {
+            background: linear-gradient(135deg, var(--verde) 0%, #5e8e15 100%);
+            color: var(--white);
+        }
+
+        .tramite-card.tc-rojo:hover h5 { color: var(--blush); }
+        .tramite-card.tc-amarillo:hover h5 { color: #c49800; }
+        .tramite-card.tc-verde:hover h5 { color: var(--verde); }
+
+        .tramite-card.tc-rojo .tramite-cta { color: var(--blush); }
+        .tramite-card.tc-amarillo .tramite-cta { color: #c49800; }
+        .tramite-card.tc-verde .tramite-cta { color: var(--verde); }
+
+        /* ─── Fade-up animation ───────────────────────────────────── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══════════ NAVBAR ══════════ -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <!-- Si tu sitio usa otros nombres de archivo para los logos, ajusta las rutas -->
+                <img src="img/logo_unam.png" alt="UNAM" class="navbar-logo">
+                <span class="navbar-logo-divider"></span>
+                <img src="img/logo_fes_aragon.png" alt="FES Aragón" class="navbar-logo">
+                <span class="d-none d-lg-inline">
+                    <span class="brand-piianite">PIIANITE</span>
+                    <span class="brand-divider">·</span>
+                    FES Aragón
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                    <li class="nav-item"><a class="nav-link" href="#tramites">Trámites</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#actividades">Actividades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#documentos">Documentos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ubicacion">Ubicación</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link btn-nav" role="button" data-bs-toggle="modal"
+                            data-bs-target="#Inscripcion">Inscripción</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ══════════ HERO ══════════ -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+
+                <!-- Left col -->
+                <div class="col-lg-6">
+                    <span class="hero-tag">Bienvenida · FES Aragón UNAM</span>
+                    <h1>
+                        Programa de Inducción e Integración del Alumnado de Nuevo Ingreso y Trayectorias Escolares
+                        <br>
+                        <span class="accent">PIIANITE</span>
+                    </h1>
+                    <p class="lead">
+                        A través de esta plataforma podrás consultar y completar las actividades
+                        necesarias para inscribirte e integrarte a tu nueva vida universitaria
+                        en la FES Aragón.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a role="button" data-bs-toggle="modal" data-bs-target="#Inscripcion"
+                            class="btn-primary-custom">
+                            <i class="bi bi-clipboard-check me-2"></i>Trámites de inscripción
+                        </a>
+                        <a href="#actividades" class="btn-outline-custom">
+                            <i class="bi bi-list-check me-2"></i>Ver actividades
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-num" style="color:var(--blush)">3</span>
+                            <span class="stat-label">Trámites esenciales</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num" style="color:var(--verde)">7</span>
+                            <span class="stat-label">Actividades</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num" style="color:var(--amber)">FES</span>
+                            <span class="stat-label">Aragón</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">UNAM</span>
+                            <span class="stat-label">Institución</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right col: primeros pasos -->
+                <div class="col-lg-5 offset-lg-1 hero-visual">
+                    <div class="hero-card preinscripcion-card">
+                        <div class="hero-card-label">
+                            <i class="bi bi-flag-fill me-2"></i>¿Por dónde empezar?
+                        </div>
+                        <p
+                            style="color:rgba(255,255,255,.65); font-size:.85rem; line-height:1.75; margin-bottom:1.4rem;">
+                            Sigue estos primeros pasos para asegurar que tu inscripción avance
+                            sin contratiempos. Cada actividad tiene su propio espacio con
+                            instrucciones detalladas.
+                        </p>
+                        <ul class="module-list-preview" style="margin-bottom:1.6rem;">
+                            <li>
+                                <span class="module-dot"></span>
+                                Realiza tus trámites de inscripción en Servicios Escolares
+                            </li>
+                            <li>
+                                <span class="module-dot amber"></span>
+                                Llena tu Cédula Única de Registro de Primer Ingreso (CURPI)
+                            </li>
+                            <li>
+                                <span class="module-dot blush"></span>
+                                Tramita tu correo institucional <em>@aragon.unam.mx</em>
+                            </li>
+                        </ul>
+                        <a role="button" data-bs-toggle="modal" data-bs-target="#Inscripcion"
+                            class="btn-primary-custom d-block text-center">
+                            <i class="bi bi-arrow-right-circle-fill me-2"></i>Comenzar inscripción
+                        </a>
+                        <p
+                            style="color:rgba(255,255,255,.35); font-size:.72rem; text-align:center; margin-top:.9rem; margin-bottom:0;">
+                            La FES Aragón te da la bienvenida
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Franja de 4 colores PIIANITE -->
+        <div class="hero-color-strip">
+            <span style="background:#ff595e;"></span>
+            <span style="background:#ffca3a;"></span>
+            <span style="background:#8ac926;"></span>
+            <span style="background:#1982c4;"></span>
+        </div>
+    </section>
+
+    <!-- ══════════ TRÁMITES ESENCIALES ══════════ -->
+    <section class="tramites-section" id="tramites">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center fade-up">
+                    <span class="section-tag">Primer paso</span>
+                    <h2 class="section-title">Trámites esenciales</h2>
+                    <p class="section-subtitle mx-auto">
+                        Tres gestiones que debes completar para formalizar tu ingreso a la
+                        FES Aragón. Da clic en cada tarjeta para ver los pasos a seguir.
+                    </p>
+                </div>
+            </div>
+            <div class="tramite-grid">
+
+                <!-- Inscripción -->
+                <a role="button" data-bs-toggle="modal" data-bs-target="#Inscripcion" class="tramite-card tc-rojo fade-up">
+                    <div class="tramite-icon"><i class="bi bi-clipboard-check"></i></div>
+                    <h5>Inscripción</h5>
+                    <p>Departamento de Servicios Escolares: trámites, documentación y citas para formalizar tu ingreso.
+                    </p>
+                    <span class="tramite-cta">Ver trámites <i class="bi bi-arrow-right"></i></span>
+                </a>
+
+                <!-- CURPI -->
+                <a role="button" data-bs-toggle="modal" data-bs-target="#Curpi" class="tramite-card tc-amarillo fade-up">
+                    <div class="tramite-icon"><i class="bi bi-pencil-square"></i></div>
+                    <h5>Realiza tu CURPI</h5>
+                    <p>Cédula Única de Registro de Primer Ingreso: encuesta institucional obligatoria para todo nuevo
+                        ingreso.</p>
+                    <span class="tramite-cta">Contestar encuesta <i class="bi bi-arrow-right"></i></span>
+                </a>
+
+                <!-- Correo Aragón -->
+                <a role="button" data-bs-toggle="modal" data-bs-target="#CorreoAragon" class="tramite-card tc-azul fade-up">
+                    <div class="tramite-icon"><i class="bi bi-envelope-at"></i></div>
+                    <h5>Tramita tu correo</h5>
+                    <p>Correo electrónico institucional <em>@aragon.unam.mx</em>: acceso a servicios digitales de la FES
+                        Aragón.</p>
+                    <span class="tramite-cta">Visitar el sitio <i class="bi bi-arrow-right"></i></span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ AVISO DESTACADO ══════════ -->
+    <section class="aviso-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 fade-up">
+                    <div class="aviso-card">
+                        <div class="aviso-eyebrow">
+                            <i class="bi bi-exclamation-triangle-fill"></i> Aviso importante
+                        </div>
+                        <h3>Es indispensable que el día de la inscripción los documentos se encuentren en orden.</h3>
+                        <p>
+                            La entrega de documentación incompleta y/o apócrifa cancelará el
+                            trámite y se procederá conforme a lo establecido en la legislación
+                            universitaria.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ DOCUMENTOS CLAVE ══════════ -->
+    <section class="docs-section" id="documentos">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center fade-up">
+                    <span class="section-tag">¡Enhorabuena!</span>
+                    <h2 class="section-title">Documentos y servicios clave</h2>
+                    <p class="section-subtitle mx-auto">
+                        Descarga tu carta compromiso y consulta el portal de Servicios
+                        Escolares para gestionar tus trámites institucionales.
+                    </p>
+                </div>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-6 fade-up">
+                    <!-- Si cambia el archivo cada generación, actualiza el href -->
+                    <a href="doc/CARTA_COMPROMISO_GEN_2026-2.pdf" target="_blank" class="doc-cta">
+                        <div class="doc-cta-icon"><i class="bi bi-file-earmark-text"></i></div>
+                        <div class="doc-cta-body">
+                            <h6>Descarga tu carta compromiso</h6>
+                            <p>Documento obligatorio para el día de tu inscripción presencial.</p>
+                        </div>
+                        <span class="doc-cta-arrow"><i class="bi bi-download"></i></span>
+                    </a>
+                </div>
+                <div class="col-lg-6 fade-up">
+                    <a href="http://aragon.dgae.unam.mx/" target="_blank" class="doc-cta">
+                        <div class="doc-cta-icon"><i class="bi bi-buildings"></i></div>
+                        <div class="doc-cta-body">
+                            <h6>Servicios Escolares</h6>
+                            <p>Portal oficial para tus trámites administrativos en la FES Aragón.</p>
+                        </div>
+                        <span class="doc-cta-arrow"><i class="bi bi-box-arrow-up-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ ACTIVIDADES DE NUEVO INGRESO ══════════ -->
+    <section class="actividades-section" id="actividades">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-7 fade-up">
+                    <span class="section-tag">Programa de inducción</span>
+                    <h2 class="section-title">Actividades de nuevo ingreso</h2>
+                    <p class="section-subtitle">
+                        Completa las siguientes actividades como parte de tu proceso de
+                        integración a la vida universitaria. Cada una abre un espacio con
+                        instrucciones detalladas.
+                    </p>
+                </div>
+            </div>
+            <div class="row g-4">
+
+                <!-- Actividad 1: Examen Diagnóstico -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="actividad-card">
+                        <div class="actividad-num">01</div>
+                        <span class="actividad-badge">Actividad 1</span>
+                        <h4>Examen diagnóstico</h4>
+                        <p>Realiza el examen diagnóstico de conocimientos, español e inglés.</p>
+                        <div class="actividad-meta">
+                            <span class="actividad-fecha"><i class="bi bi-calendar3"></i> 26 ene – 28 feb</span>
+                            <a role="button" data-bs-toggle="modal" data-bs-target="#ExamenDiagnostico"
+                                class="actividad-btn">
+                                Realizar <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actividad 2: EMA -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="actividad-card">
+                        <div class="actividad-num">02</div>
+                        <span class="actividad-badge">Actividad 2</span>
+                        <h4>Examen Médico Automatizado (EMA)</h4>
+                        <p>Realiza el examen médico automatizado, trámite requerido para el ingreso.</p>
+                        <div class="actividad-meta">
+                            <span class="actividad-fecha"><i class="bi bi-calendar3"></i> 26 de enero</span>
+                            <a role="button" data-bs-toggle="modal" data-bs-target="#EMADistancia"
+                                class="actividad-btn">
+                                Ver requisitos <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actividad 3: TICómetro -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="actividad-card">
+                        <div class="actividad-num">03</div>
+                        <span class="actividad-badge">Actividad 3</span>
+                        <h4>TICómetro</h4>
+                        <p>Aplica la prueba del TICómetro para diagnosticar tus competencias digitales.</p>
+                        <div class="actividad-meta">
+                            <span class="actividad-fecha"><i class="bi bi-calendar3"></i> 29 ene – 28 feb</span>
+                            <a role="button" data-bs-toggle="modal" data-bs-target="#Ticometro" class="actividad-btn">
+                                Realizar <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actividad 4: Seguro de Salud -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="actividad-card permanente">
+                        <div class="actividad-num">04</div>
+                        <span class="actividad-badge">Actividad 4</span>
+                        <h4>Seguro de salud</h4>
+                        <p>Gestiona el seguro de salud del estudiante: cobertura durante tu trayectoria académica.</p>
+                        <div class="actividad-meta">
+                            <span class="actividad-fecha"><i class="bi bi-infinity"></i> Permanente</span>
+                            <a role="button" data-bs-toggle="modal" data-bs-target="#SeguroSalud" class="actividad-btn">
+                                Gestionar <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actividad 5: Plática con la Directora -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="actividad-card">
+                        <div class="actividad-num">05</div>
+                        <span class="actividad-badge">Actividad 5</span>
+                        <h4>Plática con la Directora</h4>
+                        <p>Sesión institucional de bienvenida con la dirección de la FES Aragón.</p>
+                        <div class="actividad-meta">
+                            <span class="actividad-fecha"><i class="bi bi-calendar-event"></i> Fecha por
+                                confirmar</span>
+                            <span class="actividad-btn disabled">Próximamente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actividad 6: Información para familiares -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="actividad-card permanente">
+                        <div class="actividad-num">06</div>
+                        <span class="actividad-badge">Actividad 6</span>
+                        <h4>Información para familiares</h4>
+                        <p>Espacio dedicado a madres, padres y familiares con información clave sobre la vida
+                            universitaria.</p>
+                        <div class="actividad-meta">
+                            <span class="actividad-fecha"><i class="bi bi-infinity"></i> Permanente</span>
+                            <a href="http://132.248.44.93:9090/PIIANI/INFOPADRES/" target="_blank"
+                                class="actividad-btn">
+                                Ver información <i class="bi bi-box-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actividad 7: Recorrido virtual -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="actividad-card permanente">
+                        <div class="actividad-num">07</div>
+                        <span class="actividad-badge">Actividad 7</span>
+                        <h4>Recorrido virtual de la FES Aragón</h4>
+                        <p>Explora el campus de la FES Aragón antes de tu llegada: ubica edificios, entradas y
+                            servicios.</p>
+                        <div class="actividad-meta">
+                            <span class="actividad-fecha"><i class="bi bi-infinity"></i> Permanente</span>
+                            <a role="button" data-bs-toggle="modal" data-bs-target="#RecorridoVirtual"
+                                class="actividad-btn">
+                                Ver recorrido <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info card final: total actividades -->
+                <div class="col-md-6 col-lg-4 fade-up d-flex align-items-stretch">
+                    <div class="actividad-card d-flex flex-column justify-content-center"
+                        style="background:var(--navy); border-color: var(--navy);">
+                        <div class="text-center py-3">
+                            <div style="font-size:3rem; color:var(--verde); font-weight:900; line-height:1;">07</div>
+                            <div
+                                style="color:rgba(255,255,255,.5);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;">
+                                Actividades totales</div>
+                            <p
+                                style="color:rgba(255,255,255,.7); font-size:.82rem; margin-top:1rem; margin-bottom:0; line-height:1.6;">
+                                Completa todas las actividades para integrarte plenamente a la
+                                comunidad universitaria de la FES Aragón.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ UBICACIÓN / MAPA ══════════ -->
+    <section class="ubicacion-section" id="ubicacion">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center fade-up">
+                    <span class="section-tag">Encuéntranos</span>
+                    <h2 class="section-title">Ubicación de la FES Aragón</h2>
+                    <p class="section-subtitle mx-auto">
+                        Conoce los edificios principales y las entradas oficiales antes del
+                        día de tu inscripción. Da clic en cada marcador para más detalles.
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center fade-up">
+                <div class="col-lg-10">
+                    <div id="map" class="leaflet-map-4x3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ CONTACTO ══════════ -->
+    <section class="contacto-section" id="contacto">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-5 mb-5 mb-lg-0 fade-up">
+                    <span class="section-tag">¿Tienes dudas?</span>
+                    <h2 class="section-title">Soporte de Servicios Escolares</h2>
+                    <p class="section-subtitle">
+                        Si tienes alguna duda o aclaración con tu inscripción, contáctanos
+                        por los canales oficiales. Estamos aquí para acompañarte en tu
+                        ingreso a la UNAM.
+                    </p>
+                </div>
+
+                <div class="col-lg-6 offset-lg-1 fade-up">
+                    <div class="contacto-box">
+                        <div class="contacto-row">
+                            <span class="contacto-key">Atención</span>
+                            <span class="contacto-val">Lunes a viernes</span>
+                        </div>
+                        <div class="contacto-row">
+                            <span class="contacto-key">Horario</span>
+                            <span class="contacto-val teal">9:00 a 20:00 hrs</span>
+                        </div>
+                        <div class="contacto-row">
+                            <span class="contacto-key">Correo</span>
+                            <span class="contacto-val">
+                                <a href="mailto:serviciosescolares@aragon.unam.mx">serviciosescolares@aragon.unam.mx</a>
+                            </span>
+                        </div>
+                        <div class="contacto-row">
+                            <span class="contacto-key">Portal</span>
+                            <span class="contacto-val">
+                                <a href="http://aragon.dgae.unam.mx/" target="_blank">aragon.dgae.unam.mx <i
+                                        class="bi bi-box-arrow-up-right ms-1"></i></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <footer>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p><strong>FES Aragón · UNAM</strong> — Departamento de Planeación Académica</p>
+                </div>
+                <div class="col-md-6 text-md-end mt-2 mt-md-0">
+                    <p>PIIANITE · Programa de Inducción e Integración del Alumnado de Nuevo Ingreso y Trayectorias
+                        Escolares</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ══════════════════════════════════════════════════════════════
+     ZONA DE MODALES
+     ──────────────────────────────────────────────────────────────
+     Los siguientes modales son los mismos que ya tenías en la
+     página antigua del PIIANITE. Solo necesitas COPIAR el cuerpo
+     (<div class="modal-body">…</div>) del archivo viejo y PEGARLO
+     en el espacio marcado dentro de cada cascarón.
+     ══════════════════════════════════════════════════════════════ -->
+
+    <!-- Modal: Inscripción -->
+    <div class="modal fade" id="Inscripcion" tabindex="-1" aria-labelledby="InscripcionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="InscripcionLabel"><i class="bi bi-clipboard-check me-2"></i>Inscripción
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <!-- ▼ PEGA AQUÍ EL <div class="modal-body">…</div> ORIGINAL DE #Inscripcion ▼ -->
+                <div class="modal-body">
+                    <!-- Contenido original del modal #Inscripcion -->
+                </div>
+                <!-- ▲ FIN DEL CONTENIDO PEGADO ▲ -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: CURPI -->
+    <div class="modal fade" id="Curpi" tabindex="-1" aria-labelledby="CurpiLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="CurpiLabel"><i class="bi bi-pencil-square me-2"></i>Cédula Única de
+                        Registro de Primer Ingreso (CURPI)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <!-- ▼ PEGA AQUÍ EL <div class="modal-body">…</div> ORIGINAL DE #Curpi ▼ -->
+                <div class="modal-body">
+                    <!-- Contenido original del modal #Curpi -->
+                </div>
+                <!-- ▲ FIN DEL CONTENIDO PEGADO ▲ -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Correo Aragón -->
+    <div class="modal fade" id="CorreoAragon" tabindex="-1" aria-labelledby="CorreoAragonLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="CorreoAragonLabel"><i class="bi bi-envelope-at me-2"></i>Correo
+                        institucional @aragon.unam.mx</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <!-- ▼ PEGA AQUÍ EL <div class="modal-body">…</div> ORIGINAL DE #CorreoAragon ▼ -->
+                <div class="modal-body">
+                    <!-- Contenido original del modal #CorreoAragon -->
+                </div>
+                <!-- ▲ FIN DEL CONTENIDO PEGADO ▲ -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Examen Diagnóstico -->
+    <div class="modal fade" id="ExamenDiagnostico" tabindex="-1" aria-labelledby="ExamenDiagnosticoLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="ExamenDiagnosticoLabel"><i class="bi bi-1-circle-fill me-2"></i>Examen
+                        diagnóstico</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <!-- ▼ PEGA AQUÍ EL <div class="modal-body">…</div> ORIGINAL DE #ExamenDiagnostico ▼ -->
+                <div class="modal-body">
+                    <!-- Contenido original del modal #ExamenDiagnostico -->
+                </div>
+                <!-- ▲ FIN DEL CONTENIDO PEGADO ▲ -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: EMA -->
+    <div class="modal fade" id="EMADistancia" tabindex="-1" aria-labelledby="EMADistanciaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="EMADistanciaLabel"><i class="bi bi-2-circle-fill me-2"></i>Examen Médico
+                        Automatizado (EMA)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <!-- ▼ PEGA AQUÍ EL <div class="modal-body">…</div> ORIGINAL DE #EMADistancia ▼ -->
+                <div class="modal-body">
+                    <!-- Contenido original del modal #EMADistancia -->
+                </div>
+                <!-- ▲ FIN DEL CONTENIDO PEGADO ▲ -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: TICómetro -->
+    <div class="modal fade" id="Ticometro" tabindex="-1" aria-labelledby="TicometroLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="TicometroLabel"><i class="bi bi-3-circle-fill me-2"></i>TICómetro</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <!-- ▼ PEGA AQUÍ EL <div class="modal-body">…</div> ORIGINAL DE #Ticometro ▼ -->
+                <div class="modal-body">
+                    <!-- Contenido original del modal #Ticometro -->
+                </div>
+                <!-- ▲ FIN DEL CONTENIDO PEGADO ▲ -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Seguro de Salud -->
+    <div class="modal fade" id="SeguroSalud" tabindex="-1" aria-labelledby="SeguroSaludLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="SeguroSaludLabel"><i class="bi bi-4-circle-fill me-2"></i>Seguro de
+                        salud</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <!-- ▼ PEGA AQUÍ EL <div class="modal-body">…</div> ORIGINAL DE #SeguroSalud ▼ -->
+                <div class="modal-body">
+                    <!-- Contenido original del modal #SeguroSalud -->
+                </div>
+                <!-- ▲ FIN DEL CONTENIDO PEGADO ▲ -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Recorrido Virtual -->
+    <div class="modal fade" id="RecorridoVirtual" tabindex="-1" aria-labelledby="RecorridoVirtualLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="RecorridoVirtualLabel"><i class="bi bi-7-circle-fill me-2"></i>Recorrido
+                        virtual de la FES Aragón</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <!-- ▼ PEGA AQUÍ EL <div class="modal-body">…</div> ORIGINAL DE #RecorridoVirtual ▼ -->
+                <div class="modal-body">
+                    <!-- Contenido original del modal #RecorridoVirtual -->
+                </div>
+                <!-- ▲ FIN DEL CONTENIDO PEGADO ▲ -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════ FLOTANTES: WHATSAPP + FACEBOOK ══════════ -->
+    <a href="#" data-bs-toggle="modal" data-bs-target="#whatsappModal" class="whatsapp-float">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" width="50" height="50">
+    </a>
+
+    <!-- Modal WhatsApp -->
+    <div class="modal fade" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="whatsappModalLabel">¡Únete al canal oficial FES Aragón!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="mb-3">
+                        Alumnas y alumnos de nuevo ingreso: escaneen el siguiente QR o presionen el botón para
+                        unirse a nuestro canal de difusión en WhatsApp.
+                    </p>
+                    <div class="qr-container mb-3">
+                        <img src="img/qr_wa_fesaragon.png" alt="QR WhatsApp Canal" class="img-fluid rounded">
+                    </div>
+                    <a href="https://www.whatsapp.com/channel/0029VawMMSu6rsQnzqyai52X" target="_blank"
+                        class="btn btn-success w-100">
+                        Ir al canal de WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" data-bs-toggle="modal" data-bs-target="#facebookModal" class="facebook-float">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="50" height="50">
+    </a>
+
+    <!-- Modal Facebook -->
+    <div class="modal fade" id="facebookModal" tabindex="-1" aria-labelledby="facebookModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="facebookModalLabel">¡Síguenos en Facebook!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="mb-3">
+                        Personas de nuevo ingreso: sígannos en nuestra página de Facebook para recibir noticias,
+                        eventos y actualizaciones importantes.
+                    </p>
+                    <div class="qr-container mb-3">
+                        <img src="img/qr_fes_facebook.png" alt="QR Facebook Página" class="img-fluid rounded">
+                    </div>
+                    <a href="https://www.facebook.com/FESAragonUNAM" target="_blank" class="btn btn-primary w-100">
+                        Ir a la página de Facebook
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════ SCRIPTS ══════════ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Fade-up on scroll -->
+    <script>
+        const fadeEls = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const siblings = entry.target.parentElement.querySelectorAll('.fade-up');
+                    let delay = 0;
+                    siblings.forEach((sib, idx) => {
+                        if (sib === entry.target) delay = idx * 80;
+                    });
+                    setTimeout(() => entry.target.classList.add('visible'), delay);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        fadeEls.forEach(el => observer.observe(el));
+
+        // Hero elements visible on load
+        document.querySelectorAll('.hero .fade-up').forEach(el => el.classList.add('visible'));
+    </script>
+
+    <!-- Mapa Leaflet (conservado del PIIANITE original) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mapElement = document.getElementById('map');
+            if (!mapElement || typeof L === 'undefined') return;
+
+            const map = L.map('map').setView([19.4745, -99.0455], 16);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            const greenIcon = L.icon({
+                iconUrl: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="41" viewBox="0 0 25 41">
+          <path d="M12.5 0C5.6 0 0 5.6 0 12.5C0 22 12.5 41 12.5 41S25 22 25 12.5C25 5.6 19.4 0 12.5 0Z" fill="#198754"/>
+          <circle cx="12.5" cy="12.5" r="5.5" fill="#ffffff" opacity="0.95"/>
+        </svg>
+      `),
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+                shadowSize: [41, 41],
+                shadowAnchor: [12, 41]
+            });
+
+            const locations = [
+                { lat: 19.476396427168083, lng: -99.04633425890201, name: 'Teatro José Vasconcelos' },
+                { lat: 19.47446595918309, lng: -99.04368228623203, name: 'DUACyD' },
+                { lat: 19.474965205436593, lng: -99.04218644726495, name: 'Gimnasio de Parquet' },
+                { lat: 19.473643812212256, lng: -99.04651282145399, name: 'Centro Tecnológico Aragón' },
+                { lat: 19.473913649557876, lng: -99.04558637044778, name: 'Jefaturas de Ingenierías' },
+                { lat: 19.475557490862624, lng: -99.04589351131486, name: 'Edificio de Gobierno' },
+                // Entradas (marcadores verdes)
+                {
+                    lat: 19.477113741945363, lng: -99.04455807471379, name: 'Entrada Av. Universidad',
+                    icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green'
+                },
+                {
+                    lat: 19.476321589902124, lng: -99.04686134401935, name: 'Entrada Bosque de Africa',
+                    icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green'
+                }
+            ];
+
+            const markersGroup = L.featureGroup().addTo(map);
+
+            locations.forEach((loc) => {
+                const marker = L.marker([loc.lat, loc.lng], loc.icon ? { icon: loc.icon } : {}).addTo(markersGroup);
+                marker.bindPopup(`<strong>${loc.name}</strong><br>${loc.lat.toFixed(6)}, ${loc.lng.toFixed(6)}`);
+                marker.bindTooltip(loc.name, {
+                    permanent: true,
+                    direction: 'top',
+                    offset: [0, -10],
+                    className: `leaflet-label-tooltip ${loc.tooltipClass ?? ''}`.trim()
+                });
+            });
+
+            const bounds = markersGroup.getBounds();
+            if (bounds.isValid()) {
+                map.fitBounds(bounds, { padding: [30, 30], maxZoom: 18 });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
