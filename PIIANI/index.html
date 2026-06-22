@@ -980,8 +980,26 @@
 
         /* ─── Cronogramas de carrera ───────────────────────────────── */
         .cronogramas-section {
-            background: var(--navy);
+            background-color: var(--navy);
+            background-image: url('resources/img/fes-aragon-bg.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
             padding: 5rem 0 6rem;
+        }
+
+        .cronogramas-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(17, 17, 17, 0.84);
+            z-index: 0;
+        }
+
+        .cronogramas-section > .container {
+            position: relative;
+            z-index: 1;
         }
 
         .cronogramas-section .section-tag {
@@ -1026,12 +1044,16 @@
             background: rgba(255, 255, 255, .02);
         }
 
-        .division-header i { font-size: .95rem; opacity: .8; }
+        .division-header i { font-size: 2rem; opacity: .8; }
 
         /* ── Card de carrera ─────────── */
         .cronograma-card {
-            background: rgba(255, 255, 255, .03);
-            border: 1px solid rgba(255, 255, 255, .07);
+            background: rgba(255, 255, 255, .08);
+            backdrop-filter: blur(14px) saturate(1.6);
+            -webkit-backdrop-filter: blur(14px) saturate(1.6);
+            border: 1px solid rgba(255, 255, 255, .18);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12),
+                        0 4px 20px rgba(0, 0, 0, .35);
             border-radius: var(--radius);
             display: flex;
             align-items: center;
@@ -1043,8 +1065,8 @@
         }
 
         .cronograma-card:hover {
-            background: rgba(var(--glow-rgb), .04);
-            border-color: rgba(var(--glow-rgb), .38);
+            background: rgba(var(--glow-rgb), .15);
+            border-color: rgba(var(--glow-rgb), .45);
             box-shadow:
                 0 0 14px rgba(var(--glow-rgb), .35),
                 0 0 40px rgba(var(--glow-rgb), .10),
