@@ -978,6 +978,158 @@
         .tramite-card.tc-amarillo .tramite-cta { color: #c49800; }
         .tramite-card.tc-verde .tramite-cta { color: var(--verde); }
 
+        /* ─── Cronogramas de carrera ───────────────────────────────── */
+        .cronogramas-section {
+            background: var(--navy);
+            padding: 5rem 0 6rem;
+        }
+
+        .cronogramas-section .section-tag {
+            background: rgba(25, 130, 196, .12);
+            color: var(--teal);
+            border: 1px solid rgba(25, 130, 196, .25);
+        }
+
+        .cronogramas-section .section-title { color: var(--white); }
+        .cronogramas-section .section-subtitle { color: rgba(255, 255, 255, .5); }
+
+        /* Colores por división — heredados por todos los hijos vía CSS custom props */
+        .div-dcfmi  { --div-color: var(--teal);  --glow-rgb: 25,  130, 196; }
+        .div-dcs    { --div-color: var(--verde);  --glow-rgb: 138, 201, 38;  }
+        .div-dhya   { --div-color: var(--amber);  --glow-rgb: 255, 202, 58;  }
+        .div-suayed { --div-color: var(--blush);  --glow-rgb: 255, 89,  94;  }
+
+        .division-block { margin-bottom: 3.5rem; }
+        .division-block:last-child { margin-bottom: 0; }
+
+        /* Separador visual para SUAyED */
+        .division-block.div-suayed {
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            padding-top: 3rem;
+        }
+
+        .division-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .75rem;
+            padding: .85rem 1.75rem;
+            border: 1.5px solid var(--div-color);
+            border-radius: var(--radius-sm);
+            color: var(--div-color);
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 1.25rem;
+            background: rgba(255, 255, 255, .02);
+        }
+
+        .division-header i { font-size: .95rem; opacity: .8; }
+
+        /* ── Card de carrera ─────────── */
+        .cronograma-card {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+            padding: 1.15rem 1.5rem;
+            height: 100%;
+            transition: box-shadow .35s ease, border-color .35s ease,
+                        transform .25s ease, background .25s ease;
+        }
+
+        .cronograma-card:hover {
+            background: rgba(var(--glow-rgb), .04);
+            border-color: rgba(var(--glow-rgb), .38);
+            box-shadow:
+                0 0 14px rgba(var(--glow-rgb), .35),
+                0 0 40px rgba(var(--glow-rgb), .10),
+                inset 0 0 20px rgba(var(--glow-rgb), .04);
+            transform: translateY(-3px);
+        }
+
+        /* Área del logo */
+        .cc-logo {
+            width: 76px;
+            height: 76px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color .3s ease, background .3s ease;
+        }
+
+        .cronograma-card:hover .cc-logo {
+            background: rgba(var(--glow-rgb), .10);
+            border-color: rgba(var(--glow-rgb), .3);
+        }
+
+        .cc-logo img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform .3s ease;
+        }
+
+        .cronograma-card:hover .cc-logo img { transform: scale(1.08); }
+
+        .logo-fallback {
+            display: none;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--div-color);
+            letter-spacing: -.02em;
+            line-height: 1;
+        }
+
+        /* Contenido derecho */
+        .cc-body { flex: 1; min-width: 0; }
+
+        .cc-body h5 {
+            color: var(--white);
+            font-size: .88rem;
+            font-weight: 700;
+            margin: 0 0 .7rem 0;
+            line-height: 1.35;
+        }
+
+        .btn-cronograma {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            background: rgba(255, 255, 255, .06);
+            color: rgba(255, 255, 255, .75);
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 50px;
+            padding: .38rem 1rem;
+            font-size: .74rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            transition: background .25s, border-color .25s, color .25s, box-shadow .25s;
+            white-space: nowrap;
+        }
+
+        .btn-cronograma:hover {
+            background: rgba(var(--glow-rgb), .2);
+            color: var(--div-color);
+            border-color: rgba(var(--glow-rgb), .5);
+            box-shadow: 0 0 10px rgba(var(--glow-rgb), .25);
+        }
+
+        @media (max-width: 480px) {
+            .cronograma-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .cc-logo { width: 60px; height: 60px; }
+        }
+
         /* ─── Fade-up animation ───────────────────────────────────── */
         .fade-up {
             opacity: 0;
@@ -1016,6 +1168,7 @@
                     <li class="nav-item"><a class="nav-link" href="#tramites">Trámites</a></li>
                     <li class="nav-item"><a class="nav-link" href="#actividades">Actividades</a></li>
                     <li class="nav-item"><a class="nav-link" href="#documentos">Documentos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cronogramas">Cronogramas</a></li>
                     <li class="nav-item"><a class="nav-link" href="#ubicacion">Ubicación</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                     <li class="nav-item ms-lg-2">
@@ -1380,6 +1533,342 @@
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <!-- ══════════ CRONOGRAMAS DE CARRERA ══════════ -->
+    <section class="cronogramas-section" id="cronogramas">
+        <div class="container">
+
+            <!-- Encabezado -->
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center fade-up">
+                    <span class="section-tag">Cronograma de actividades</span>
+                    <h2 class="section-title">Programa por carrera</h2>
+                    <p class="section-subtitle mx-auto">
+                        Descarga el cronograma de actividades PIIANITE correspondiente a tu carrera y modalidad.
+                        Cada división cuenta con su calendario específico de trámites y actividades de nuevo ingreso.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ══ DCFMI ══════════════════════════════════════════════ -->
+            <div class="division-block div-dcfmi fade-up">
+                <div class="division-header">
+                    <i class="bi bi-cpu-fill"></i>
+                    Ciencias Físico Matemáticas y de las Ingenierías (DCFMI)
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_civil.png" alt="Ingeniería Civil"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Civ</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Ingeniería Civil</h5>
+                                <a href="doc/cronograma_civil.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_computacion.png" alt="Ingeniería en Computación"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Comp</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Ingeniería en Computación</h5>
+                                <a href="doc/cronograma_computacion.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_electrica.png" alt="Ingeniería Eléctrica Electrónica"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">EE</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Ingeniería Eléctrica Electrónica</h5>
+                                <a href="doc/cronograma_electrica.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_industrial.png" alt="Ingeniería Industrial"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Ind</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Ingeniería Industrial</h5>
+                                <a href="doc/cronograma_industrial.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_mecanica.png" alt="Ingeniería Mecánica"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Mec</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Ingeniería Mecánica</h5>
+                                <a href="doc/cronograma_mecanica.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /DCFMI -->
+
+            <!-- ══ DCS ════════════════════════════════════════════════ -->
+            <div class="division-block div-dcs fade-up">
+                <div class="division-header">
+                    <i class="bi bi-globe2"></i>
+                    Ciencias Sociales (DCS)
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_comunicacion.png" alt="Comunicación y Periodismo"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">CyP</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Comunicación y Periodismo</h5>
+                                <a href="doc/cronograma_comunicacion.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_derecho.png" alt="Derecho"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Der</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Derecho</h5>
+                                <a href="doc/cronograma_derecho.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_economia.png" alt="Economía"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Eco</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Economía</h5>
+                                <a href="doc/cronograma_economia.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_planificacion.png" alt="Planificación para el Desarrollo Agropecuario"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">PDA</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Planificación para el Desarrollo Agropecuario</h5>
+                                <a href="doc/cronograma_planificacion.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_rrii.png" alt="Relaciones Internacionales"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">RI</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Relaciones Internacionales</h5>
+                                <a href="doc/cronograma_rrii.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_sociologia.png" alt="Sociología"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Soc</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Sociología</h5>
+                                <a href="doc/cronograma_sociologia.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /DCS -->
+
+            <!-- ══ DHyA ═══════════════════════════════════════════════ -->
+            <div class="division-block div-dhya fade-up">
+                <div class="division-header">
+                    <i class="bi bi-palette-fill"></i>
+                    Humanidades y Artes (DHyA)
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_arquitectura.png" alt="Arquitectura"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Arq</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Arquitectura</h5>
+                                <a href="doc/cronograma_arquitectura.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_diseno_industrial.png" alt="Diseño Industrial"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">DI</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Diseño Industrial</h5>
+                                <a href="doc/cronograma_diseno_industrial.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_pedagogia.png" alt="Pedagogía"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Ped</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Pedagogía</h5>
+                                <a href="doc/cronograma_pedagogia.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /DHyA -->
+
+            <!-- ══ SUAyED ══════════════════════════════════════════════
+                 Separado visualmente del bloque escolarizado          -->
+            <div class="division-block div-suayed fade-up">
+                <div class="division-header">
+                    <i class="bi bi-laptop-fill"></i>
+                    Sistema Universidad Abierta y Educación a Distancia (SUAyED)
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_suayed_derecho.png" alt="Derecho SUAyED"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Der</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Derecho</h5>
+                                <a href="doc/cronograma_suayed_derecho.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_suayed_economia.png" alt="Economía SUAyED"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Eco</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Economía</h5>
+                                <a href="doc/cronograma_suayed_economia.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="img/logo_suayed_rrii.png" alt="Relaciones Internacionales SUAyED"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">RI</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Relaciones Internacionales</h5>
+                                <a href="doc/cronograma_suayed_rrii.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /SUAyED -->
+
         </div>
     </section>
 
