@@ -560,6 +560,151 @@
             margin: 0;
         }
 
+        /* ─── Bienvenida Generación + Carrusel de fotos ─────────────── */
+        .bienvenida-section {
+            background: var(--white);
+        }
+
+        .bienvenida-pills {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            margin: 1.4rem 0 .4rem;
+        }
+
+        .bienvenida-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            background: var(--light);
+            border: 1.5px solid var(--border);
+            border-radius: 50px;
+            padding: .5rem 1.1rem;
+            font-size: .8rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .bienvenida-pill i {
+            color: var(--teal);
+            font-size: .95rem;
+        }
+
+        .bienvenida-pill.pill-amarillo i {
+            color: var(--amber);
+        }
+
+        /* Foto principal de bienvenida */
+        .bienvenida-photo {
+            aspect-ratio: 4 / 3;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--light);
+            border: 1.5px dashed var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .bienvenida-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-placeholder-fallback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .6rem;
+            color: var(--muted);
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .photo-placeholder-fallback i {
+            font-size: 2.2rem;
+            color: var(--border);
+        }
+
+        .photo-placeholder-fallback span {
+            font-size: .76rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+        }
+
+        /* Carrusel de fotos */
+        .bienvenida-carousel-wrap {
+            margin-top: 3.2rem;
+        }
+
+        .carousel-photo-slide {
+            aspect-ratio: 16 / 7;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--light);
+            border: 1.5px dashed var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-photo-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #bienvenidaCarousel .carousel-indicators {
+            margin-bottom: -1.6rem;
+        }
+
+        #bienvenidaCarousel .carousel-indicators [data-bs-target] {
+            background-color: var(--teal);
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            opacity: .3;
+            border: none;
+        }
+
+        #bienvenidaCarousel .carousel-indicators .active {
+            opacity: 1;
+        }
+
+        .carousel-control-custom-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--teal);
+            font-size: 1.15rem;
+            box-shadow: 0 4px 14px rgba(11, 17, 32, .15);
+            transition: background .2s, color .2s;
+        }
+
+        #bienvenidaCarousel .carousel-control-prev,
+        #bienvenidaCarousel .carousel-control-next {
+            width: auto;
+            opacity: 1;
+        }
+
+        #bienvenidaCarousel .carousel-control-prev { left: 1rem; }
+        #bienvenidaCarousel .carousel-control-next { right: 1rem; }
+
+        #bienvenidaCarousel .carousel-control-prev:hover .carousel-control-custom-icon,
+        #bienvenidaCarousel .carousel-control-next:hover .carousel-control-custom-icon {
+            background: var(--teal);
+            color: var(--white);
+        }
+
         /* ─── Documentos clave (CTA pair) ──────────────────────────── */
         .docs-section {
             background: var(--light);
@@ -796,6 +941,61 @@
 
         .leaflet-tooltip.leaflet-label-tooltip.leaflet-label-tooltip--green:before {
             border-top-color: #198754;
+        }
+
+        /* ─── Filtros del mapa ────────────────────────────────── */
+        .map-filters {
+            display: flex;
+            gap: .6rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .map-filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .45rem 1.2rem;
+            border-radius: 50px;
+            border: 1.5px solid var(--border);
+            background: var(--white);
+            color: var(--muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+
+        .map-filter-btn .filter-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .map-filter-btn:not(.active):hover {
+            border-color: var(--navy);
+            color: var(--navy);
+        }
+
+        .map-filter-btn.active.btn-all {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--white);
+        }
+
+        .map-filter-btn.active.btn-loc {
+            background: #1982c4;
+            border-color: #1982c4;
+            color: var(--white);
+        }
+
+        .map-filter-btn.active.btn-ent {
+            background: #198754;
+            border-color: #198754;
+            color: var(--white);
         }
 
         /* ─── Contacto (dark section) ──────────────────────────────── */
@@ -1188,10 +1388,11 @@
             <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
                     <li class="nav-item"><a class="nav-link" href="#tramites">Trámites</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bienvenida">Bienvenida</a></li>
                     <li class="nav-item"><a class="nav-link" href="#actividades">Actividades</a></li>
                     <li class="nav-item"><a class="nav-link" href="#documentos">Documentos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#cronogramas">Cronogramas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#ubicacion">Ubicación</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ubicacion">Mapa</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                     <li class="nav-item ms-lg-2">
                         <a class="nav-link btn-nav" role="button" data-bs-toggle="modal"
@@ -1294,6 +1495,115 @@
             <span style="background:#ffca3a;"></span>
             <span style="background:#8ac926;"></span>
             <span style="background:#1982c4;"></span>
+        </div>
+    </section>
+
+    <!-- ══════════ BIENVENIDA GENERACIÓN 2027-I ══════════ -->
+    <section class="bienvenida-section" id="bienvenida">
+        <div class="container">
+
+            <div class="row align-items-center gy-4 mb-4">
+
+                <div class="col-lg-6 fade-up">
+                    <span class="section-tag">Generación 2027-I</span>
+                    <h2 class="section-title">¡Bienvenida, Generación 2027-I!</h2>
+                    <p class="section-subtitle">
+                        La FES Aragón te recibe con gusto, sin importar el sistema en el que curses tu
+                        carrera. Este espacio acompaña tanto al <strong>Sistema Escolarizado</strong> como
+                        al <strong>Sistema Universidad Abierta y Educación a Distancia (SUAyED)</strong>
+                        durante su proceso de inducción e integración a la vida universitaria.
+                    </p>
+                    <div class="bienvenida-pills">
+                        <span class="bienvenida-pill">
+                            <i class="bi bi-building"></i> Sistema Escolarizado
+                        </span>
+                        <span class="bienvenida-pill pill-amarillo">
+                            <i class="bi bi-laptop"></i> SUAyED
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 fade-up">
+                    <div class="bienvenida-photo">
+                        <!-- Reemplaza con la fotografía oficial de bienvenida -->
+                        <img src="img/bienvenida_2027-1.jpg" alt="Bienvenida Generación 2027-I FES Aragón"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="photo-placeholder-fallback" style="display:none;">
+                            <i class="bi bi-image"></i>
+                            <span>Espacio para fotografía de bienvenida</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Carrusel de fotos -->
+            <div class="bienvenida-carousel-wrap fade-up">
+                <div id="bienvenidaCarousel" class="carousel slide" data-bs-ride="carousel">
+
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#bienvenidaCarousel" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Foto 1"></button>
+                        <button type="button" data-bs-target="#bienvenidaCarousel" data-bs-slide-to="1"
+                            aria-label="Foto 2"></button>
+                        <button type="button" data-bs-target="#bienvenidaCarousel" data-bs-slide-to="2"
+                            aria-label="Foto 3"></button>
+                    </div>
+
+                    <div class="carousel-inner">
+
+                        <!-- Foto 1 -->
+                        <div class="carousel-item active">
+                            <div class="carousel-photo-slide">
+                                <img src="img/carrusel_bienvenida_1.jpg" alt="Bienvenida generación 2027-I — foto 1"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                <div class="photo-placeholder-fallback" style="display:none;">
+                                    <i class="bi bi-images"></i>
+                                    <span>Foto 1 del recorrido de bienvenida</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Foto 2 -->
+                        <div class="carousel-item">
+                            <div class="carousel-photo-slide">
+                                <img src="img/carrusel_bienvenida_2.jpg" alt="Bienvenida generación 2027-I — foto 2"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                <div class="photo-placeholder-fallback" style="display:none;">
+                                    <i class="bi bi-images"></i>
+                                    <span>Foto 2 del recorrido de bienvenida</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Foto 3 -->
+                        <div class="carousel-item">
+                            <div class="carousel-photo-slide">
+                                <img src="img/carrusel_bienvenida_3.jpg" alt="Bienvenida generación 2027-I — foto 3"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                <div class="photo-placeholder-fallback" style="display:none;">
+                                    <i class="bi bi-images"></i>
+                                    <span>Foto 3 del recorrido de bienvenida</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#bienvenidaCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-custom-icon"><i class="bi bi-chevron-left"></i></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#bienvenidaCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-custom-icon"><i class="bi bi-chevron-right"></i></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -1909,6 +2219,17 @@
             </div>
             <div class="row justify-content-center fade-up">
                 <div class="col-lg-10">
+                    <div class="map-filters" id="mapFilters">
+                        <button class="map-filter-btn btn-all active" data-filter="all">
+                            <i class="bi bi-layers"></i> Todos
+                        </button>
+                        <button class="map-filter-btn btn-loc" data-filter="location">
+                            <span class="filter-dot" style="background:#1982c4;"></span> Locaciones
+                        </button>
+                        <button class="map-filter-btn btn-ent" data-filter="entrance">
+                            <span class="filter-dot" style="background:#198754;"></span> Entradas
+                        </button>
+                    </div>
                     <div id="map" class="leaflet-map-4x3"></div>
                 </div>
             </div>
@@ -2831,28 +3152,26 @@
                 shadowAnchor: [12, 41]
             });
 
-            const locations = [
-                { lat: 19.476396427168083, lng: -99.04633425890201, name: 'Teatro José Vasconcelos' },
-                { lat: 19.47446595918309, lng: -99.04368228623203, name: 'DUACyD' },
-                { lat: 19.474965205436593, lng: -99.04218644726495, name: 'Gimnasio de Parquet' },
-                { lat: 19.473643812212256, lng: -99.04651282145399, name: 'Centro Tecnológico Aragón' },
-                { lat: 19.473913649557876, lng: -99.04558637044778, name: 'Jefaturas de Ingenierías' },
-                { lat: 19.475557490862624, lng: -99.04589351131486, name: 'Edificio de Gobierno' },
-                // Entradas (marcadores verdes)
-                {
-                    lat: 19.477113741945363, lng: -99.04455807471379, name: 'Entrada Av. Universidad',
-                    icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green'
-                },
-                {
-                    lat: 19.476321589902124, lng: -99.04686134401935, name: 'Entrada Bosque de Africa',
-                    icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green'
-                }
+            const locationData = [
+                { lat: 19.476396427168083, lng: -99.04633425890201, name: 'Teatro José Vasconcelos',   type: 'location' },
+                { lat: 19.47446595918309,  lng: -99.04368228623203, name: 'DUACyD',                     type: 'location' },
+                { lat: 19.474965205436593, lng: -99.04218644726495, name: 'Gimnasio de Parquet',        type: 'location' },
+                { lat: 19.473643812212256, lng: -99.04651282145399, name: 'Centro Tecnológico Aragón',  type: 'location' },
+                { lat: 19.473913649557876, lng: -99.04558637044778, name: 'Jefaturas de Ingenierías',   type: 'location' },
+                { lat: 19.475557490862624, lng: -99.04589351131486, name: 'Edificio de Gobierno',       type: 'location' },
+                { lat: 19.474713696789184, lng: -99.04547546056583, name: 'Explanada Central',          type: 'location' },
+                { lat: 19.474398079907516, lng: -99.04432075768581, name: 'Explanada A5 - A8',          type: 'location' },
+                { lat: 19.47388487106454, lng: -99.04330609344528, name: 'Anexo de Derecho',          type: 'location' },
+                { lat: 19.47446376272598, lng: -99.04378112857304, name: 'CLe',          type: 'location' },
+                { lat: 19.477113741945363, lng: -99.04455807471379, name: 'Entrada Av. Universidad',    type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' },
+                { lat: 19.476321589902124, lng: -99.04686134401935, name: 'Entrada Bosque de Africa',   type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' }
             ];
 
-            const markersGroup = L.featureGroup().addTo(map);
+            const locationsGroup = L.featureGroup();
+            const entrancesGroup = L.featureGroup();
 
-            locations.forEach((loc) => {
-                const marker = L.marker([loc.lat, loc.lng], loc.icon ? { icon: loc.icon } : {}).addTo(markersGroup);
+            locationData.forEach((loc) => {
+                const marker = L.marker([loc.lat, loc.lng], loc.icon ? { icon: loc.icon } : {});
                 marker.bindPopup(`<strong>${loc.name}</strong><br>${loc.lat.toFixed(6)}, ${loc.lng.toFixed(6)}`);
                 marker.bindTooltip(loc.name, {
                     permanent: true,
@@ -2860,12 +3179,40 @@
                     offset: [0, -10],
                     className: `leaflet-label-tooltip ${loc.tooltipClass ?? ''}`.trim()
                 });
+                if (loc.type === 'entrance') {
+                    entrancesGroup.addLayer(marker);
+                } else {
+                    locationsGroup.addLayer(marker);
+                }
             });
 
-            const bounds = markersGroup.getBounds();
+            locationsGroup.addTo(map);
+            entrancesGroup.addTo(map);
+
+            const allGroup = L.featureGroup([...locationsGroup.getLayers(), ...entrancesGroup.getLayers()]);
+            const bounds = allGroup.getBounds();
             if (bounds.isValid()) {
                 map.fitBounds(bounds, { padding: [30, 30], maxZoom: 18 });
             }
+
+            // Filtros
+            document.querySelectorAll('#mapFilters .map-filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#mapFilters .map-filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filter = btn.dataset.filter;
+                    if (filter === 'all') {
+                        if (!map.hasLayer(locationsGroup)) locationsGroup.addTo(map);
+                        if (!map.hasLayer(entrancesGroup)) entrancesGroup.addTo(map);
+                    } else if (filter === 'location') {
+                        if (!map.hasLayer(locationsGroup)) locationsGroup.addTo(map);
+                        if (map.hasLayer(entrancesGroup))  map.removeLayer(entrancesGroup);
+                    } else if (filter === 'entrance') {
+                        if (map.hasLayer(locationsGroup))  map.removeLayer(locationsGroup);
+                        if (!map.hasLayer(entrancesGroup)) entrancesGroup.addTo(map);
+                    }
+                });
+            });
         });
     </script>
 
