@@ -928,11 +928,21 @@
             font-weight: 600;
             font-size: .75rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-            pointer-events: none;
+            pointer-events: auto;
+            cursor: default;
+            transition: transform .15s ease, box-shadow .15s ease, font-size .15s ease;
         }
 
         .leaflet-tooltip.leaflet-label-tooltip:before {
             border-top-color: var(--navy);
+        }
+
+        .leaflet-tooltip.leaflet-label-tooltip:hover,
+        .leaflet-tooltip.leaflet-label-tooltip.is-highlighted {
+            transform: scale(1.18) translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+            font-size: .85rem;
+            z-index: 9999 !important;
         }
 
         .leaflet-tooltip.leaflet-label-tooltip.leaflet-label-tooltip--green {
@@ -941,6 +951,11 @@
 
         .leaflet-tooltip.leaflet-label-tooltip.leaflet-label-tooltip--green:before {
             border-top-color: #198754;
+        }
+
+        .leaflet-tooltip.leaflet-label-tooltip.leaflet-label-tooltip--green:hover,
+        .leaflet-tooltip.leaflet-label-tooltip.leaflet-label-tooltip--green.is-highlighted {
+            background: #145c35;
         }
 
         /* ─── Filtros del mapa ────────────────────────────────── */
@@ -3193,6 +3208,9 @@
                 { lat: 19.474398079907516, lng: -99.04432075768581, name: 'Explanada A5 - A8',          type: 'location' },
                 { lat: 19.47388487106454, lng: -99.04330609344528, name: 'Anexo de Derecho',          type: 'location' },
                 { lat: 19.47446376272598, lng: -99.04378112857304, name: 'CLe',          type: 'location' },
+                { lat: 19.475203146989003, lng: -99.04590226453683, name: 'Las Torres',          type: 'location' },
+                { lat: 19.475571232024596, lng: -99.0462983124871, name: 'Plaza del Estudiante',          type: 'location' },
+                { lat: 19.475693223460343, lng: -99.04628489595284, name: 'Servicio Médico',          type: 'location' },
                 { lat: 19.477113741945363, lng: -99.04455807471379, name: 'Entrada Av. Universidad',    type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' },
                 { lat: 19.476321589902124, lng: -99.04686134401935, name: 'Entrada Bosque de Africa',   type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' }
             ];
@@ -3209,6 +3227,34 @@
                     offset: [0, -10],
                     className: `leaflet-label-tooltip ${loc.tooltipClass ?? ''}`.trim()
                 });
+
+                const getTooltipEl = () => marker.getTooltip()?.getElement();
+
+                const highlight = () => {
+                    const el = getTooltipEl();
+                    if (!el) return;
+                    el.classList.add('is-highlighted');
+                    el.style.zIndex = 9999;
+                };
+                const unhighlight = () => {
+                    const el = getTooltipEl();
+                    if (!el) return;
+                    el.classList.remove('is-highlighted');
+                    el.style.zIndex = '';
+                };
+
+                marker.on('mouseover', highlight);
+                marker.on('mouseout', unhighlight);
+
+                marker.on('add', () => {
+                    const el = getTooltipEl();
+                    if (el && !el.dataset.hoverBound) {
+                        el.addEventListener('mouseenter', highlight);
+                        el.addEventListener('mouseleave', unhighlight);
+                        el.dataset.hoverBound = '1';
+                    }
+                });
+
                 if (loc.type === 'entrance') {
                     entrancesGroup.addLayer(marker);
                 } else {
