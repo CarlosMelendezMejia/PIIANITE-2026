@@ -146,6 +146,31 @@
             color: var(--navy) !important;
         }
 
+        .btn-nav-curpi {
+            background: var(--amber);
+            color: var(--navy) !important;
+            font-weight: 700;
+            padding: .4rem 1.2rem !important;
+            border-radius: 50px;
+            font-size: .82rem;
+            animation: curpi-pulse 1.6s ease-in-out infinite;
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .btn-nav-curpi:hover {
+            animation: none;
+            opacity: .88;
+            color: var(--navy) !important;
+            transform: scale(1.07);
+        }
+
+        @keyframes curpi-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 202, 58, .55); }
+            50%       { transform: scale(1.07); box-shadow: 0 0 0 7px rgba(255, 202, 58, 0); }
+        }
+
         /* ─── Hero ─────────────────────────────────────────────────── */
         .hero {
             background: var(--navy);
@@ -958,6 +983,19 @@
             background: #145c35;
         }
 
+        .leaflet-tooltip.leaflet-label-tooltip.leaflet-label-tooltip--orange {
+            background: #fd7e14;
+        }
+
+        .leaflet-tooltip.leaflet-label-tooltip.leaflet-label-tooltip--orange:before {
+            border-top-color: #fd7e14;
+        }
+
+        .leaflet-tooltip.leaflet-label-tooltip.leaflet-label-tooltip--orange:hover,
+        .leaflet-tooltip.leaflet-label-tooltip.leaflet-label-tooltip--orange.is-highlighted {
+            background: #c96800;
+        }
+
         /* ─── Filtros del mapa ────────────────────────────────── */
         .map-filters {
             display: flex;
@@ -1010,6 +1048,12 @@
         .map-filter-btn.active.btn-ent {
             background: #198754;
             border-color: #198754;
+            color: var(--white);
+        }
+
+        .map-filter-btn.active.btn-exp {
+            background: #fd7e14;
+            border-color: #fd7e14;
             color: var(--white);
         }
 
@@ -1678,12 +1722,16 @@
             <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
                     <li class="nav-item"><a class="nav-link" href="#tramites">Trámites</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#bienvenida">Bienvenida</a></li>
                     <li class="nav-item"><a class="nav-link" href="#actividades">Actividades</a></li>
                     <li class="nav-item"><a class="nav-link" href="#documentos">Documentos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#cronogramas">Cronogramas</a></li>
                     <li class="nav-item"><a class="nav-link" href="#ubicacion">Mapa</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item">
+                        <a role="button" data-bs-toggle="modal" data-bs-target="#Curpi" class="nav-link btn-nav-curpi">
+                            <i class="bi bi-pencil-square"></i> Realiza tu CURPI
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -1768,8 +1816,7 @@
                     <span class="section-tag">Generación 2027-I</span>
                     <h2 class="section-title">¡Bienvenida, Generación 2027-I!</h2>
                     <p class="section-subtitle">
-                        La FES Aragón te recibe con gusto, sin importar el sistema en el que curses tu
-                        carrera. Este espacio acompaña tanto al <strong>Sistema Escolarizado</strong> como
+                        La FES Aragón recibe con gusto .Este espacio acompaña tanto al <strong>Sistema Escolarizado</strong> como
                         al <strong>Sistema Universidad Abierta y Educación a Distancia (SUAyED)</strong>
                         durante su proceso de inducción e integración a la vida universitaria.
                     </p>
@@ -2485,6 +2532,9 @@
                         <button class="map-filter-btn btn-ent" data-filter="entrance">
                             <span class="filter-dot" style="background:#198754;"></span> Entradas
                         </button>
+                        <button class="map-filter-btn btn-exp" data-filter="explanada">
+                            <span class="filter-dot" style="background:#fd7e14;"></span> Explanadas
+                        </button>
                     </div>
                     <div id="map" class="leaflet-map-4x3"></div>
                 </div>
@@ -3170,127 +3220,164 @@
         document.querySelectorAll('.hero .fade-up').forEach(el => el.classList.add('visible'));
     </script>
 
-    <!-- Mapa Leaflet (conservado del PIIANITE original) -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mapElement = document.getElementById('map');
-            if (!mapElement || typeof L === 'undefined') return;
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mapElement = document.getElementById('map');
+        if (!mapElement || typeof L === 'undefined') return;
 
-            const map = L.map('map').setView([19.4745, -99.0455], 16);
+        const map = L.map('map').setView([19.4745, -99.0455], 16);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-            const greenIcon = L.icon({
-                iconUrl: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="41" viewBox="0 0 25 41">
-          <path d="M12.5 0C5.6 0 0 5.6 0 12.5C0 22 12.5 41 12.5 41S25 22 25 12.5C25 5.6 19.4 0 12.5 0Z" fill="#198754"/>
-          <circle cx="12.5" cy="12.5" r="5.5" fill="#ffffff" opacity="0.95"/>
-        </svg>
-      `),
-                iconSize: [25, 41],
-                iconAnchor: [12, 41],
-                popupAnchor: [1, -34],
-                shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-                shadowSize: [41, 41],
-                shadowAnchor: [12, 41]
+        const createPinIcon = (color) => L.icon({
+            iconUrl: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="41" viewBox="0 0 25 41">
+                    <path d="M12.5 0C5.6 0 0 5.6 0 12.5C0 22 12.5 41 12.5 41S25 22 25 12.5C25 5.6 19.4 0 12.5 0Z" fill="${color}"/>
+                    <circle cx="12.5" cy="12.5" r="5.5" fill="#ffffff" opacity="0.95"/>
+                </svg>
+            `),
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+            shadowSize: [41, 41],
+            shadowAnchor: [12, 41]
+        });
+
+        const orangeIcon = createPinIcon('#fd7e14');
+        const greenIcon = createPinIcon('#198754');
+
+        const locationData = [
+            { lat: 19.476396427168083, lng: -99.04633425890201, name: 'Teatro José Vasconcelos', type: 'location' },
+            { lat: 19.47446595918309, lng: -99.04368228623203, name: 'DUACyD', type: 'location' },
+            { lat: 19.474965205436593, lng: -99.04218644726495, name: 'Gimnasio de Parquet', type: 'location' },
+            { lat: 19.473643812212256, lng: -99.04651282145399, name: 'Centro Tecnológico Aragón', type: 'location' },
+            { lat: 19.473913649557876, lng: -99.04558637044778, name: 'Jefaturas de Ingenierías', type: 'location' },
+            { lat: 19.475557490862624, lng: -99.04589351131486, name: 'Edificio de Gobierno', type: 'location' },
+            { lat: 19.474713696789184, lng: -99.04547546056583, name: 'Explanada Central', type: 'explanada', icon: orangeIcon, tooltipClass: 'leaflet-label-tooltip--orange' },
+            { lat: 19.474398079907516, lng: -99.04432075768581, name: 'Explanada A5 - A8', type: 'explanada', icon: orangeIcon, tooltipClass: 'leaflet-label-tooltip--orange' },
+            { lat: 19.47388487106454, lng: -99.04330609344528, name: 'Anexo de Derecho', type: 'location' },
+            { lat: 19.47446376272598, lng: -99.04378112857304, name: 'CLe', type: 'location' },
+            { lat: 19.475203146989003, lng: -99.04590226453683, name: 'Las Torres', type: 'location' },
+            { lat: 19.475571232024596, lng: -99.0462983124871, name: 'Plaza del Estudiante', type: 'location' },
+            { lat: 19.475693223460343, lng: -99.04628489595284, name: 'Servicio Médico', type: 'location' },
+            { lat: 19.477113741945363, lng: -99.04455807471379, name: 'Entrada Av. Universidad', type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' },
+            { lat: 19.476321589902124, lng: -99.04686134401935, name: 'Entrada Bosque de Africa', type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' }
+        ];
+
+        const groups = {
+            location: L.featureGroup(),
+            entrance: L.featureGroup(),
+            explanada: L.featureGroup()
+        };
+
+        const addMarkerToGroup = (loc) => {
+            const marker = L.marker(
+                [loc.lat, loc.lng],
+                loc.icon ? { icon: loc.icon } : {}
+            );
+
+            marker.bindPopup(`
+                <strong>${loc.name}</strong><br>
+                ${loc.lat.toFixed(6)}, ${loc.lng.toFixed(6)}
+            `);
+
+            marker.bindTooltip(loc.name, {
+                permanent: true,
+                direction: 'top',
+                offset: [0, -10],
+                className: `leaflet-label-tooltip ${loc.tooltipClass ?? ''}`.trim()
             });
 
-            const locationData = [
-                { lat: 19.476396427168083, lng: -99.04633425890201, name: 'Teatro José Vasconcelos',   type: 'location' },
-                { lat: 19.47446595918309,  lng: -99.04368228623203, name: 'DUACyD',                     type: 'location' },
-                { lat: 19.474965205436593, lng: -99.04218644726495, name: 'Gimnasio de Parquet',        type: 'location' },
-                { lat: 19.473643812212256, lng: -99.04651282145399, name: 'Centro Tecnológico Aragón',  type: 'location' },
-                { lat: 19.473913649557876, lng: -99.04558637044778, name: 'Jefaturas de Ingenierías',   type: 'location' },
-                { lat: 19.475557490862624, lng: -99.04589351131486, name: 'Edificio de Gobierno',       type: 'location' },
-                { lat: 19.474713696789184, lng: -99.04547546056583, name: 'Explanada Central',          type: 'location' },
-                { lat: 19.474398079907516, lng: -99.04432075768581, name: 'Explanada A5 - A8',          type: 'location' },
-                { lat: 19.47388487106454, lng: -99.04330609344528, name: 'Anexo de Derecho',          type: 'location' },
-                { lat: 19.47446376272598, lng: -99.04378112857304, name: 'CLe',          type: 'location' },
-                { lat: 19.475203146989003, lng: -99.04590226453683, name: 'Las Torres',          type: 'location' },
-                { lat: 19.475571232024596, lng: -99.0462983124871, name: 'Plaza del Estudiante',          type: 'location' },
-                { lat: 19.475693223460343, lng: -99.04628489595284, name: 'Servicio Médico',          type: 'location' },
-                { lat: 19.477113741945363, lng: -99.04455807471379, name: 'Entrada Av. Universidad',    type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' },
-                { lat: 19.476321589902124, lng: -99.04686134401935, name: 'Entrada Bosque de Africa',   type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' }
-            ];
+            const getTooltipEl = () => marker.getTooltip()?.getElement();
 
-            const locationsGroup = L.featureGroup();
-            const entrancesGroup = L.featureGroup();
+            const highlight = () => {
+                const el = getTooltipEl();
+                if (!el) return;
 
-            locationData.forEach((loc) => {
-                const marker = L.marker([loc.lat, loc.lng], loc.icon ? { icon: loc.icon } : {});
-                marker.bindPopup(`<strong>${loc.name}</strong><br>${loc.lat.toFixed(6)}, ${loc.lng.toFixed(6)}`);
-                marker.bindTooltip(loc.name, {
-                    permanent: true,
-                    direction: 'top',
-                    offset: [0, -10],
-                    className: `leaflet-label-tooltip ${loc.tooltipClass ?? ''}`.trim()
-                });
+                el.classList.add('is-highlighted');
+                el.style.zIndex = 9999;
+            };
 
-                const getTooltipEl = () => marker.getTooltip()?.getElement();
+            const unhighlight = () => {
+                const el = getTooltipEl();
+                if (!el) return;
 
-                const highlight = () => {
-                    const el = getTooltipEl();
-                    if (!el) return;
-                    el.classList.add('is-highlighted');
-                    el.style.zIndex = 9999;
-                };
-                const unhighlight = () => {
-                    const el = getTooltipEl();
-                    if (!el) return;
-                    el.classList.remove('is-highlighted');
-                    el.style.zIndex = '';
-                };
+                el.classList.remove('is-highlighted');
+                el.style.zIndex = '';
+            };
 
-                marker.on('mouseover', highlight);
-                marker.on('mouseout', unhighlight);
+            marker.on('mouseover', highlight);
+            marker.on('mouseout', unhighlight);
 
-                marker.on('add', () => {
-                    const el = getTooltipEl();
-                    if (el && !el.dataset.hoverBound) {
-                        el.addEventListener('mouseenter', highlight);
-                        el.addEventListener('mouseleave', unhighlight);
-                        el.dataset.hoverBound = '1';
-                    }
-                });
+            marker.on('add', () => {
+                const el = getTooltipEl();
 
-                if (loc.type === 'entrance') {
-                    entrancesGroup.addLayer(marker);
-                } else {
-                    locationsGroup.addLayer(marker);
+                if (el && !el.dataset.hoverBound) {
+                    el.addEventListener('mouseenter', highlight);
+                    el.addEventListener('mouseleave', unhighlight);
+                    el.dataset.hoverBound = '1';
                 }
             });
 
-            locationsGroup.addTo(map);
-            entrancesGroup.addTo(map);
+            groups[loc.type]?.addLayer(marker);
+        };
 
-            const allGroup = L.featureGroup([...locationsGroup.getLayers(), ...entrancesGroup.getLayers()]);
-            const bounds = allGroup.getBounds();
-            if (bounds.isValid()) {
-                map.fitBounds(bounds, { padding: [30, 30], maxZoom: 18 });
-            }
+        locationData.forEach(addMarkerToGroup);
 
-            // Filtros
-            document.querySelectorAll('#mapFilters .map-filter-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('#mapFilters .map-filter-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    const filter = btn.dataset.filter;
-                    if (filter === 'all') {
-                        if (!map.hasLayer(locationsGroup)) locationsGroup.addTo(map);
-                        if (!map.hasLayer(entrancesGroup)) entrancesGroup.addTo(map);
-                    } else if (filter === 'location') {
-                        if (!map.hasLayer(locationsGroup)) locationsGroup.addTo(map);
-                        if (map.hasLayer(entrancesGroup))  map.removeLayer(entrancesGroup);
-                    } else if (filter === 'entrance') {
-                        if (map.hasLayer(locationsGroup))  map.removeLayer(locationsGroup);
-                        if (!map.hasLayer(entrancesGroup)) entrancesGroup.addTo(map);
-                    }
-                });
+        const showGroups = (visibleTypes) => {
+            Object.entries(groups).forEach(([type, group]) => {
+                const shouldShow = visibleTypes.includes(type);
+                const isVisible = map.hasLayer(group);
+
+                if (shouldShow && !isVisible) {
+                    group.addTo(map);
+                }
+
+                if (!shouldShow && isVisible) {
+                    map.removeLayer(group);
+                }
+            });
+        };
+
+        const filterConfig = {
+            all: ['location', 'entrance', 'explanada'],
+            location: ['location'],
+            entrance: ['entrance'],
+            explanada: ['explanada']
+        };
+
+        showGroups(filterConfig.all);
+
+        const allLayers = Object.values(groups).flatMap(group => group.getLayers());
+        const allGroup = L.featureGroup(allLayers);
+        const bounds = allGroup.getBounds();
+
+        if (bounds.isValid()) {
+            map.fitBounds(bounds, {
+                padding: [30, 30],
+                maxZoom: 18
+            });
+        }
+
+        document.querySelectorAll('#mapFilters .map-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document
+                    .querySelectorAll('#mapFilters .map-filter-btn')
+                    .forEach(b => b.classList.remove('active'));
+
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                const visibleTypes = filterConfig[filter] ?? filterConfig.all;
+
+                showGroups(visibleTypes);
             });
         });
-    </script>
+    });
+</script>
 
 </body>
 
