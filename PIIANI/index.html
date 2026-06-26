@@ -3220,6 +3220,7 @@
         document.querySelectorAll('.hero .fade-up').forEach(el => el.classList.add('visible'));
     </script>
 
+<!-- Mapa Leaflet -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const mapElement = document.getElementById('map');
@@ -3246,6 +3247,7 @@
             shadowAnchor: [12, 41]
         });
 
+        const blueIcon = createPinIcon('#2A81CB');
         const orangeIcon = createPinIcon('#fd7e14');
         const greenIcon = createPinIcon('#198754');
 
@@ -3263,6 +3265,8 @@
             { lat: 19.475203146989003, lng: -99.04590226453683, name: 'Las Torres', type: 'location' },
             { lat: 19.475571232024596, lng: -99.0462983124871, name: 'Plaza del Estudiante', type: 'location' },
             { lat: 19.475693223460343, lng: -99.04628489595284, name: 'Servicio Médico', type: 'location' },
+            { lat: 19.47383518985359, lng: -99.04413149724418, name: 'La puerta de Manu', type: 'location' },
+            { lat: 19.473765648662013, lng: -99.04429242977878, name: 'Explanada A7 - A11', type: 'explanada', icon: orangeIcon, tooltipClass: 'leaflet-label-tooltip--orange' },
             { lat: 19.477113741945363, lng: -99.04455807471379, name: 'Entrada Av. Universidad', type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' },
             { lat: 19.476321589902124, lng: -99.04686134401935, name: 'Entrada Bosque de Africa', type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' }
         ];
@@ -3274,9 +3278,11 @@
         };
 
         const addMarkerToGroup = (loc) => {
+            const markerIcon = loc.icon ?? (loc.type === 'location' ? blueIcon : null);
+
             const marker = L.marker(
                 [loc.lat, loc.lng],
-                loc.icon ? { icon: loc.icon } : {}
+                markerIcon ? { icon: markerIcon } : {}
             );
 
             marker.bindPopup(`
