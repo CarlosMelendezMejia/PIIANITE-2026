@@ -928,6 +928,124 @@
             color: var(--verde);
         }
 
+        /* ─── Servicios a la comunidad (image cards) ───────────────── */
+        .servicios-section {
+            background: var(--light);
+            padding-bottom: 5rem;
+        }
+
+        .servicio-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: border-color .25s, transform .2s, box-shadow .25s;
+        }
+
+        .servicio-card:hover {
+            border-color: var(--verde);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(138, 201, 38, .14);
+        }
+
+        .servicio-card-img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+        }
+
+        .servicio-card-img-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-md) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            color: rgba(255,255,255,.25);
+        }
+
+        .servicio-card-img-placeholder i {
+            font-size: 2.4rem;
+        }
+
+        .servicio-card-img-placeholder span {
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .servicio-card-body {
+            padding: 1.6rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .servicio-card-badge {
+            display: inline-block;
+            background: rgba(138, 201, 38, .12);
+            color: var(--verde);
+            border: 1px solid rgba(138, 201, 38, .3);
+            font-size: .67rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .22rem .8rem;
+            border-radius: 50px;
+            margin-bottom: .9rem;
+            align-self: flex-start;
+        }
+
+        .servicio-card-body h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: .5rem;
+            line-height: 1.35;
+            transition: color .25s;
+        }
+
+        .servicio-card:hover .servicio-card-body h4 {
+            color: var(--verde);
+        }
+
+        .servicio-card-body p {
+            font-size: .85rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin: 0 0 1.2rem 0;
+            flex-grow: 1;
+        }
+
+        .servicio-card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: .6rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .servicio-permanente-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .72rem;
+            color: var(--verde);
+            font-weight: 700;
+            letter-spacing: .02em;
+            text-transform: uppercase;
+        }
+
         /* ─── Ubicación / Mapa ─────────────────────────────────────── */
         .ubicacion-section {
             background: var(--light);
@@ -1246,6 +1364,7 @@
             background-attachment: fixed;
             position: relative;
             padding: 5rem 0 6rem;
+            margin-top: 5rem;
         }
 
         .cronogramas-section::before {
@@ -1721,12 +1840,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-                    <li class="nav-item"><a class="nav-link" href="#tramites">Trámites</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#actividades">Actividades</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#documentos">Documentos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#cronogramas">Cronogramas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#ubicacion">Mapa</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tramites"><i class="bi bi-clipboard-check me-1"></i>Trámites</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#actividades"><i class="bi bi-list-check me-1"></i>Actividades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#documentos"><i class="bi bi-file-earmark-text me-1"></i>Documentos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cronogramas"><i class="bi bi-calendar3 me-1"></i>Cronogramas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ubicacion"><i class="bi bi-map me-1"></i>Mapa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto"><i class="bi bi-envelope me-1"></i>Contacto</a></li>
                     <li class="nav-item">
                         <a role="button" data-bs-toggle="modal" data-bs-target="#Curpi" class="nav-link btn-nav-curpi">
                             <i class="bi bi-pencil-square"></i> Realiza tu CURPI
@@ -2101,14 +2220,19 @@
                 </div>
             </div>
 
-            <!-- ══════════ ACTIVIDADES PERMANENTES ══════════ -->
+        </div>
+    </section>
 
-            <div class="row mt-5 mb-4">
+    <!-- ══════════ SERVICIOS A LA COMUNIDAD ══════════ -->
+    <section class="servicios-section" id="servicios">
+        <div class="container">
+
+            <div class="row mb-5">
                 <div class="col-lg-7 fade-up">
                     <span class="section-tag">Consulta abierta</span>
-                    <h3 class="section-title">Actividades permanentes</h3>
+                    <h3 class="section-title">Servicios a la comunidad</h3>
                     <p class="section-subtitle">
-                        Estas actividades permanecen disponibles de forma continua para consulta, gestión y
+                        Estos servicios permanecen disponibles de forma continua para consulta, gestión y
                         acompañamiento durante tu ingreso y trayectoria.
                     </p>
                 </div>
@@ -2116,60 +2240,83 @@
 
             <div class="row g-4">
 
-                <!-- Actividad 1: Seguro de Salud -->
+                <!-- Servicio 1: Seguro de Salud -->
                 <div class="col-md-6 col-lg-4 fade-up">
-                    <div class="actividad-card permanente">
-                        <div class="actividad-num">01</div>
-                        <span class="actividad-badge">Actividad 1</span>
-                        <h4>Seguro de salud</h4>
-                        <p>Gestiona el seguro de salud del estudiante: cobertura durante tu trayectoria académica.</p>
-                        <div class="actividad-meta">
-                            <span class="actividad-fecha"><i class="bi bi-infinity"></i> Permanente</span>
-                            <a role="button" data-bs-toggle="modal" data-bs-target="#SeguroSalud" class="actividad-btn">
-                                Gestionar <i class="bi bi-arrow-right"></i>
-                            </a>
+                    <div class="servicio-card">
+                        <img src="resources/img/servicios/seguro-salud.jpg"
+                            alt="Seguro de salud estudiantil"
+                            class="servicio-card-img"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="servicio-card-img-placeholder" style="display:none;">
+                            <i class="bi bi-heart-pulse"></i>
+                            <span>Seguro de salud</span>
+                        </div>
+                        <div class="servicio-card-body">
+                            <span class="servicio-card-badge"><i class="bi bi-infinity me-1"></i>Permanente</span>
+                            <h4>Seguro de salud</h4>
+                            <p>Gestiona el seguro de salud del estudiante: cobertura durante tu trayectoria académica.</p>
+                            <div class="servicio-card-meta">
+                                <span class="servicio-permanente-badge"><i class="bi bi-shield-check"></i> Servicio UNAM</span>
+                                <a role="button" data-bs-toggle="modal" data-bs-target="#SeguroSalud" class="actividad-btn">
+                                    Gestionar <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Actividad 2: Información para familiares -->
+                <!-- Servicio 2: Información para familiares -->
                 <div class="col-md-6 col-lg-4 fade-up">
-                    <div class="actividad-card permanente">
-                        <div class="actividad-num">02</div>
-                        <span class="actividad-badge">Actividad 2</span>
-                        <h4>Información para familiares</h4>
-                        <p>Espacio dedicado a madres, padres y familiares con información clave sobre la vida
-                            universitaria.</p>
-                        <div class="actividad-meta">
-                            <span class="actividad-fecha"><i class="bi bi-infinity"></i> Permanente</span>
-                            <a href="http://132.248.44.93:9090/PIIANI/INFOPADRES/" target="_blank"
-                                class="actividad-btn">
-                                Ver información <i class="bi bi-box-arrow-up-right"></i>
-                            </a>
+                    <div class="servicio-card">
+                        <img src="resources/img/servicios/info-familiares.jpg"
+                            alt="Información para familiares"
+                            class="servicio-card-img"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="servicio-card-img-placeholder" style="display:none;">
+                            <i class="bi bi-people"></i>
+                            <span>Información para familiares</span>
+                        </div>
+                        <div class="servicio-card-body">
+                            <span class="servicio-card-badge"><i class="bi bi-infinity me-1"></i>Permanente</span>
+                            <h4>Información para familiares</h4>
+                            <p>Espacio dedicado a madres, padres y familiares con información clave sobre la vida universitaria.</p>
+                            <div class="servicio-card-meta">
+                                <span class="servicio-permanente-badge"><i class="bi bi-house-heart"></i> Familia UNAM</span>
+                                <a href="http://132.248.44.93:9090/PIIANI/INFOPADRES/" target="_blank" class="actividad-btn">
+                                    Ver información <i class="bi bi-box-arrow-up-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Actividad 3: Recorrido virtual -->
+                <!-- Servicio 3: Recorrido virtual -->
                 <div class="col-md-6 col-lg-4 fade-up">
-                    <div class="actividad-card permanente">
-                        <div class="actividad-num">03</div>
-                        <span class="actividad-badge">Actividad 3</span>
-                        <h4>Recorrido virtual de la FES Aragón</h4>
-                        <p>Explora el campus de la FES Aragón antes de tu llegada: ubica edificios, entradas y
-                            servicios.</p>
-                        <div class="actividad-meta">
-                            <span class="actividad-fecha"><i class="bi bi-infinity"></i> Permanente</span>
-                            <a role="button" data-bs-toggle="modal" data-bs-target="#RecorridoVirtual"
-                                class="actividad-btn">
-                                Ver recorrido <i class="bi bi-arrow-right"></i>
-                            </a>
+                    <div class="servicio-card">
+                        <img src="resources/img/servicios/recorrido-virtual.jpg"
+                            alt="Recorrido virtual FES Aragón"
+                            class="servicio-card-img"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="servicio-card-img-placeholder" style="display:none;">
+                            <i class="bi bi-map"></i>
+                            <span>Recorrido virtual</span>
+                        </div>
+                        <div class="servicio-card-body">
+                            <span class="servicio-card-badge"><i class="bi bi-infinity me-1"></i>Permanente</span>
+                            <h4>Recorrido virtual de la FES Aragón</h4>
+                            <p>Explora el campus de la FES Aragón antes de tu llegada: ubica edificios, entradas y servicios.</p>
+                            <div class="servicio-card-meta">
+                                <span class="servicio-permanente-badge"><i class="bi bi-geo-alt"></i> Campus virtual</span>
+                                <a role="button" data-bs-toggle="modal" data-bs-target="#RecorridoVirtual" class="actividad-btn">
+                                    Ver recorrido <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </section>
 
     <!-- ══════════ CRONOGRAMAS DE CARRERA ══════════ -->
     <section class="cronogramas-section" id="cronogramas">
@@ -3123,7 +3270,7 @@
                     <ol class="modal-steps">
                         <li>
                             Para comenzar con el recorrido, da clic en Inicio.
-                            <figure class="modal-media media-wide"><img src="img/RV1.JPG" alt="Pantalla de inicio del recorrido virtual"></figure>
+                            <figure class="modal-media media-wide"><img src="resources/img/recorrido-virtual.png" alt="Pantalla de inicio del recorrido virtual"></figure>
                         </li>
                         <li>Avanza dando clic en las flechas azules que están en el suelo.</li>
                     </ol>
