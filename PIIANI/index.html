@@ -2315,6 +2315,31 @@
                     </div>
                 </div>
 
+                <!-- Servicio 4: Biblioteca -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="servicio-card">
+                        <img src="resources/img/biblioteca.png"
+                            alt="Biblioteca FES Aragón"
+                            class="servicio-card-img"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="servicio-card-img-placeholder" style="display:none;">
+                            <i class="bi bi-book"></i>
+                            <span>Biblioteca</span>
+                        </div>
+                        <div class="servicio-card-body">
+                            <span class="servicio-card-badge"><i class="bi bi-infinity me-1"></i>Permanente</span>
+                            <h4>Biblioteca</h4>
+                            <p>Conoce los tipos de préstamo disponibles y accede al acervo bibliográfico de la FES Aragón.</p>
+                            <div class="servicio-card-meta">
+                                <span class="servicio-permanente-badge"><i class="bi bi-journals"></i> Acervo FES</span>
+                                <a role="button" data-bs-toggle="modal" data-bs-target="#BibliotecaPrestamo" class="actividad-btn">
+                                    Ver servicios <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -3274,6 +3299,84 @@
                         </li>
                         <li>Avanza dando clic en las flechas azules que están en el suelo.</li>
                     </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Biblioteca — Tipos de préstamo -->
+    <div class="modal fade" id="BibliotecaPrestamo" tabindex="-1" aria-labelledby="BibliotecaPrestamoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="BibliotecaPrestamoLabel">
+                        <i class="bi bi-book me-2"></i>
+                        <span>BIBLIOTECA</span>
+                        <small class="d-block ms-4 mt-1" style="font-size:.76rem; color:rgba(255,255,255,.55); font-weight:500; letter-spacing:.04em;">Tipos de préstamo</small>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- Tarjeta 1: Préstamo interno -->
+                    <div class="modal-faq-item mb-3">
+                        <div class="faq-q">
+                            <i class="bi bi-building"></i>
+                            Préstamo interno de libros
+                        </div>
+                        <p class="faq-a">
+                            Después de consultar el catálogo local puedes usar hasta
+                            <strong>cinco materiales bibliográficos</strong> de manera simultánea
+                            <strong>dentro de la biblioteca</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Tarjeta 2: Préstamo a domicilio -->
+                    <div class="modal-faq-item mb-3">
+                        <div class="faq-q">
+                            <i class="bi bi-house-door"></i>
+                            Préstamo a domicilio
+                        </div>
+                        <p class="faq-a">
+                            Acude con tu credencial al módulo de préstamo o equipo de autopréstamo.
+                            También puedes hacer uso del aplicativo móvil <strong>BIBLIOTECAS UNAM</strong>.
+                        </p>
+                        <p class="faq-a mt-2">
+                            Tienes derecho a obtener hasta <strong>cinco libros</strong>, por un
+                            <strong>periodo de cinco días</strong>, con posibilidad de obtener
+                            <strong>dos resellos</strong> en cada ejemplar.
+                        </p>
+                    </div>
+
+                    <!-- Tarjeta 3: Resello -->
+                    <div class="modal-faq-item mb-3">
+                        <div class="faq-q">
+                            <i class="bi bi-arrow-repeat"></i>
+                            Resello
+                        </div>
+                        <p class="faq-a">
+                            El resello se realiza en el módulo de préstamo a domicilio con credencial,
+                            equipo de autopréstamo, aplicativo móvil <strong>BIBLIOTECAS UNAM</strong>
+                            o sección de resello en línea, en el apartado de biblioteca en la página
+                            web de la Facultad.
+                        </p>
+                    </div>
+
+                    <!-- Tarjeta 4: Multa por atraso -->
+                    <div class="modal-alert alert-blush">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <div>
+                            <strong>Multa por atraso</strong><br>
+                            Recuerda entregar los libros en tiempo, de lo contrario se aplica una multa de
+                            <strong>$2.00 pesos por libro y por día de atraso</strong>, la cual se paga
+                            en las cajas de la Facultad y se entrega el comprobante de pago en el módulo
+                            de préstamo a domicilio.
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-dark" type="button" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
