@@ -1240,17 +1240,97 @@
         /* ─── Footer ──────────────────────────────────────────────── */
         footer {
             background: var(--navy-md);
-            color: rgba(255, 255, 255, .55);
-            padding: 2.5rem 0;
-            font-size: .85rem;
+            color: rgba(255, 255, 255, .5);
+            font-size: .82rem;
+            padding: 0;
         }
 
-        footer strong {
+        .footer-main {
+            padding: 3rem 0 2.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .footer-brand-name {
+            font-size: 1rem;
+            font-weight: 800;
             color: var(--white);
+            letter-spacing: .02em;
+            margin-bottom: .25rem;
         }
 
-        footer p {
+        .footer-brand-name span { color: var(--teal); }
+
+        .footer-brand-sub {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.6;
             margin: 0;
+        }
+
+        .footer-logo-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(255, 255, 255, .18);
+            flex-shrink: 0;
+        }
+
+        .footer-logo img {
+            height: 52px;
+            width: auto;
+            object-fit: contain;
+            opacity: .8;
+            transition: opacity .2s;
+        }
+
+        .footer-logo img:hover { opacity: 1; }
+
+        .footer-col-title {
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: .9rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: .45rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, .5);
+            font-size: .82rem;
+            transition: color .2s;
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .footer-links a:hover { color: var(--teal); }
+
+        .footer-bottom {
+            padding: 1.1rem 0;
+        }
+
+        .footer-copyright {
+            font-size: .76rem;
+            color: rgba(255, 255, 255, .35);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .footer-copyright strong { color: rgba(255, 255, 255, .6); }
+
+        .footer-notice {
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .25);
+            line-height: 1.55;
+            margin: .45rem 0 0;
         }
 
         /* ─── Floating social ─────────────────────────────────────── */
@@ -1806,6 +1886,185 @@
             font-size: .88rem;
         }
 
+        /* ─── PC Puma modal ─────────────────────────────────────────── */
+        .pcpuma-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            background: rgba(25, 130, 196, .1);
+            color: var(--teal);
+            border: 1px solid rgba(25, 130, 196, .3);
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            padding: .25rem .85rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .pcpuma-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: .85rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .pcpuma-benefit {
+            background: var(--light);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+
+        .pcpuma-benefit-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-md) 100%);
+            color: var(--teal);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin-bottom: .3rem;
+        }
+
+        .pcpuma-benefit-title {
+            font-size: .78rem;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .pcpuma-benefit p {
+            font-size: .82rem;
+            color: var(--muted);
+            margin: 0;
+            line-height: 1.55;
+        }
+
+        .pcpuma-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: .4rem;
+        }
+
+        .pcpuma-compare-box {
+            border-radius: 10px;
+            padding: 1.1rem 1.2rem;
+            text-align: center;
+        }
+
+        .pcpuma-compare-box.antes {
+            background: rgba(255, 89, 94, .08);
+            border: 1.5px solid rgba(255, 89, 94, .25);
+        }
+
+        .pcpuma-compare-box.ahora {
+            background: rgba(138, 201, 38, .08);
+            border: 1.5px solid rgba(138, 201, 38, .3);
+        }
+
+        .pcpuma-compare-box .compare-label {
+            font-size: .67rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+        }
+
+        .pcpuma-compare-box.antes .compare-label { color: var(--blush); }
+        .pcpuma-compare-box.ahora .compare-label { color: var(--verde); }
+
+        .pcpuma-compare-box .compare-num {
+            font-size: 1.55rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: .3rem;
+        }
+
+        .pcpuma-compare-box.antes .compare-num { color: var(--blush); }
+        .pcpuma-compare-box.ahora .compare-num { color: var(--verde); }
+
+        .pcpuma-compare-box .compare-desc {
+            font-size: .78rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 480px) {
+            .pcpuma-benefits { grid-template-columns: 1fr 1fr; }
+            .pcpuma-compare { grid-template-columns: 1fr; }
+        }
+
+        /* ─── Modal service blocks ─────────────────────────────────── */
+        .modal-service-block {
+            background: var(--light);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 1.2rem 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-service-block-header {
+            display: flex;
+            align-items: flex-start;
+            gap: .7rem;
+            margin-bottom: .9rem;
+            padding-bottom: .75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-service-block-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-md) 100%);
+            color: var(--teal);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .modal-service-block-header h6 {
+            color: var(--navy);
+            font-weight: 800;
+            font-size: .88rem;
+            margin: 0;
+            line-height: 1.4;
+            padding-top: .1rem;
+        }
+
+        .modal-service-meta {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            margin-top: .6rem;
+        }
+
+        .modal-service-meta-row {
+            display: flex;
+            align-items: flex-start;
+            gap: .55rem;
+            font-size: .82rem;
+            color: var(--muted);
+        }
+
+        .modal-service-meta-row i {
+            color: var(--teal);
+            font-size: .9rem;
+            flex-shrink: 0;
+            margin-top: .15rem;
+        }
+
         /* ─── Fade-up animation ───────────────────────────────────── */
         .fade-up {
             opacity: 0;
@@ -2315,6 +2574,56 @@
                     </div>
                 </div>
 
+                <!-- Servicio 6: Atención a quejas y denuncias -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="servicio-card">
+                        <img src="resources/img/servicios/quejas-denuncias.jpg"
+                            alt="Atención a quejas y denuncias"
+                            class="servicio-card-img"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="servicio-card-img-placeholder" style="display:none;">
+                            <i class="bi bi-shield-exclamation"></i>
+                            <span>Quejas y denuncias</span>
+                        </div>
+                        <div class="servicio-card-body">
+                            <span class="servicio-card-badge"><i class="bi bi-infinity me-1"></i>Permanente</span>
+                            <h4>Atención a quejas y denuncias</h4>
+                            <p>Conoce los canales oficiales para presentar una queja o denuncia dentro de la comunidad universitaria.</p>
+                            <div class="servicio-card-meta">
+                                <span class="servicio-permanente-badge"><i class="bi bi-balance-scale"></i> Oficina Jurídica</span>
+                                <a role="button" data-bs-toggle="modal" data-bs-target="#QuejasYDenuncias" class="actividad-btn">
+                                    Ver información <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Servicio 5: PC Puma -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="servicio-card">
+                        <img src="resources/img/servicios/pc-puma.jpg"
+                            alt="PC Puma FES Aragón"
+                            class="servicio-card-img"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="servicio-card-img-placeholder" style="display:none;">
+                            <i class="bi bi-laptop"></i>
+                            <span>PC Puma</span>
+                        </div>
+                        <div class="servicio-card-body">
+                            <span class="servicio-card-badge"><i class="bi bi-infinity me-1"></i>Permanente</span>
+                            <h4>PC Puma</h4>
+                            <p>Internet, equipos de préstamo y aulas multimedia gratuitos para toda la comunidad aragonesa.</p>
+                            <div class="servicio-card-meta">
+                                <span class="servicio-permanente-badge"><i class="bi bi-wifi"></i> Conectividad UNAM</span>
+                                <a role="button" data-bs-toggle="modal" data-bs-target="#PcPuma" class="actividad-btn">
+                                    Conocer más <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Servicio 4: Biblioteca -->
                 <div class="col-md-6 col-lg-4 fade-up">
                     <div class="servicio-card">
@@ -2342,6 +2651,7 @@
 
             </div>
         </div>
+    </section>
 
     <!-- ══════════ CRONOGRAMAS DE CARRERA ══════════ -->
     <section class="cronogramas-section" id="cronogramas">
@@ -2761,17 +3071,102 @@
 
     <!-- ══════════ FOOTER ══════════ -->
     <footer>
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p><strong>FES Aragón · UNAM</strong> — Departamento de Planeación Académica</p>
-                </div>
-                <div class="col-md-6 text-md-end mt-2 mt-md-0">
-                    <p>PIIANITE · Programa de Inducción e Integración del Alumnado de Nuevo Ingreso y Trayectorias
-                        Escolares</p>
+
+        <!-- Franja principal -->
+        <div class="footer-main">
+            <div class="container">
+                <div class="row gy-5">
+
+                    <!-- Columna 1: Identidad -->
+                    <div class="col-lg-4">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="footer-logo">
+                                <img src="resources/img/UNAM_Blanco.png" alt="UNAM">
+                            </div>
+                            <div class="footer-logo-divider"></div>
+                            <div class="footer-logo">
+                                <img src="resources/img/Aragon_Blanco.png" alt="FES Aragón">
+                            </div>
+                        </div>
+                        <div class="footer-brand-name"><span>PIIANITE</span> &middot; FES Aragón</div>
+                        <p class="footer-brand-sub">
+                            Programa de Inducción e Integración del Alumnado<br>
+                            de Nuevo Ingreso y Trayectorias Escolares<br>
+                            <strong style="color:rgba(255,255,255,.45);">Departamento de Planeación Académica</strong>
+                        </p>
+                    </div>
+
+                    <!-- Columna 2: Navegación rápida -->
+                    <div class="col-6 col-lg-2 offset-lg-1">
+                        <div class="footer-col-title">Navegación</div>
+                        <ul class="footer-links">
+                            <li><a href="#tramites"><i class="bi bi-clipboard-check"></i> Trámites</a></li>
+                            <li><a href="#actividades"><i class="bi bi-list-check"></i> Actividades</a></li>
+                            <li><a href="#documentos"><i class="bi bi-file-earmark-text"></i> Documentos</a></li>
+                            <li><a href="#cronogramas"><i class="bi bi-calendar3"></i> Cronogramas</a></li>
+                            <li><a href="#ubicacion"><i class="bi bi-map"></i> Mapa</a></li>
+                            <li><a href="#contacto"><i class="bi bi-envelope"></i> Contacto</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna 3: Servicios -->
+                    <div class="col-6 col-lg-2">
+                        <div class="footer-col-title">Servicios</div>
+                        <ul class="footer-links">
+                            <li><a href="#servicios"><i class="bi bi-heart-pulse"></i> Seguro de salud</a></li>
+                            <li><a href="#servicios"><i class="bi bi-people"></i> Familiares</a></li>
+                            <li><a href="#servicios"><i class="bi bi-book"></i> Biblioteca</a></li>
+                            <li><a href="#servicios"><i class="bi bi-laptop"></i> PC Puma</a></li>
+                            <li><a href="#servicios"><i class="bi bi-shield-exclamation"></i> Quejas</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna 4: Contacto rápido -->
+                    <div class="col-lg-3">
+                        <div class="footer-col-title">Contacto</div>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="mailto:serviciosescolares@aragon.unam.mx">
+                                    <i class="bi bi-envelope-at"></i> serviciosescolares@aragon.unam.mx
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.aragon.unam.mx/fes-aragon/#!/inicio" target="_blank">
+                                    <i class="bi bi-box-arrow-up-right"></i> aragon.unam.mx
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://aragon.dgae.unam.mx/" target="_blank">
+                                    <i class="bi bi-buildings"></i> Servicios Escolares
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
+
+        <!-- Franja de copyright -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row align-items-start gy-2">
+                    <div class="col-lg-8">
+                        <p class="footer-copyright">
+                            &copy; <strong>2026 Universidad Nacional Autónoma de México (UNAM) &middot; Facultad de Estudios Superiores Aragón.</strong>
+                            Todos los derechos reservados.
+                        </p>
+                        <p class="footer-notice">
+                            El contenido de este sitio es propiedad de la UNAM. Queda estrictamente prohibida su reproducción total o parcial, por cualquier medio o procedimiento, sin autorización escrita y expresa de la Universidad Nacional Autónoma de México.
+                        </p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <p class="footer-copyright">PIIANITE &middot; Generación 2027-I</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </footer>
 
 
@@ -3371,6 +3766,166 @@
                             <strong>$2.00 pesos por libro y por día de atraso</strong>, la cual se paga
                             en las cajas de la Facultad y se entrega el comprobante de pago en el módulo
                             de préstamo a domicilio.
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-dark" type="button" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: PC Puma -->
+    <div class="modal fade" id="PcPuma" tabindex="-1" aria-labelledby="PcPumaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="PcPumaLabel">
+                        <i class="bi bi-laptop me-2"></i>
+                        <span>CONOCE PC PUMA</span>
+                        <small class="d-block ms-4 mt-1" style="font-size:.76rem; color:rgba(255,255,255,.55); font-weight:500; letter-spacing:.04em;">Tecnología gratuita para la comunidad aragonesa</small>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+
+                    <span class="pcpuma-tag"><i class="bi bi-megaphone"></i>Información para la comunidad</span>
+
+                    <p class="modal-lead">
+                        En <strong>2019</strong> se inauguró PC Puma, un programa que te brinda
+                        <strong>internet</strong>, <strong>equipos de préstamo</strong> y
+                        <strong>aulas multimedia</strong> —entre otros beneficios—
+                        de manera segura y gratuita.
+                    </p>
+
+                    <div class="modal-section-label"><i class="bi bi-grid-3x2-gap"></i> Beneficios del programa</div>
+
+                    <div class="pcpuma-benefits">
+
+                        <div class="pcpuma-benefit">
+                            <div class="pcpuma-benefit-icon"><i class="bi bi-wifi"></i></div>
+                            <span class="pcpuma-benefit-title">Conecta</span>
+                            <p>Internet inalámbrico a toda la comunidad aragonesa.</p>
+                        </div>
+
+                        <div class="pcpuma-benefit">
+                            <div class="pcpuma-benefit-icon"><i class="bi bi-envelope-at"></i></div>
+                            <span class="pcpuma-benefit-title">Unifica</span>
+                            <p>Provee un correo <strong>@aragon.unam.mx</strong> al solicitar tu equipo PC Puma y tendrás acceso ilimitado a la nube.</p>
+                        </div>
+
+                        <div class="pcpuma-benefit">
+                            <div class="pcpuma-benefit-icon"><i class="bi bi-tablet"></i></div>
+                            <span class="pcpuma-benefit-title">Solicita</span>
+                            <p>Préstamos de dispositivos móviles: <strong>200 tablets iPad</strong> y <strong>345 laptops</strong> disponibles.</p>
+                        </div>
+
+                        <div class="pcpuma-benefit">
+                            <div class="pcpuma-benefit-icon"><i class="bi bi-mortarboard"></i></div>
+                            <span class="pcpuma-benefit-title">Aprende</span>
+                            <p>Aprende a usar las herramientas de la G Suite.</p>
+                        </div>
+
+                        <div class="pcpuma-benefit">
+                            <div class="pcpuma-benefit-icon"><i class="bi bi-display"></i></div>
+                            <span class="pcpuma-benefit-title">Proyecta</span>
+                            <p>Se instalaron pantallas inteligentes para facilitar el aprendizaje.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-section-label"><i class="bi bi-arrow-left-right"></i> Antes y ahora</div>
+
+                    <div class="pcpuma-compare">
+                        <div class="pcpuma-compare-box antes">
+                            <div class="compare-label"><i class="bi bi-clock-history me-1"></i>Antes</div>
+                            <div class="compare-num">20</div>
+                            <div class="compare-desc">computadoras en una sala de la biblioteca.</div>
+                        </div>
+                        <div class="pcpuma-compare-box ahora">
+                            <div class="compare-label"><i class="bi bi-check2-circle me-1"></i>Ahora</div>
+                            <div class="compare-num">+500</div>
+                            <div class="compare-desc">equipos para que realices tus trabajos en cualquier zona.</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-dark" type="button" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Atención a quejas y denuncias -->
+    <div class="modal fade" id="QuejasYDenuncias" tabindex="-1" aria-labelledby="QuejasYDenunciasLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="QuejasYDenunciasLabel">
+                        <i class="bi bi-shield-exclamation me-2"></i>
+                        <span>ATENCIÓN A QUEJAS Y DENUNCIAS</span>
+                        <small class="d-block ms-4 mt-1" style="font-size:.76rem; color:rgba(255,255,255,.55); font-weight:500; letter-spacing:.04em;">Atención al Estudiante</small>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- Bloque 1: Oficina Jurídica -->
+                    <div class="modal-service-block">
+                        <div class="modal-service-block-header">
+                            <div class="modal-service-block-icon"><i class="bi bi-building-check"></i></div>
+                            <h6>Oficina Jurídica</h6>
+                        </div>
+                        <p style="font-size:.88rem; color:var(--text); margin-bottom:.9rem;">
+                            Si deseas presentar una <strong>queja o denuncia</strong>, acude a la <strong>Oficina Jurídica</strong>.
+                        </p>
+                        <div class="modal-service-meta">
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-clock"></i>
+                                <span>09:00 a 15:00 horas &nbsp;&middot;&nbsp; 17:00 a 21:00 horas</span>
+                            </div>
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-geo-alt"></i>
+                                <span><strong>Planta baja del edificio de Gobierno</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aviso correo OAG -->
+                    <div class="modal-alert alert-teal">
+                        <i class="bi bi-envelope-at-fill"></i>
+                        <div>
+                            Si eres integrante de la comunidad universitaria y consideras que tu queja no fue atendida, puedes enviar un correo a:<br>
+                            <strong><a href="mailto:correspondencia.oag@unam.mx">correspondencia.oag@unam.mx</a></strong>
+                        </div>
+                    </div>
+
+                    <!-- Bloque 2: Defendería -->
+                    <div class="modal-service-block" style="margin-bottom:0;">
+                        <div class="modal-service-block-header">
+                            <div class="modal-service-block-icon" style="color:var(--amber);"><i class="bi bi-people"></i></div>
+                            <h6>Defendería de los Derechos Universitarios, Igualdad y Atención de la Violencia de Género</h6>
+                        </div>
+                        <p style="font-size:.88rem; color:var(--text); margin-bottom:.75rem;">
+                            La Defendería es un órgano autónomo e independiente de cualquier autoridad universitaria.
+                        </p>
+                        <p style="font-size:.83rem; color:var(--muted); margin-bottom:.6rem;">Brinda atención en temas de:</p>
+                        <ul class="modal-checklist" style="margin-bottom:.9rem;">
+                            <li><i class="bi bi-check-circle-fill"></i> <strong>Derechos universitarios</strong></li>
+                            <li><i class="bi bi-check-circle-fill"></i> <strong>Violencia de género</strong></li>
+                        </ul>
+                        <div class="modal-service-meta">
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-clock"></i>
+                                <span>08:00 a 18:30 horas</span>
+                            </div>
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-geo-alt"></i>
+                                <span><strong>Planta baja del edificio de Gobierno</strong></span>
+                            </div>
                         </div>
                     </div>
 
