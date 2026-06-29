@@ -2524,31 +2524,6 @@
                     </div>
                 </div>
 
-                <!-- Servicio 2: Información para familiares -->
-                <div class="col-md-6 col-lg-4 fade-up">
-                    <div class="servicio-card">
-                        <img src="resources/img/servicios/info-familiares.jpg"
-                            alt="Información para familiares"
-                            class="servicio-card-img"
-                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                        <div class="servicio-card-img-placeholder" style="display:none;">
-                            <i class="bi bi-people"></i>
-                            <span>Información para familiares</span>
-                        </div>
-                        <div class="servicio-card-body">
-                            <span class="servicio-card-badge"><i class="bi bi-infinity me-1"></i>Permanente</span>
-                            <h4>Información para familiares</h4>
-                            <p>Espacio dedicado a madres, padres y familiares con información clave sobre la vida universitaria.</p>
-                            <div class="servicio-card-meta">
-                                <span class="servicio-permanente-badge"><i class="bi bi-house-heart"></i> Familia UNAM</span>
-                                <a href="http://132.248.44.93:9090/PIIANI/INFOPADRES/" target="_blank" class="actividad-btn">
-                                    Ver información <i class="bi bi-box-arrow-up-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Servicio 3: Recorrido virtual -->
                 <div class="col-md-6 col-lg-4 fade-up">
                     <div class="servicio-card">
@@ -2649,6 +2624,30 @@
                     </div>
                 </div>
 
+                <!-- Servicio 7: Extensión Universitaria -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="servicio-card">
+                        <img src="resources/img/teatro.jpg"
+                            alt="Extensión Universitaria FES Aragón"
+                            class="servicio-card-img"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="servicio-card-img-placeholder" style="display:none;">
+                            <i class="bi bi-mortarboard"></i>
+                            <span>Extensión Universitaria</span>
+                        </div>
+                        <div class="servicio-card-body">
+                            <span class="servicio-card-badge"><i class="bi bi-infinity me-1"></i>Permanente</span>
+                            <h4>Extensión Universitaria</h4>
+                            <p>Talleres culturales, actividades deportivas y horas de formación complementaria para tu trayectoria universitaria.</p>
+                            <div class="servicio-card-meta">
+                                <span class="servicio-permanente-badge"><i class="bi bi-award"></i> Formación complementaria</span>
+                                <a role="button" data-bs-toggle="modal" data-bs-target="#ExtensionUniversitaria" class="actividad-btn">
+                                    Conocer más <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -3937,6 +3936,157 @@
         </div>
     </div>
 
+
+    <!-- Modal: Extensión Universitaria -->
+    <div class="modal fade" id="ExtensionUniversitaria" tabindex="-1" aria-labelledby="ExtensionUniversitariaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="ExtensionUniversitariaLabel">
+                        <i class="bi bi-mortarboard me-2"></i>
+                        <span>EXTENSIÓN UNIVERSITARIA</span>
+                        <small class="d-block ms-4 mt-1" style="font-size:.76rem; color:rgba(255,255,255,.55); font-weight:500; letter-spacing:.04em;">Actividades culturales, deportivas y formación complementaria</small>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- Descripción general -->
+                    <p class="modal-lead">
+                        La <strong>Unidad de Extensión Universitaria</strong> tiene como objetivo principal
+                        promover y coordinar eventos artísticos, culturales, deportivos, recreativos y académicos.
+                    </p>
+
+                    <!-- ── Coordinaciones ── -->
+                    <div class="modal-section-label"><i class="bi bi-grid-1x2"></i> Coordinaciones</div>
+
+                    <!-- Actividades Culturales -->
+                    <div class="modal-service-block">
+                        <div class="modal-service-block-header">
+                            <div class="modal-service-block-icon"><i class="bi bi-palette"></i></div>
+                            <h6>Departamento de Actividades Culturales</h6>
+                        </div>
+                        <p style="font-size:.85rem; color:var(--muted); margin:0 0 .75rem;">
+                            Promueve y difunde la cultura entre la comunidad universitaria mediante la oferta de
+                            talleres de teatro, danza, música, artes visuales y la organización de festivales.
+                        </p>
+                        <div class="modal-service-meta">
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-person-fill"></i>
+                                <span><strong>Responsable:</strong> José Antonio Linares Lugo</span>
+                            </div>
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-telephone-fill"></i>
+                                <span><strong>Teléfono:</strong> 55 5799 8049</span>
+                            </div>
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-clock-fill"></i>
+                                <span><strong>Horario:</strong> Lunes a viernes de 9:30 a 13:30 h y de 16:00 a 20:00 h</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actividades Deportivas -->
+                    <div class="modal-service-block">
+                        <div class="modal-service-block-header">
+                            <div class="modal-service-block-icon"><i class="bi bi-trophy"></i></div>
+                            <h6>Departamento de Actividades Deportivas</h6>
+                        </div>
+                        <p style="font-size:.85rem; color:var(--muted); margin:0 0 .75rem;">
+                            Oferta actividades físicas relacionadas con múltiples disciplinas que sirven como
+                            complemento a la formación universitaria.
+                        </p>
+                        <p style="font-size:.82rem; color:var(--muted); margin:0 0 .75rem;">
+                            <strong style="color:var(--navy);">Disciplinas:</strong>
+                            Ajedrez, atletismo, bádminton, básquetbol, béisbol, fútbol 7, fútbol rápido,
+                            gimnasia, rugby, taekwondo, tocho bandera, entre otras.
+                        </p>
+                        <div class="modal-service-meta">
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-person-fill"></i>
+                                <span><strong>Responsable:</strong> Carlos Octavio Cruz Valencia</span>
+                            </div>
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-telephone-fill"></i>
+                                <span><strong>Teléfono:</strong> 55 5623 0222 Ext. 31035</span>
+                            </div>
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-clock-fill"></i>
+                                <span><strong>Horario:</strong> Lunes a viernes de 8:00 a 20:00 h, sábados de 9:00 a 14:00 h</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── Formación complementaria ── -->
+                    <div class="modal-section-label"><i class="bi bi-journal-check"></i> Formación complementaria</div>
+                    <p style="font-size:.85rem; color:var(--muted); margin-bottom:.75rem;">
+                        A través de sus actividades, la Unidad de Extensión Universitaria brinda horas de
+                        formación complementaria a las siguientes carreras:
+                    </p>
+                    <ul class="modal-checklist">
+                        <li><i class="bi bi-check-circle-fill"></i> Derecho</li>
+                        <li><i class="bi bi-check-circle-fill"></i> Relaciones Internacionales</li>
+                        <li><i class="bi bi-check-circle-fill"></i> Ingeniería Civil</li>
+                        <li><i class="bi bi-check-circle-fill"></i> Ingeniería en Computación</li>
+                        <li><i class="bi bi-check-circle-fill"></i> Ingeniería Industrial</li>
+                        <li><i class="bi bi-check-circle-fill"></i> Ingeniería Eléctrica Electrónica</li>
+                        <li><i class="bi bi-check-circle-fill"></i> Ingeniería Mecánica</li>
+                    </ul>
+
+                    <div class="modal-alert alert-amber">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <div>
+                            <strong>Requisito de asistencia:</strong> para validar las horas de formación
+                            complementaria es obligatorio contar con el <strong>80% de asistencia</strong>.
+                        </div>
+                    </div>
+
+                    <!-- ── Sistema SIEF ── -->
+                    <div class="modal-section-label"><i class="bi bi-box-arrow-up-right"></i> Sistema de Extensión Universitaria</div>
+                    <p style="font-size:.85rem; color:var(--muted); margin-bottom:.5rem;">
+                        Regístrate en actividades a través del sistema institucional:
+                    </p>
+                    <p style="margin-bottom:1.4rem;">
+                        <a href="https://lovelace.aragon.unam.mx/siefc/public/registro" target="_blank" rel="noopener" class="modal-link-out">
+                            <i class="bi bi-box-arrow-up-right"></i> lovelace.aragon.unam.mx/siefc/public/registro
+                        </a>
+                    </p>
+
+                    <!-- ── Ubicación y contacto ── -->
+                    <div class="modal-section-label"><i class="bi bi-geo-alt"></i> Ubicación y contacto</div>
+                    <div class="modal-contact">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <div>
+                            <strong>Oficinas:</strong> Teatro José Vasconcelos
+                        </div>
+                    </div>
+
+                    <div class="modal-faq" style="margin-top:1rem;">
+                        <div class="modal-faq-item">
+                            <div class="faq-q"><i class="bi bi-facebook"></i> Facebook</div>
+                            <p class="faq-a">
+                                <a href="https://www.facebook.com/share/18gENqvgbJ/" target="_blank" rel="noopener">
+                                    facebook.com/share/18gENqvgbJ/
+                                </a>
+                            </p>
+                        </div>
+                        <div class="modal-faq-item">
+                            <div class="faq-q"><i class="bi bi-envelope-fill"></i> Correos de contacto</div>
+                            <p class="faq-a">
+                                <a href="mailto:extensionuniversitaria@aragon.unam.mx">extensionuniversitaria@aragon.unam.mx</a><br>
+                                <a href="mailto:culturales@aragon.unam.mx">culturales@aragon.unam.mx</a><br>
+                                <a href="mailto:deportivas@aragon.unam.mx">deportivas@aragon.unam.mx</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-dark" type="button" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ══════════ FLOTANTES: WHATSAPP + FACEBOOK ══════════ -->
     <a href="#" data-bs-toggle="modal" data-bs-target="#whatsappModal" class="whatsapp-float">
