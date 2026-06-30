@@ -2669,6 +2669,27 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Servicio 8: Senderos Seguros -->
+                <div class="col-md-6 col-lg-4 fade-up">
+                    <div class="servicio-card">
+                        <div class="servicio-card-img-placeholder">
+                            <i class="bi bi-shield-check"></i>
+                            <span>Senderos Seguros</span>
+                        </div>
+                        <div class="servicio-card-body">
+                            <span class="servicio-card-badge"><i class="bi bi-infinity me-1"></i>Permanente</span>
+                            <h4>Senderos Seguros</h4>
+                            <p>Rutas recomendadas por la Facultad para trasladarte al Metro Nezahualcóyotl y al Metro Impulsora de forma segura.</p>
+                            <div class="servicio-card-meta">
+                                <span class="servicio-permanente-badge"><i class="bi bi-geo-alt"></i> Transporte seguro</span>
+                                <a role="button" data-bs-toggle="modal" data-bs-target="#SenderosSeguros" class="actividad-btn">
+                                    Ver rutas <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -3923,14 +3944,14 @@
                         </div>
                     </div>
 
-                    <!-- Bloque 2: Defendería -->
+                    <!-- Bloque 2: Defensoría -->
                     <div class="modal-service-block" style="margin-bottom:0;">
                         <div class="modal-service-block-header">
                             <div class="modal-service-block-icon" style="color:var(--amber);"><i class="bi bi-people"></i></div>
-                            <h6>Defendería de los Derechos Universitarios, Igualdad y Atención de la Violencia de Género</h6>
+                            <h6>Defensoría de los Derechos Universitarios, Igualdad y Atención de la Violencia de Género</h6>
                         </div>
                         <p style="font-size:.88rem; color:var(--text); margin-bottom:.75rem;">
-                            La Defendería es un órgano autónomo e independiente de cualquier autoridad universitaria.
+                            La Defensoría es un órgano autónomo e independiente de cualquier autoridad universitaria.
                         </p>
                         <p style="font-size:.83rem; color:var(--muted); margin-bottom:.6rem;">Brinda atención en temas de:</p>
                         <ul class="modal-checklist" style="margin-bottom:.9rem;">
@@ -4098,6 +4119,90 @@
                                 <a href="mailto:culturales@aragon.unam.mx">culturales@aragon.unam.mx</a><br>
                                 <a href="mailto:deportivas@aragon.unam.mx">deportivas@aragon.unam.mx</a>
                             </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-dark" type="button" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Senderos Seguros -->
+    <div class="modal fade" id="SenderosSeguros" tabindex="-1" aria-labelledby="SenderosSegurosLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="SenderosSegurosLabel">
+                        <i class="bi bi-shield-check me-2"></i>
+                        <span>SENDEROS SEGUROS</span>
+                        <small class="d-block ms-4 mt-1" style="font-size:.76rem; color:rgba(255,255,255,.55); font-weight:500; letter-spacing:.04em;">Rutas recomendadas hacia el Metro</small>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+
+                    <p class="modal-lead">
+                        La FES Aragón recomienda estas <strong>rutas seguras</strong> para trasladarte desde
+                        el campus hasta las estaciones de Metro más cercanas. Consulta el mapa interactivo
+                        y planifica tu trayecto.
+                    </p>
+
+                    <div class="modal-section-label"><i class="bi bi-signpost-split"></i> Rutas disponibles</div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="modal-service-block">
+                                <div class="modal-service-block-header">
+                                    <div class="modal-service-block-icon" style="background: #00296b; color: #fff;">
+                                        <i class="bi bi-train-front"></i>
+                                    </div>
+                                    <h6>Ruta 1 — Metro Nezahualcóyotl</h6>
+                                </div>
+                                <div class="modal-service-meta">
+                                    <div class="modal-service-meta-row">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span><strong>Salida:</strong> Puerta Bosques</span>
+                                    </div>
+                                    <div class="modal-service-meta-row">
+                                        <i class="bi bi-flag-fill"></i>
+                                        <span><strong>Destino:</strong> Metro Nezahualcóyotl</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="modal-service-block">
+                                <div class="modal-service-block-header">
+                                    <div class="modal-service-block-icon" style="background: #2E7D32; color: #fff;">
+                                        <i class="bi bi-train-front"></i>
+                                    </div>
+                                    <h6>Ruta 2 — Metro Impulsora</h6>
+                                </div>
+                                <div class="modal-service-meta">
+                                    <div class="modal-service-meta-row">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span><strong>Salida:</strong> Av. Universidad</span>
+                                    </div>
+                                    <div class="modal-service-meta-row">
+                                        <i class="bi bi-flag-fill"></i>
+                                        <span><strong>Destino:</strong> Metro Impulsora</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-section-label"><i class="bi bi-map-fill"></i> Mapa interactivo</div>
+                    <div id="map-senderos-modal" style="height: 420px; border-radius: var(--radius-sm); border: 1.5px solid var(--border); overflow: hidden;"></div>
+
+                    <div class="modal-alert alert-teal" style="margin-top: 1rem;">
+                        <i class="bi bi-info-circle-fill"></i>
+                        <div>
+                            Activa o desactiva cada ruta usando el control de capas en el mapa.
+                            Haz clic sobre las líneas o marcadores para ver más información.
                         </div>
                     </div>
 
@@ -4360,6 +4465,89 @@
         });
     });
 </script>
+
+    <!-- Senderos Seguros — mapa Leaflet en modal (lazy init) -->
+    <script>
+        (function () {
+            var mapSenderos = null;
+            var modalEl = document.getElementById('SenderosSeguros');
+            if (!modalEl) return;
+
+            modalEl.addEventListener('shown.bs.modal', function () {
+                if (mapSenderos) { mapSenderos.invalidateSize(); return; }
+
+                mapSenderos = L.map('map-senderos-modal').setView([19.4745, -99.0455], 15);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(mapSenderos);
+
+                var rutaSegura1 = [
+                    [19.476303, -99.046742],
+                    [19.477340, -99.051576],
+                    [19.472058, -99.053936],
+                    [19.472518, -99.054338]
+                ];
+
+                var rutaSegura2 = [
+                    [19.477138, -99.044323],
+                    [19.477790, -99.047182],
+                    [19.484968, -99.044047],
+                    [19.485646, -99.047823],
+                    [19.485545, -99.047912]
+                ];
+
+                function haversineKm(a, b) {
+                    var toRad = function (d) { return d * Math.PI / 180; };
+                    var R = 6371;
+                    var dLat = toRad(b[0] - a[0]);
+                    var dLng = toRad(b[1] - a[1]);
+                    var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                        Math.cos(toRad(a[0])) * Math.cos(toRad(b[0])) *
+                        Math.sin(dLng / 2) * Math.sin(dLng / 2);
+                    return 2 * R * Math.asin(Math.sqrt(h));
+                }
+
+                function totalKm(coords) {
+                    var km = 0;
+                    for (var i = 1; i < coords.length; i++) km += haversineKm(coords[i - 1], coords[i]);
+                    return km;
+                }
+
+                var capaRuta1 = L.polyline(rutaSegura1, { color: '#00296b', weight: 6, opacity: 0.85, lineJoin: 'round' })
+                    .bindPopup('<strong style="color:#00296b;">Ruta 1</strong><br>Bosques &rarr; Metro Nezahualc&oacute;yotl<br>Distancia: ' + totalKm(rutaSegura1).toFixed(2) + ' km');
+
+                var mkInicio1 = L.circleMarker(rutaSegura1[0], { radius: 9, color: '#00296b', fillColor: '#00296b', fillOpacity: 1, weight: 2 })
+                    .bindPopup('<strong>Inicio</strong><br>Salida Bosques');
+                var mkFin1 = L.circleMarker(rutaSegura1[rutaSegura1.length - 1], { radius: 9, color: '#00296b', fillColor: '#ffffff', fillOpacity: 1, weight: 3 })
+                    .bindPopup('<strong>Fin</strong><br>Metro Nezahualc&oacute;yotl');
+
+                var grupoRuta1 = L.featureGroup([capaRuta1, mkInicio1, mkFin1]).addTo(mapSenderos);
+
+                var capaRuta2 = L.polyline(rutaSegura2, { color: '#2E7D32', weight: 6, opacity: 0.85, lineJoin: 'round' })
+                    .bindPopup('<strong style="color:#2E7D32;">Ruta 2</strong><br>Av. Universidad &rarr; Metro Impulsora<br>Distancia: ' + totalKm(rutaSegura2).toFixed(2) + ' km');
+
+                var mkInicio2 = L.circleMarker(rutaSegura2[0], { radius: 9, color: '#2E7D32', fillColor: '#2E7D32', fillOpacity: 1, weight: 2 })
+                    .bindPopup('<strong>Inicio</strong><br>Salida Av. Universidad');
+                var mkFin2 = L.circleMarker(rutaSegura2[rutaSegura2.length - 1], { radius: 9, color: '#2E7D32', fillColor: '#ffffff', fillOpacity: 1, weight: 3 })
+                    .bindPopup('<strong>Fin</strong><br>Metro Impulsora');
+
+                var grupoRuta2 = L.featureGroup([capaRuta2, mkInicio2, mkFin2]).addTo(mapSenderos);
+
+                mapSenderos.fitBounds(
+                    L.featureGroup([grupoRuta1, grupoRuta2]).getBounds(),
+                    { padding: [30, 30] }
+                );
+
+                L.control.layers(null, {
+                    '<span style="color:#00296b;font-weight:700;">&bull; Ruta 1: Bosques &rarr; Metro Neza</span>': grupoRuta1,
+                    '<span style="color:#2E7D32;font-weight:700;">&bull; Ruta 2: Av. Universidad &rarr; Metro Impulsora</span>': grupoRuta2
+                }, { collapsed: false }).addTo(mapSenderos);
+
+                L.control.scale({ imperial: false, metric: true }).addTo(mapSenderos);
+            });
+        })();
+    </script>
 
 </body>
 
