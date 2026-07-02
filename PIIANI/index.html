@@ -2673,13 +2673,17 @@
                 <!-- Servicio 8: Senderos Seguros -->
                 <div class="col-md-6 col-lg-4 fade-up">
                     <div class="servicio-card">
-                        <div class="servicio-card-img-placeholder">
+                        <img src="resources/img/bahia-vehicular.jpeg"
+                            alt="Senderos Seguros y Bahía Vehicular FES Aragón"
+                            class="servicio-card-img"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="servicio-card-img-placeholder" style="display:none;">
                             <i class="bi bi-shield-check"></i>
-                            <span>Senderos Seguros</span>
+                            <span>Senderos Seguros y Bahía Vehicular</span>
                         </div>
                         <div class="servicio-card-body">
                             <span class="servicio-card-badge"><i class="bi bi-infinity me-1"></i>Permanente</span>
-                            <h4>Senderos Seguros</h4>
+                            <h4>Senderos Seguros y Bahía Vehicular</h4>
                             <p>Rutas recomendadas por la Facultad para trasladarte al Metro Nezahualcóyotl y al Metro Impulsora de forma segura.</p>
                             <div class="servicio-card-meta">
                                 <span class="servicio-permanente-badge"><i class="bi bi-geo-alt"></i> Transporte seguro</span>
@@ -4150,6 +4154,46 @@
                         y planifica tu trayecto.
                     </p>
 
+                    <!-- Bahía Vehicular -->
+                    <div class="modal-section-label" style="margin-top:1.6rem;"><i class="bi bi-bus-front"></i> Bahía Vehicular — Transporte Seguro</div>
+
+                    <div class="modal-service-block">
+                        <div class="modal-service-block-header">
+                            <div class="modal-service-block-icon" style="background: #e67e00; color: #fff;">
+                                <i class="bi bi-bus-front"></i>
+                            </div>
+                            <h6>Bahía Vehicular FES Aragón</h6>
+                        </div>
+                        <p style="font-size:.85rem; color:var(--muted); margin:0 0 .85rem;">
+                            La bahía vehicular de la FES Aragón es el punto de ascenso y descenso del
+                            <strong>Transporte Seguro</strong>. Se ubica dentro del plantel,
+                            <strong>a un costado de la Clínica Odontológica</strong>.
+                            Conecta directamente con la estación del Metro Impulsora.
+                        </p>
+                        <div class="modal-service-meta">
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-arrow-left-right"></i>
+                                <span><strong>Ruta:</strong> Metro Impulsora (debajo del puente, frente al Oxxo) ↔ Bahía Vehicular FES Aragón</span>
+                            </div>
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-tag-fill"></i>
+                                <span><strong>Costo:</strong> $6 pesos por viaje</span>
+                            </div>
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-person-badge-fill"></i>
+                                <span><strong>Requisito:</strong> Mostrar credencial vigente de la comunidad aragonesa</span>
+                            </div>
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-clock-fill"></i>
+                                <span><strong>Lunes a viernes:</strong> 6:00 a. m. a 10:15 p. m.</span>
+                            </div>
+                            <div class="modal-service-meta-row">
+                                <i class="bi bi-clock"></i>
+                                <span><strong>Sábados:</strong> 6:00 a. m. a 3:30 p. m.</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="modal-section-label"><i class="bi bi-signpost-split"></i> Rutas disponibles</div>
 
                     <div class="row g-3 mb-4">
@@ -4205,6 +4249,8 @@
                             Haz clic sobre las líneas o marcadores para ver más información.
                         </div>
                     </div>
+
+                    
 
                 </div>
                 <div class="modal-footer">
@@ -4534,14 +4580,31 @@
 
                 var grupoRuta2 = L.featureGroup([capaRuta2, mkInicio2, mkFin2]).addTo(mapSenderos);
 
+                // Marcador: Bahía Vehicular (Transporte Seguro)
+                var mkBahia = L.circleMarker([19.47711058599236, -99.04574699435274], {
+                    radius: 11,
+                    color: '#e67e00',
+                    fillColor: '#e67e00',
+                    fillOpacity: 1,
+                    weight: 3
+                }).bindPopup(
+                    '<strong style="color:#e67e00;"> Bahía Vehicular</strong><br>' +
+                    'Transporte Seguro &harr; Metro Impulsora<br>' +
+                    '<small>A un costado de la Cl&iacute;nica Odontol&oacute;gica</small><br>' +
+                    '<small><strong>$6 por viaje</strong> &bull; Credencial vigente</small>'
+                );
+
+                var grupoBahia = L.featureGroup([mkBahia]).addTo(mapSenderos);
+
                 mapSenderos.fitBounds(
-                    L.featureGroup([grupoRuta1, grupoRuta2]).getBounds(),
+                    L.featureGroup([grupoRuta1, grupoRuta2, grupoBahia]).getBounds(),
                     { padding: [30, 30] }
                 );
 
                 L.control.layers(null, {
                     '<span style="color:#00296b;font-weight:700;">&bull; Ruta 1: Bosques &rarr; Metro Neza</span>': grupoRuta1,
-                    '<span style="color:#2E7D32;font-weight:700;">&bull; Ruta 2: Av. Universidad &rarr; Metro Impulsora</span>': grupoRuta2
+                    '<span style="color:#2E7D32;font-weight:700;">&bull; Ruta 2: Av. Universidad &rarr; Metro Impulsora</span>': grupoRuta2,
+                    '<span style="color:#e67e00;font-weight:700;">&bull; Bahía Vehicular (Transporte Seguro)</span>': grupoBahia
                 }, { collapsed: false }).addTo(mapSenderos);
 
                 L.control.scale({ imperial: false, metric: true }).addTo(mapSenderos);
