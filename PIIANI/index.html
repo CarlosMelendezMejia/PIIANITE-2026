@@ -144,6 +144,24 @@
             color: var(--teal) !important;
         }
 
+        .navbar-nav {
+            gap: .75rem;
+        }
+
+        .navbar-collapse {
+            margin-top: .85rem;
+        }
+
+        @media (min-width: 992px) {
+            .navbar-nav {
+                gap: 1rem;
+            }
+
+            .navbar-collapse {
+                margin-top: 0;
+            }
+        }
+
         .navbar-toggler {
             border-color: rgba(255, 255, 255, .3);
         }
@@ -187,9 +205,34 @@
             transform: scale(1.07);
         }
 
+        .btn-nav-ema {
+            background: var(--verde);
+            color: var(--white) !important;
+            font-weight: 700;
+            padding: .4rem 1.2rem !important;
+            border-radius: 50px;
+            font-size: .82rem;
+            animation: ema-pulse 1.6s ease-in-out infinite;
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .btn-nav-ema:hover {
+            animation: none;
+            opacity: .9;
+            color: var(--white) !important;
+            transform: scale(1.07);
+        }
+
         @keyframes curpi-pulse {
             0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 202, 58, .55); }
             50%       { transform: scale(1.07); box-shadow: 0 0 0 7px rgba(255, 202, 58, 0); }
+        }
+
+        @keyframes ema-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(138, 201, 38, .55); }
+            50%       { transform: scale(1.07); box-shadow: 0 0 0 7px rgba(138, 201, 38, 0); }
         }
 
         /* ─── Hero ─────────────────────────────────────────────────── */
@@ -2126,12 +2169,16 @@
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
                     <li class="nav-item"><a class="nav-link" href="#tramites"><i class="bi bi-clipboard-check me-1"></i>Trámites</a></li>
                     <li class="nav-item"><a class="nav-link" href="#actividades"><i class="bi bi-list-check me-1"></i>Actividades</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#documentos"><i class="bi bi-file-earmark-text me-1"></i>Documentos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#cronogramas"><i class="bi bi-calendar3 me-1"></i>Cronogramas</a></li>
                     <li class="nav-item"><a class="nav-link" href="#ubicacion"><i class="bi bi-map me-1"></i>Mapa</a></li>
                     <li class="nav-item">
                         <a role="button" data-bs-toggle="modal" data-bs-target="#Curpi" class="nav-link btn-nav-curpi">
                             <i class="bi bi-pencil-square"></i> Realiza tu CURPI
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="button" data-bs-toggle="modal" data-bs-target="#EMADistancia" class="nav-link btn-nav-ema">
+                            <i class="bi bi-clipboard2-heart"></i> Realiza tu EMA
                         </a>
                     </li>
                 </ul>
@@ -2369,66 +2416,6 @@
                     <span class="tramite-cta">Realizar examen <i class="bi bi-arrow-right"></i></span>
                 </a>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- ══════════ AVISO DESTACADO ══════════ -->
-    <section class="aviso-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 fade-up">
-                    <div class="aviso-card">
-                        <div class="aviso-eyebrow">
-                            <i class="bi bi-exclamation-triangle-fill"></i> Aviso importante
-                        </div>
-                        <h3>Es indispensable que el día de la inscripción los documentos se encuentren en orden.</h3>
-                        <p>
-                            La entrega de documentación incompleta y/o apócrifa cancelará el
-                            trámite y se procederá conforme a lo establecido en la legislación
-                            universitaria.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ══════════ DOCUMENTOS CLAVE ══════════ -->
-    <section class="docs-section" id="documentos">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-lg-8 mx-auto text-center fade-up">
-                    <span class="section-tag">¡Enhorabuena!</span>
-                    <h2 class="section-title">Documentos y servicios clave</h2>
-                    <p class="section-subtitle mx-auto">
-                        Descarga tu carta compromiso y consulta el portal de Servicios
-                        Escolares para gestionar tus trámites institucionales.
-                    </p>
-                </div>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-lg-6 fade-up">
-                    <!-- Si cambia el archivo cada generación, actualiza el href -->
-                    <a href="resources/doc/carta-compromiso-2027I.pdf" target="_blank" class="doc-cta">
-                        <div class="doc-cta-icon"><i class="bi bi-file-earmark-text"></i></div>
-                        <div class="doc-cta-body">
-                            <h6>Descarga tu carta compromiso</h6>
-                            <p>Documento obligatorio para el día de tu inscripción presencial.</p>
-                        </div>
-                        <span class="doc-cta-arrow"><i class="bi bi-download"></i></span>
-                    </a>
-                </div>
-                <div class="col-lg-6 fade-up">
-                    <a href="http://aragon.dgae.unam.mx/" target="_blank" class="doc-cta">
-                        <div class="doc-cta-icon"><i class="bi bi-buildings"></i></div>
-                        <div class="doc-cta-body">
-                            <h6>Servicios Escolares</h6>
-                            <p>Portal oficial para tus trámites administrativos en la FES Aragón.</p>
-                        </div>
-                        <span class="doc-cta-arrow"><i class="bi bi-box-arrow-up-right"></i></span>
-                    </a>
-                </div>
             </div>
         </div>
     </section>
