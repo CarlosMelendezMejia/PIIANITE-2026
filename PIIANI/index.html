@@ -397,6 +397,10 @@
             background: var(--blush);
         }
 
+        .module-dot.green {
+            background: var(--verde);
+        }
+
         .preinscripcion-card {
             border-color: rgba(25, 130, 196, .35);
             box-shadow: 0 0 0 1px rgba(25, 130, 196, .15), 0 8px 40px rgba(0, 0, 0, .3);
@@ -472,7 +476,7 @@
 
         @media (min-width: 992px) {
             .tramite-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -2125,7 +2129,6 @@
                     <li class="nav-item"><a class="nav-link" href="#documentos"><i class="bi bi-file-earmark-text me-1"></i>Documentos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#cronogramas"><i class="bi bi-calendar3 me-1"></i>Cronogramas</a></li>
                     <li class="nav-item"><a class="nav-link" href="#ubicacion"><i class="bi bi-map me-1"></i>Mapa</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contacto"><i class="bi bi-envelope me-1"></i>Contacto</a></li>
                     <li class="nav-item">
                         <a role="button" data-bs-toggle="modal" data-bs-target="#Curpi" class="nav-link btn-nav-curpi">
                             <i class="bi bi-pencil-square"></i> Realiza tu CURPI
@@ -2185,6 +2188,10 @@
                             <li>
                                 <span class="module-dot blush"></span>
                                 Tramita tu correo institucional <em>@aragon.unam.mx</em>
+                            </li>
+                            <li>
+                                <span class="module-dot green"></span>
+                                Consulta tu cronograma de carrera y actividades de inducción
                             </li>
                         </ul>
                         <p
@@ -2353,6 +2360,13 @@
                     <p>Correo electrónico institucional <em>@aragon.unam.mx</em>: acceso a servicios digitales de la FES
                         Aragón.</p>
                     <span class="tramite-cta">Visitar el sitio <i class="bi bi-arrow-right"></i></span>
+                </a>
+
+                <a role="button" data-bs-toggle="modal" data-bs-target="#EMADistancia" class="tramite-card tc-verde fade-up">
+                    <div class="tramite-icon"><i class="bi bi-clipboard2-heart"></i></i></div>
+                    <h5>Examen Médico Activo</h5>
+                    <p>Realiza tu examen médico activo para cumplir con los requisitos de salud institucionales.</p>
+                    <span class="tramite-cta">Realizar examen <i class="bi bi-arrow-right"></i></span>
                 </a>
 
             </div>
