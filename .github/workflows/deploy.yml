@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Reemplaza esta ruta por la ubicación exacta de tu index.html
-          path: './PIIANI/index.html'
+          path: './PIIANI'
 
       - name: Deploy to GitHub Pages
         id: deployment
