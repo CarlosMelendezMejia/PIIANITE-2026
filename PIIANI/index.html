@@ -769,7 +769,7 @@
         }
 
         .carousel-photo-slide {
-            aspect-ratio: 16 / 7;
+            aspect-ratio: 16 / 9;
             border-radius: var(--radius);
             overflow: hidden;
             background: var(--light);
@@ -2349,7 +2349,7 @@
                         <!-- Foto 1 -->
                         <div class="carousel-item active">
                             <div class="carousel-photo-slide">
-                                <img src="img/carrusel_bienvenida_1.webp" alt="Bienvenida generación 2027-I — foto 1"
+                                <img src="resources/gif/banner-playeras.gif" alt="Bienvenida generación 2027-I — foto 1"
                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                                 <div class="photo-placeholder-fallback" style="display:none;">
                                     <i class="bi bi-images"></i>
@@ -2561,7 +2561,8 @@
                         <img src="resources/img/logo-unam-imss.webp"
                             alt="Seguro de salud estudiantil"
                             class="servicio-card-img"
-                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+                            loading="lazy">
                         <div class="servicio-card-img-placeholder" style="display:none;">
                             <i class="bi bi-heart-pulse"></i>
                             <span>Seguro de salud</span>
@@ -2586,7 +2587,8 @@
                         <img src="resources/img/servicios/recorrido-virtual.webp"
                             alt="Recorrido virtual FES Aragón"
                             class="servicio-card-img"
-                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+                            loading="lazy">
                         <div class="servicio-card-img-placeholder" style="display:none;">
                             <i class="bi bi-map"></i>
                             <span>Recorrido virtual</span>
@@ -2611,7 +2613,8 @@
                         <img src="resources/img/servicios/quejas-denuncias.webp"
                             alt="Atención a quejas y denuncias"
                             class="servicio-card-img"
-                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+                            loading="lazy">
                         <div class="servicio-card-img-placeholder" style="display:none;">
                             <i class="bi bi-shield-exclamation"></i>
                             <span>Quejas y denuncias</span>
@@ -2636,7 +2639,8 @@
                         <img src="resources/img/servicios/pc-puma.webp"
                             alt="PC Puma FES Aragón"
                             class="servicio-card-img"
-                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+                            loading="lazy">
                         <div class="servicio-card-img-placeholder" style="display:none;">
                             <i class="bi bi-laptop"></i>
                             <span>PC Puma</span>
@@ -2661,7 +2665,8 @@
                         <img src="resources/img/biblioteca.webp"
                             alt="Biblioteca FES Aragón"
                             class="servicio-card-img"
-                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+                            loading="lazy">
                         <div class="servicio-card-img-placeholder" style="display:none;">
                             <i class="bi bi-book"></i>
                             <span>Biblioteca</span>
@@ -2686,7 +2691,8 @@
                         <img src="resources/img/teatro.webp"
                             alt="Extensión Universitaria FES Aragón"
                             class="servicio-card-img"
-                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+                            loading="lazy">
                         <div class="servicio-card-img-placeholder" style="display:none;">
                             <i class="bi bi-mortarboard"></i>
                             <span>Extensión Universitaria</span>
@@ -2711,7 +2717,8 @@
                         <img src="resources/img/bahia-vehicular.webp"
                             alt="Senderos Seguros y Bahía Vehicular FES Aragón"
                             class="servicio-card-img"
-                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+                            loading="lazy">
                         <div class="servicio-card-img-placeholder" style="display:none;">
                             <i class="bi bi-shield-check"></i>
                             <span>Senderos Seguros y Bahía Vehicular</span>
@@ -3161,11 +3168,11 @@
                     <div class="col-lg-4">
                         <div class="d-flex align-items-center gap-3 mb-3">
                             <div class="footer-logo">
-                                <img src="resources/img/UNAM_Blanco.webp" alt="UNAM">
+                                <img src="resources/img/UNAM_Blanco.webp" alt="UNAM" loading="lazy">
                             </div>
                             <div class="footer-logo-divider"></div>
                             <div class="footer-logo">
-                                <img src="resources/img/Aragon_Blanco.webp" alt="FES Aragón">
+                                <img src="resources/img/Aragon_Blanco.webp" alt="FES Aragón" loading="lazy">
                             </div>
                         </div>
                         <div class="footer-brand-name"><span>PIIANITE</span> &middot; FES Aragón</div>
@@ -3252,11 +3259,6 @@
 
     <!-- ══════════════════════════════════════════════════════════════
      ZONA DE MODALES
-     ──────────────────────────────────────────────────────────────
-     Los siguientes modales son los mismos que ya tenías en la
-     página antigua del PIIANITE. Solo necesitas COPIAR el cuerpo
-     (<div class="modal-body">…</div>) del archivo viejo y PEGARLO
-     en el espacio marcado dentro de cada cascarón.
      ══════════════════════════════════════════════════════════════ -->
 
     <!-- Modal: Inscripción -->
