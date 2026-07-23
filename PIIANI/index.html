@@ -766,6 +766,7 @@
         /* Carrusel de fotos */
         .bienvenida-carousel-wrap {
             margin-top: 3.2rem;
+            margin-bottom: 3rem;
         }
 
         .carousel-photo-slide {
@@ -1700,6 +1701,24 @@
             white-space: nowrap;
         }
 
+        .btn-cronograma-no-disponible {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            background: rgba(255, 255, 255, .06);
+            color: rgba(255, 255, 255, .35);
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 50px;
+            padding: .38rem 1rem;
+            font-size: .74rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+        }
+
         .btn-cronograma:hover {
             background: rgba(var(--glow-rgb), .2);
             color: var(--div-color);
@@ -2300,6 +2319,59 @@
 
             <div class="row align-items-center gy-4 mb-4">
 
+                <!-- Carrusel de fotos -->
+            <div class="row mt-5 mb-3">
+                <div class="col-lg-8 mx-auto text-center fade-up">
+                    <span class="section-tag">Avisos</span>
+                    <h2 class="section-title">Avisos importantes</h2>
+                    <p class="section-subtitle mx-auto">
+                        Mantente al tanto de las últimas novedades y comunicados oficiales
+                        para la generación 2027-I de la FES Aragón.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bienvenida-carousel-wrap fade-up">
+                <div id="bienvenidaCarousel" class="carousel slide" data-bs-ride="carousel">
+
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#bienvenidaCarousel" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Foto 1"></button>
+                        <button type="button" data-bs-target="#bienvenidaCarousel" data-bs-slide-to="1"
+                            aria-label="Foto 2"></button>
+                        <button type="button" data-bs-target="#bienvenidaCarousel" data-bs-slide-to="2"
+                            aria-label="Foto 3"></button>
+                    </div>
+
+                    <div class="carousel-inner">
+
+                        <!-- Foto 1 -->
+                        <div class="carousel-item active">
+                            <div class="carousel-photo-slide">
+                                <img src="resources/gif/banner-playeras.gif" alt="Bienvenida generación 2027-I — foto 1"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                <div class="photo-placeholder-fallback" style="display:none;">
+                                    <i class="bi bi-images"></i>
+                                    <span>Foto 1 del recorrido de bienvenida</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#bienvenidaCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-custom-icon"><i class="bi bi-chevron-left"></i></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#bienvenidaCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-custom-icon"><i class="bi bi-chevron-right"></i></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+
+                </div>
+            </div>
+
                 <div class="col-lg-6 fade-up">
                     <span class="section-tag">Generación 2027-I</span>
                     <h2 class="section-title">¡Bienvenida, Generación 2027-I!</h2>
@@ -2328,76 +2400,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
-            <!-- Carrusel de fotos -->
-            <div class="bienvenida-carousel-wrap fade-up">
-                <div id="bienvenidaCarousel" class="carousel slide" data-bs-ride="carousel">
-
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#bienvenidaCarousel" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Foto 1"></button>
-                        <button type="button" data-bs-target="#bienvenidaCarousel" data-bs-slide-to="1"
-                            aria-label="Foto 2"></button>
-                        <button type="button" data-bs-target="#bienvenidaCarousel" data-bs-slide-to="2"
-                            aria-label="Foto 3"></button>
-                    </div>
-
-                    <div class="carousel-inner">
-
-                        <!-- Foto 1 -->
-                        <div class="carousel-item active">
-                            <div class="carousel-photo-slide">
-                                <img src="resources/gif/banner-playeras.gif" alt="Bienvenida generación 2027-I — foto 1"
-                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                <div class="photo-placeholder-fallback" style="display:none;">
-                                    <i class="bi bi-images"></i>
-                                    <span>Foto 1 del recorrido de bienvenida</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Foto 2 -->
-                        <div class="carousel-item">
-                            <div class="carousel-photo-slide">
-                                <img src="img/carrusel_bienvenida_2.webp" alt="Bienvenida generación 2027-I — foto 2"
-                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                <div class="photo-placeholder-fallback" style="display:none;">
-                                    <i class="bi bi-images"></i>
-                                    <span>Foto 2 del recorrido de bienvenida</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Foto 3 -->
-                        <div class="carousel-item">
-                            <div class="carousel-photo-slide">
-                                <img src="img/carrusel_bienvenida_3.webp" alt="Bienvenida generación 2027-I — foto 3"
-                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                <div class="photo-placeholder-fallback" style="display:none;">
-                                    <i class="bi bi-images"></i>
-                                    <span>Foto 3 del recorrido de bienvenida</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#bienvenidaCarousel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-custom-icon"><i class="bi bi-chevron-left"></i></span>
-                        <span class="visually-hidden">Anterior</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#bienvenidaCarousel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-custom-icon"><i class="bi bi-chevron-right"></i></span>
-                        <span class="visually-hidden">Siguiente</span>
-                    </button>
-
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -2558,7 +2561,7 @@
                 <!-- Servicio 1: Seguro de Salud -->
                 <div class="col-md-6 col-lg-4 fade-up">
                     <div class="servicio-card">
-                        <img src="resources/img/logo-unam-imss.webp"
+                        <img src="resources/img/cards/card-unam-imss.webp"
                             alt="Seguro de salud estudiantil"
                             class="servicio-card-img"
                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
@@ -2584,7 +2587,7 @@
                 <!-- Servicio 3: Recorrido virtual -->
                 <div class="col-md-6 col-lg-4 fade-up">
                     <div class="servicio-card">
-                        <img src="resources/img/servicios/recorrido-virtual.webp"
+                        <img src="resources/img/cards/card-recorrido-virtual.webp"
                             alt="Recorrido virtual FES Aragón"
                             class="servicio-card-img"
                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
@@ -2610,7 +2613,7 @@
                 <!-- Servicio 6: Atención a quejas y denuncias -->
                 <div class="col-md-6 col-lg-4 fade-up">
                     <div class="servicio-card">
-                        <img src="resources/img/servicios/quejas-denuncias.webp"
+                        <img src="resources/img/cards/card-atencion.webp"
                             alt="Atención a quejas y denuncias"
                             class="servicio-card-img"
                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
@@ -2636,7 +2639,7 @@
                 <!-- Servicio 5: PC Puma -->
                 <div class="col-md-6 col-lg-4 fade-up">
                     <div class="servicio-card">
-                        <img src="resources/img/logo-pc-puma.webp"
+                        <img src="resources/img/cards/card-pc-puma.webp"
                             alt="PC Puma FES Aragón"
                             class="servicio-card-img"
                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
@@ -2662,7 +2665,7 @@
                 <!-- Servicio 4: Biblioteca -->
                 <div class="col-md-6 col-lg-4 fade-up">
                     <div class="servicio-card">
-                        <img src="resources/img/biblioteca.webp"
+                        <img src="resources/img/cards/card-biblioteca.webp"
                             alt="Biblioteca FES Aragón"
                             class="servicio-card-img"
                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
@@ -2688,7 +2691,7 @@
                 <!-- Servicio 7: Extensión Universitaria -->
                 <div class="col-md-6 col-lg-4 fade-up">
                     <div class="servicio-card">
-                        <img src="resources/img/teatro.webp"
+                        <img src="resources/img/cards/card-extension-universitaria.webp"
                             alt="Extensión Universitaria FES Aragón"
                             class="servicio-card-img"
                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
@@ -2714,7 +2717,7 @@
                 <!-- Servicio 8: Senderos Seguros -->
                 <div class="col-md-6 col-lg-4 fade-up">
                     <div class="servicio-card">
-                        <img src="resources/img/bahia-vehicular.webp"
+                        <img src="resources/img/cards/card-bahia-vehicular.webp"
                             alt="Senderos Seguros y Bahía Vehicular FES Aragón"
                             class="servicio-card-img"
                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
@@ -2750,9 +2753,10 @@
                     <span class="section-tag">Cronograma de actividades</span>
                     <h2 class="section-title">Programa por carrera</h2>
                     <p class="section-subtitle mx-auto">
-                        Descarga el cronograma de actividades PIIANITE correspondiente a tu carrera y modalidad.
+                        <b style="color: red;">Importante:</b> Descarga el cronograma de actividades PIIANITE correspondiente a tu carrera y modalidad.
                         Cada división cuenta con su calendario específico de trámites y actividades de nuevo ingreso.
                     </p>
+                    <p class="section-subtitle mx-auto"><b style="color: #ffca3a;">La información se actualiza constantemente</b></p>
                 </div>
             </div>
 
@@ -2773,8 +2777,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Ingeniería Civil</h5>
-                                <a href="doc/cronograma_civil.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_civil.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2789,8 +2796,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Ingeniería en Computación</h5>
-                                <a href="doc/cronograma_computacion.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_computacion.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2805,8 +2815,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Ingeniería Eléctrica Electrónica</h5>
-                                <a href="doc/cronograma_electrica.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_electrica.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2821,8 +2834,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Ingeniería Industrial</h5>
-                                <a href="doc/cronograma_industrial.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_industrial.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2837,8 +2853,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Ingeniería Mecánica</h5>
-                                <a href="doc/cronograma_mecanica.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_mecanica.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2864,8 +2883,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Comunicación y Periodismo</h5>
-                                <a href="doc/cronograma_comunicacion.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_comunicacion.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2880,8 +2902,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Derecho</h5>
-                                <a href="doc/cronograma_derecho.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_derecho.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2896,8 +2921,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Economía</h5>
-                                <a href="doc/cronograma_economia.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_economia.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2912,8 +2940,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Planificación para el Desarrollo Agropecuario</h5>
-                                <a href="doc/cronograma_planificacion.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_planificacion.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2928,8 +2959,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Relaciones Internacionales</h5>
-                                <a href="doc/cronograma_rrii.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_rrii.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2944,8 +2978,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Sociología</h5>
-                                <a href="doc/cronograma_sociologia.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_sociologia.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2971,8 +3008,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Arquitectura</h5>
-                                <a href="doc/cronograma_arquitectura.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_arquitectura.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -2987,8 +3027,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Diseño Industrial</h5>
-                                <a href="doc/cronograma_diseno_industrial.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_diseno_industrial.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -3003,8 +3046,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Pedagogía</h5>
-                                <a href="doc/cronograma_pedagogia.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_pedagogia.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -3031,8 +3077,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Derecho</h5>
-                                <a href="doc/cronograma_suayed_derecho.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_suayed_derecho.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -3047,8 +3096,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Economía</h5>
-                                <a href="doc/cronograma_suayed_economia.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_suayed_economia.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
@@ -3063,8 +3115,11 @@
                             </div>
                             <div class="cc-body">
                                 <h5>Relaciones Internacionales</h5>
-                                <a href="doc/cronograma_suayed_rrii.pdf" target="_blank" class="btn-cronograma">
+                                <!-- <a href="doc/cronograma_suayed_rrii.pdf" target="_blank" class="btn-cronograma">
                                     <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
                                 </a>
                             </div>
                         </div>
