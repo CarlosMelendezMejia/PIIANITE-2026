@@ -2197,6 +2197,116 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* ─── Banner Playeras — trigger y modal ─────────────────── */
+        .playera-banner-trigger {
+            position: relative;
+        }
+
+        .playera-banner-overlay-btn {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 5;
+            transition: background .28s ease;
+        }
+
+        .playera-banner-overlay-btn:hover,
+        .playera-banner-overlay-btn:focus-visible {
+            background: rgba(0, 0, 0, .18);
+            outline: none;
+        }
+
+        .playera-banner-cta {
+            position: absolute;
+            bottom: 1.1rem;
+            right: 1.1rem;
+            background: rgba(23, 23, 23, .80);
+            color: var(--amber);
+            border: 1.5px solid var(--amber);
+            border-radius: 50px;
+            padding: .48rem 1.15rem;
+            font-size: .78rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .4);
+            backdrop-filter: blur(4px);
+            transition: background .2s, color .2s, transform .2s;
+            pointer-events: none;
+        }
+
+        .playera-banner-overlay-btn:hover .playera-banner-cta,
+        .playera-banner-overlay-btn:focus-visible .playera-banner-cta {
+            background: var(--amber);
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        /* ─── Playeras — grid de carreras ──────────────────────────────── */
+        .playeras-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .7rem;
+        }
+
+        @media (max-width: 576px) {
+            .playeras-grid { grid-template-columns: 1fr; }
+        }
+
+        .playera-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: .75rem .9rem;
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            transition: border-color .2s, box-shadow .2s, transform .2s;
+        }
+
+        .playera-card:hover {
+            border-color: rgba(25, 130, 196, .4);
+            box-shadow: 0 4px 14px rgba(25, 130, 196, .1);
+            transform: translateY(-2px);
+        }
+
+        .playera-swatch {
+            width: 44px;
+            height: 44px;
+            border-radius: 9px;
+            flex-shrink: 0;
+            border: 1.5px solid rgba(0, 0, 0, .1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, .12);
+        }
+
+        .playera-card-info { flex: 1; min-width: 0; }
+
+        .playera-card-carrera {
+            font-size: .78rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.3;
+            margin-bottom: .12rem;
+        }
+
+        .playera-card-color {
+            font-size: .7rem;
+            color: var(--muted);
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 
@@ -2345,15 +2455,24 @@
 
                     <div class="carousel-inner">
 
-                        <!-- Foto 1 -->
+                        <!-- Foto 1 — Banner playeras (abre modal de colores) -->
                         <div class="carousel-item active">
-                            <div class="carousel-photo-slide">
-                                <img src="resources/gif/banner-playeras.gif" alt="Bienvenida generación 2027-I — foto 1"
+                            <div class="carousel-photo-slide playera-banner-trigger">
+                                <img src="resources/gif/banner-playeras.gif" alt="Colores de playera por carrera — Bienvenida 2027-I"
                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                                 <div class="photo-placeholder-fallback" style="display:none;">
                                     <i class="bi bi-images"></i>
-                                    <span>Foto 1 del recorrido de bienvenida</span>
+                                    <span>Banner colores de playera por carrera</span>
                                 </div>
+                                <button type="button"
+                                        class="playera-banner-overlay-btn"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#PlayerasModal"
+                                        aria-label="Abrir información sobre colores de playera por carrera">
+                                    <span class="playera-banner-cta" aria-hidden="true">
+                                        <i class="bi bi-palette2"></i> Ver colores por carrera
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -3315,6 +3434,192 @@
     <!-- ══════════════════════════════════════════════════════════════
      ZONA DE MODALES
      ══════════════════════════════════════════════════════════════ -->
+
+    <!-- Modal: Playeras — Colores por carrera -->
+    <div class="modal fade" id="PlayerasModal" tabindex="-1"
+         aria-labelledby="PlayerasModalLabel" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+
+                <div class="modal-header" style="background: var(--navy); color: var(--white);">
+                    <h5 class="modal-title" id="PlayerasModalLabel">
+                        <i class="bi bi-people-fill me-2"></i>Comunidad de Nuevo Ingreso
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="modal-alert alert-amber">
+                        <i class="bi bi-calendar-event-fill"></i>
+                        <div>
+                            <strong>¡Preséntate el 03 de agosto</strong> para las actividades de bienvenida.
+                        </div>
+                    </div>
+
+                    <p class="modal-lead">
+                        Asiste con la <strong>playera del color asignado a tu carrera</strong>.
+                        Revisa el listado y prepárate para tu primer día en la FES Aragón.
+                    </p>
+
+                    <div class="modal-section-label">
+                        <i class="bi bi-palette2"></i> Color de la playera por carrera
+                    </div>
+
+                    <div class="playeras-grid">
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#C8AD8E;">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.9);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Arquitectura</div>
+                                <div class="playera-card-color">Beige</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#00ACC1;">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.9);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Derecho</div>
+                                <div class="playera-card-color">Azul Turquesa</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#FF6B35;">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.9);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Diseño Industrial</div>
+                                <div class="playera-card-color">Naranja</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#FDD835; border-color:rgba(0,0,0,.15);">
+                                <i class="bi bi-shirt" style="color:rgba(0,0,0,.45);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Economía</div>
+                                <div class="playera-card-color">Amarillo</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#F0F0F0; border-color:rgba(0,0,0,.18);">
+                                <i class="bi bi-shirt" style="color:rgba(0,0,0,.35);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Ing. en Computación</div>
+                                <div class="playera-card-color">Blanco</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#7B1FA2;">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.9);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Ing. Civil</div>
+                                <div class="playera-card-color">Violeta</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#64B5F6;">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.9);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Ing. Mecánica</div>
+                                <div class="playera-card-color">Azul Cielo</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#43A047;">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.9);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Comunicación y Periodismo</div>
+                                <div class="playera-card-color">Verde</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#7B2D37;">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.9);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Pedagogía</div>
+                                <div class="playera-card-color">Vino</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#212121; border-color:rgba(255,255,255,.1);">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.75);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Relaciones Internacionales</div>
+                                <div class="playera-card-color">Negro</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#9E9E9E;">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.9);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Sociología</div>
+                                <div class="playera-card-color">Gris</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#6D4C41;">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.9);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Planif. Des. Agropecuario</div>
+                                <div class="playera-card-color">Café</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#E53935;">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.9);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Ing. Eléctrica Electrónica</div>
+                                <div class="playera-card-color">Rojo</div>
+                            </div>
+                        </div>
+
+                        <div class="playera-card">
+                            <div class="playera-swatch" style="background:#E91E8C;">
+                                <i class="bi bi-shirt" style="color:rgba(255,255,255,.9);"></i>
+                            </div>
+                            <div class="playera-card-info">
+                                <div class="playera-card-carrera">Ing. Industrial</div>
+                                <div class="playera-card-color">Rosa</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Pie -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!-- Modal: Inscripción -->
     <div class="modal fade" id="Inscripcion" tabindex="-1" aria-labelledby="InscripcionLabel" aria-hidden="true">
@@ -4372,7 +4677,7 @@
                         unirse a nuestro canal de difusión en WhatsApp.
                     </p>
                     <div class="qr-container mb-3">
-                        <img src="img/qr_wa_fesaragon.webp" alt="QR WhatsApp Canal" class="img-fluid rounded">
+                        <img src="resources/img/qr_wa_fesaragon.png" alt="QR WhatsApp Canal" class="img-fluid rounded">
                     </div>
                     <a href="https://www.whatsapp.com/channel/0029VawMMSu6rsQnzqyai52X" target="_blank"
                         class="btn btn-success w-100">
@@ -4402,7 +4707,7 @@
                         eventos y actualizaciones importantes.
                     </p>
                     <div class="qr-container mb-3">
-                        <img src="img/qr_fes_facebook.webp" alt="QR Facebook Página" class="img-fluid rounded">
+                        <img src="resources/img/qr_fes_facebook.png" alt="QR Facebook Página" class="img-fluid rounded">
                     </div>
                     <a href="https://www.facebook.com/FESAragonUNAM" target="_blank" class="btn btn-primary w-100">
                         Ir a la página de Facebook
