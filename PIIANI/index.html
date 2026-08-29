@@ -1205,6 +1205,78 @@
             background: var(--light);
         }
 
+        /* ─── Entrada info cards (sección Conoce la FES) ──────────── */
+        .entrada-info-card {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            height: 100%;
+        }
+
+        .entrada-info-card.entrada-peatonal {
+            background: rgba(25, 130, 196, .08);
+            border: 1.5px solid rgba(25, 130, 196, .28);
+        }
+
+        .entrada-info-card.entrada-peatonal .entrada-info-icon {
+            color: var(--teal);
+        }
+
+        .entrada-info-card.entrada-vehicular {
+            background: rgba(255, 202, 58, .12);
+            border: 1.5px solid rgba(255, 202, 58, .45);
+        }
+
+        .entrada-info-card.entrada-vehicular .entrada-info-icon {
+            color: #b88a00;
+        }
+
+        .entrada-info-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+            margin-top: .1rem;
+        }
+
+        .entrada-info-title {
+            font-weight: 700;
+            font-size: .95rem;
+            color: var(--navy);
+            margin-bottom: .6rem;
+        }
+
+        .entrada-info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+        }
+
+        .entrada-info-list li {
+            display: flex;
+            gap: .5rem;
+            align-items: flex-start;
+            font-size: .84rem;
+            color: var(--text);
+            line-height: 1.45;
+        }
+
+        .entrada-info-list li i {
+            color: var(--teal);
+            flex-shrink: 0;
+            margin-top: .18rem;
+        }
+
+        .entrada-info-text {
+            font-size: .84rem;
+            color: var(--text);
+            margin: 0;
+            line-height: 1.5;
+        }
+
         .leaflet-map-4x3 {
             width: 100%;
             aspect-ratio: 4 / 3;
@@ -1768,7 +1840,7 @@
                 0 4px 20px rgba(0, 0, 0, .35);
             border-radius: var(--radius);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 1.4rem;
             padding: 1.15rem 1.5rem;
             height: 100%;
@@ -1893,6 +1965,41 @@
                 width: 76px;
                 height: 76px;
             }
+        }
+
+        /* Tabla de punto de reunión por carrera */
+        .cc-reunion-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .68rem;
+            color: var(--white);
+            background: transparent;
+        }
+
+        .cc-reunion-table caption {
+            caption-side: top;
+            color: var(--white);
+            font-size: .63rem;
+            font-weight: 800;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            padding: .4rem 0 .2rem;
+            text-align: left;
+        }
+
+        .cc-reunion-table th {
+            padding: .28rem .5rem;
+            border: 1px solid rgba(255, 255, 255, .6);
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .cc-reunion-table td {
+            padding: .28rem .5rem;
+            border: 1px solid rgba(255, 255, 255, .25);
+            font-weight: 600;
         }
 
         /* ─── Contenido de modales (info, pasos, FAQ, contacto) ─────── */
@@ -2606,21 +2713,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-                    <li class="nav-item"><a class="nav-link" href="#tramites"><i
-                                class="bi bi-clipboard-check me-1"></i>Trámites</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#cronogramas"><i
-                                class="bi bi-calendar3 me-1"></i>Cronogramas</a></li>
                     <li class="nav-item"><a class="nav-link" href="#ubicacion"><i class="bi bi-map me-1"></i>Mapa</a>
                     </li>
-                    <!-- <li class="nav-item">
+                    <li class="nav-item"><a class="nav-link" href="#cronogramas"><i
+                                class="bi bi-calendar3 me-1"></i>Cronogramas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tramites"><i
+                                class="bi bi-clipboard-check me-1"></i>Trámites</a></li>
+                    <li class="nav-item">
                         <a role="button" data-bs-toggle="modal" data-bs-target="#Curpi" class="nav-link btn-nav-curpi">
                             <i class="bi bi-pencil-square"></i> Realiza tu CURPI
-                        </a>
-                    </li>-->
-                    <li class="nav-item">
-                        <a role="button" data-bs-toggle="modal" data-bs-target="#EMADistancia"
-                            class="nav-link btn-nav-ema">
-                            <i class="bi bi-clipboard2-heart"></i> Realiza tu EMA
                         </a>
                     </li>
                 </ul>
@@ -2794,6 +2895,46 @@
                     </p>
                 </div>
             </div>
+            <!-- ── Info: entradas peatonales y vehiculares ────────── -->
+            <div class="row g-3 mb-4 justify-content-center fade-up">
+                <div class="col-lg-5">
+                    <div class="entrada-info-card entrada-peatonal">
+                        <div class="entrada-info-icon">
+                            <i class="bi bi-person-walking"></i>
+                        </div>
+                        <div>
+                            <h6 class="entrada-info-title">Entradas Peatonales</h6>
+                            <ul class="entrada-info-list">
+                                <li>
+                                    <i class="bi bi-door-open-fill"></i>
+                                    <span><strong>Entrada Bosques</strong> — acceso peatonal habitual por la puerta principal.</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-cone-striped"></i>
+                                    <span><strong>Entrada Av. Universidad</strong> — por obras dentro de la Facultad, la <b>salida peatonal funcionará como acceso temporal.</b></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="entrada-info-card entrada-vehicular">
+                        <div class="entrada-info-icon">
+                            <i class="bi bi-car-front-fill"></i>
+                        </div>
+                        <div>
+                            <h6 class="entrada-info-title">Entrada Vehicular — Estudiantes</h6>
+                            <p class="entrada-info-text">
+                                El ingreso vehicular para estudiantes es por
+                                <strong>Av. Universidad</strong>, donde se ubica el
+                                estacionamiento exclusivo para alumnos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Mapa de ubicaciones ────────────────────────────── -->
             <div class="row justify-content-center fade-up">
                 <div class="col-lg-10">
                     <div class="map-filters" id="mapFilters">
@@ -2816,6 +2957,1184 @@
                     <div id="map" class="leaflet-map-4x3"></div>
                 </div>
             </div>
+
+            <!-- ── Mapa de rutas seguras ──────────────────────────── -->
+            <div class="row justify-content-center fade-up mt-5">
+                <div class="col-lg-10">
+                    <p class="section-subtitle mb-2" style="font-weight:600;">
+                        <i class="bi bi-shield-check me-1" style="color:var(--teal);"></i>
+                        Senderos Seguros — Rutas recomendadas hacia el Metro
+                    </p>
+                    <div id="map-senderos-section"
+                        style="height:420px; border-radius:var(--radius); border:1.5px solid var(--border); overflow:hidden; box-shadow:0 8px 32px rgba(11,17,32,.08);">
+                    </div>
+                    <div class="modal-alert alert-teal mt-3">
+                        <i class="bi bi-info-circle-fill"></i>
+                        <div>
+                            Activa o desactiva cada ruta usando el control de capas en el mapa.
+                            Haz clic sobre las líneas o marcadores para ver más información.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ CRONOGRAMAS DE CARRERA ══════════ -->
+
+    <section class="cronogramas-section" id="cronogramas">
+        <div class="container">
+
+            <!-- Encabezado -->
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center fade-up">
+                    <span class="section-tag">Cronograma de actividades</span>
+                    <h2 class="section-title">Programa por carrera</h2>
+                    <p class="section-subtitle mx-auto">
+                        <b style="color: red;">Importante:</b> Descarga el cronograma de actividades PIIANITE
+                        correspondiente a tu carrera y modalidad.
+                        Cada carrera cuenta con su calendario específico de trámites y actividades de nuevo ingreso.
+                    </p>
+                    <p class="section-subtitle mx-auto"><b style="color: #ffca3a;">La información se actualiza
+                            constantemente</b></p>
+                </div>
+            </div>
+
+            <!-- ══ DCFMI ══════════════════════════════════════════════ -->
+            <div class="division-block div-dcfmi fade-up">
+                <div class="division-header">
+                    <i class="bi bi-cpu-fill"></i>
+                    Ciencias Físico Matemáticas y de las Ingenierías (DCFMI)
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DCFMI/Ing Civil Blanco-04.svg"
+                                    alt="Ingeniería Civil"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Civ</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Ingeniería Civil</h5>
+                                <!-- <a href="doc/cronograma_civil.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A521</td>
+                                                <td>1101</td>
+                                                <td>09:30 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A520</td>
+                                                <td>1102</td>
+                                                <td>09:30 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A525</td>
+                                                <td>1111</td>
+                                                <td>09:30 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A522</td>
+                                                <td>1151</td>
+                                                <td>13:30 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A521</td>
+                                                <td>1152</td>
+                                                <td>13:30 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DCFMI/ICO Blanco-04.svg"
+                                    alt="Ingeniería en Computación"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Comp</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Ingeniería en Computación</h5>
+                                <!-- <a href="doc/cronograma_computacion.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A214</td>
+                                                <td>1107</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A215</td>
+                                                <td>1108</td>
+                                                <td>08:30 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A216</td>
+                                                <td>1109</td>
+                                                <td>10:00 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A216</td>
+                                                <td>1157</td>
+                                                <td>13:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A215</td>
+                                                <td>1158</td>
+                                                <td>16:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A214</td>
+                                                <td>1159</td>
+                                                <td>17:30 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DCFMI/Ing Eléctrica Electrónica Blanco-04.svg"
+                                    alt="Ingeniería Eléctrica Electrónica"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">EE</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Ingeniería Eléctrica Electrónica</h5>
+                                <!-- <a href="doc/cronograma_electrica.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>AUDITORIO A1 - HERMILA GALINDO</td>
+                                                <td>1105, 1106, 1116</td>
+                                                <td>08:00 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A315</td>
+                                                <td>1155</td>
+                                                <td>13:30 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DCFMI/Ing Industrial Blanco-04.svg"
+                                    alt="Ingeniería Industrial"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Ind</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Ingeniería Industrial</h5>
+                                <!-- <a href="doc/cronograma_industrial.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A306</td>
+                                                <td>1104</td>
+                                                <td>08:30 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A305</td>
+                                                <td>1114</td>
+                                                <td>08:30 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>AUDITORIO A9</td>
+                                                <td>1154, 1164</td>
+                                                <td>14:30 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DCFMI/Ing Mecánica Blanco-04.svg"
+                                    alt="Ingeniería Mecánica"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Mec</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Ingeniería Mecánica</h5>
+                                <!-- <a href="doc/cronograma_mecanica.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A221</td>
+                                                <td>1103</td>
+                                                <td>08:30 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A225</td>
+                                                <td>1113</td>
+                                                <td>08:30 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A224</td>
+                                                <td>1153</td>
+                                                <td>13:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>CC8</td>
+                                                <td>1163</td>
+                                                <td>13:00 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /DCFMI -->
+
+            <!-- ══ DCS ════════════════════════════════════════════════ -->
+            <div class="division-block div-dcs fade-up">
+                <div class="division-header">
+                    <i class="bi bi-globe2"></i>
+                    Ciencias Sociales (DCS)
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DCS/Comunicación y Periodismo Blanco-04.svg"
+                                    alt="Comunicación y Periodismo"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">CyP</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Comunicación y Periodismo</h5>
+                                <!-- <a href="doc/cronograma_comunicacion.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A421</td>
+                                                <td>1102</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A422</td>
+                                                <td>1103</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A423</td>
+                                                <td>1106</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A424</td>
+                                                <td>1107</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A425</td>
+                                                <td>1110</td>
+                                                <td>13:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A621</td>
+                                                <td>1152</td>
+                                                <td>18:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A424</td>
+                                                <td>1153</td>
+                                                <td>18:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A425</td>
+                                                <td>1156</td>
+                                                <td>18:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A130</td>
+                                                <td>1157</td>
+                                                <td>16:00 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DCS/Derecho Blanco-04.svg" alt="Derecho"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Der</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Derecho</h5>
+                                <!-- <a href="doc/cronograma_derecho.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A8230</td>
+                                                <td>1101</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A320</td>
+                                                <td>1102</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A11503</td>
+                                                <td>1103</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A11504</td>
+                                                <td>1104</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A11505</td>
+                                                <td>1105</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A11506</td>
+                                                <td>1106</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A8227</td>
+                                                <td>1107</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A8224</td>
+                                                <td>1108</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A11507</td>
+                                                <td>1109</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A8225</td>
+                                                <td>1110</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A8222</td>
+                                                <td>1111</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A8223</td>
+                                                <td>1112</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A11503</td>
+                                                <td>1151</td>
+                                                <td>14:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A11501</td>
+                                                <td>1152</td>
+                                                <td>14:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A11504</td>
+                                                <td>1153</td>
+                                                <td>14:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A320</td>
+                                                <td>1154</td>
+                                                <td>14:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A715</td>
+                                                <td>1155</td>
+                                                <td>14:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A11505</td>
+                                                <td>1156</td>
+                                                <td>14:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A11506</td>
+                                                <td>1157</td>
+                                                <td>14:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A11507</td>
+                                                <td>1158</td>
+                                                <td>14:00 P.M.</td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DCS/Economía Blanco-04.svg" alt="Economía"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Eco</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Economía</h5>
+                                <!-- <a href="doc/cronograma_economia.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A1012</td>
+                                                <td>1111</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A1005</td>
+                                                <td>1112</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A1003</td>
+                                                <td>1113</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A1004</td>
+                                                <td>1114</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A1027</td>
+                                                <td>1161</td>
+                                                <td>15:30 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A1002</td>
+                                                <td>1162</td>
+                                                <td>15:30 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DCS/PDA Blanco-04.svg"
+                                    alt="Planificación para el Desarrollo Agropecuario"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">PDA</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Planificación para el Desarrollo Agropecuario</h5>
+                                <!-- <a href="doc/cronograma_planificacion.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A1017</td>
+                                                <td>1101</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A1024</td>
+                                                <td>1151</td>
+                                                <td>14:00 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DCS/Relaciones Internacionales Blanco-04.svg"
+                                    alt="Relaciones Internacionales"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">RI</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Relaciones Internacionales</h5>
+                                <!-- <a href="doc/cronograma_rrii.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A411</td>
+                                                <td>1101</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A413</td>
+                                                <td>1105</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A116</td>
+                                                <td>1109</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A414</td>
+                                                <td>1111</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A115</td>
+                                                <td>1151</td>
+                                                <td>15:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A413</td>
+                                                <td>1155</td>
+                                                <td>15:00 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DCS/Sociología Blanco-04.svg" alt="Sociología"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Soc</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Sociología</h5>
+                                <!-- <a href="doc/cronograma_sociologia.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A121</td>
+                                                <td>1104</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A122</td>
+                                                <td>1108</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A121</td>
+                                                <td>1154</td>
+                                                <td>14:30 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A122</td>
+                                                <td>1158</td>
+                                                <td>13:30 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /DCS -->
+
+            <!-- ══ DHyA ═══════════════════════════════════════════════ -->
+            <div class="division-block div-dhya fade-up">
+                <div class="division-header">
+                    <i class="bi bi-palette-fill"></i>
+                    Humanidades y Artes (DHyA)
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DHyA/Arquitectura Blanco-04.svg" alt="Arquitectura"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Arq</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Arquitectura</h5>
+                                <!-- <a href="doc/cronograma_arquitectura.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>Planta baja - Edificio A9</td>
+                                                <td>1101, 1102, 1103, 1104</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>Planta baja - Edificio A9</td>
+                                                <td>1151, 1152, 1153, 1154</td>
+                                                <td>15:00 P.M.</td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DHyA/Diseño Industrial Blanco-04.svg"
+                                    alt="Diseño Industrial"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">DI</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Diseño Industrial</h5>
+                                <!-- <a href="doc/cronograma_diseno_industrial.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A515</td>
+                                                <td>1101</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A516</td>
+                                                <td>1102</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A515</td>
+                                                <td>1151</td>
+                                                <td>13:50 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A516</td>
+                                                <td>1152</td>
+                                                <td>13:50 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/DHyA/Pedagogía Blanco-04.svg" alt="Pedagogía"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Ped</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Pedagogía</h5>
+                                <!-- <a href="doc/cronograma_pedagogia.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A614</td>
+                                                <td>1101</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A603</td>
+                                                <td>1102</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A605</td>
+                                                <td>1103</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>A606</td>
+                                                <td>1104</td>
+                                                <td>06:50 A.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>Explanada Central</td>
+                                                <td>1151</td>
+                                                <td>13:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>Explanada Central</td>
+                                                <td>1152</td>
+                                                <td>13:00 P.M.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lunes 31 de Agosto</td>
+                                                <td>Explanada Central</td>
+                                                <td>1153</td>
+                                                <td>13:00 P.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /DHyA -->
+
+            <!-- ══ SUAyED ══════════════════════════════════════════════
+                 Separado visualmente del bloque escolarizado          -->
+            <div class="division-block div-suayed fade-up">
+                <div class="division-header">
+                    <i class="bi bi-laptop-fill"></i>
+                    Sistema Universidad Abierta y Educación a Distancia (SUAyED)
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/SUAyED/Derecho SUAyED blanco-03.svg"
+                                    alt="Derecho SUAyED"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Der</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Derecho</h5>
+                                <!-- <a href="doc/cronograma_suayed_derecho.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Miercoles 2 de Septiembre</td>
+                                                <td>Edificio DUACyD</td>
+                                                <td>9101, 9102, 9103, 9104</td>
+                                                <td>07:30 A.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/SUAyED/Economía SUAyED blanco-03.svg"
+                                    alt="Economía SUAyED"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">Eco</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Economía</h5>
+                                <!-- <a href="doc/cronograma_suayed_economia.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Miercoles 2 de Septiembre</td>
+                                                <td>Edificio DUACyD</td>
+                                                <td>9101, 9102</td>
+                                                <td>07:30 A.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="cronograma-card">
+                            <div class="cc-logo">
+                                <img src="resources/img/carreras-svg/SUAyED/R I  SUAyED blanco-03.svg"
+                                    alt="Relaciones Internacionales SUAyED"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                <span class="logo-fallback">RI</span>
+                            </div>
+                            <div class="cc-body">
+                                <h5>Relaciones Internacionales</h5>
+                                <!-- <a href="doc/cronograma_suayed_rrii.pdf" target="_blank" class="btn-cronograma">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a> -->
+                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
+                                    <i class="bi bi-file-earmark-x"></i> No disponible
+                                </a>
+                                <div class="table-responsive mt-2">
+                                    <table class="cc-reunion-table">
+                                        <caption>PUNTO DE REUNIÓN</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>DÍA</th>
+                                                <th>LUGAR</th>
+                                                <th>GRUPO</th>
+                                                <th>HORARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Miercoles 2 de Septiembre</td>
+                                                <td>Edificio DUACyD</td>
+                                                <td>9101, 9102</td>
+                                                <td>07:30 A.M.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /SUAyED -->
+
         </div>
     </section>
 
@@ -2845,12 +4164,12 @@
                 </a>
 
                 <!-- CURPI -->
-                <a role="button" data-bs-toggle="modal" data-bs-target="" class="tramite-card tc-amarillo fade-up">
+                <a role="button" data-bs-toggle="modal" data-bs-target="#Curpi" class="tramite-card tc-amarillo fade-up">
                     <div class="tramite-icon"><i class="bi bi-pencil-square"></i></div>
                     <h5>Realiza tu CURPI</h5>
                     <p>Cédula Única de Registro de Primer Ingreso: encuesta institucional obligatoria para todo nuevo
                         ingreso.</p>
-                    <span class="tramite-cta">Próximamente <i class="bi bi-arrow-right"></i></span>
+                    <span class="tramite-cta">Realizar CURPI <i class="bi bi-arrow-right"></i></span>
                 </a>
 
                 <!-- Correo Aragón -->
@@ -2862,13 +4181,12 @@
                     <span class="tramite-cta">Próximamente <i class="bi bi-arrow-right"></i></span>
                 </a>
 
-                <a role="button" data-bs-toggle="modal" data-bs-target="#EMADistancia"
-                    class="tramite-card tc-verde fade-up">
-                    <div class="tramite-icon"><i class="bi bi-clipboard2-heart"></i></i></div>
+                <div class="tramite-card tc-verde fade-up" aria-disabled="true" style="cursor: default;">
+                    <div class="tramite-icon"><i class="bi bi-clipboard2-heart"></i></div>
                     <h5>Examen Médico Activo</h5>
-                    <p>Realiza tu examen médico activo para cumplir con los requisitos de salud institucionales.</p>
-                    <span class="tramite-cta">Realizar examen <i class="bi bi-arrow-right"></i></span>
-                </a>
+                    <p>El Examen Médico Activo (EMA) se habilitará durante el mes de septiembre.</p>
+                    <span class="tramite-cta" style="color: var(--muted);">Disponible en septiembre <i class="bi bi-clock"></i></span>
+                </div>
 
             </div>
         </div>
@@ -2918,10 +4236,7 @@
                         <p>Realiza el examen médico Activo, trámite requerido para el ingreso.</p>
                         <div class="actividad-meta">
                             <span class="actividad-fecha"><i class="bi bi-calendar3"></i> Fecha por confirmar</span>
-                            <a role="button" data-bs-toggle="modal" data-bs-target="#EMADistancia"
-                                class="actividad-btn">
-                                Ver requisitos <i class="bi bi-arrow-right"></i>
-                            </a>
+                            <span class="actividad-btn disabled">Disponible en septiembre</span>
                         </div>
                     </div>
                 </div>
@@ -3172,409 +4487,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- ══════════ CRONOGRAMAS DE CARRERA ══════════ -->
-
-    <section class="cronogramas-section" id="cronogramas">
-        <div class="container">
-
-            <!-- Encabezado -->
-            <div class="row mb-5">
-                <div class="col-lg-8 mx-auto text-center fade-up">
-                    <span class="section-tag">Cronograma de actividades</span>
-                    <h2 class="section-title">Programa por carrera</h2>
-                    <p class="section-subtitle mx-auto">
-                        <b style="color: red;">Importante:</b> Descarga el cronograma de actividades PIIANITE
-                        correspondiente a tu carrera y modalidad.
-                        Cada carrera cuenta con su calendario específico de trámites y actividades de nuevo ingreso.
-                    </p>
-                    <p class="section-subtitle mx-auto"><b style="color: #ffca3a;">La información se actualiza
-                            constantemente</b></p>
-                </div>
-            </div>
-
-            <!-- ══ DCFMI ══════════════════════════════════════════════ -->
-            <div class="division-block div-dcfmi fade-up">
-                <div class="division-header">
-                    <i class="bi bi-cpu-fill"></i>
-                    Ciencias Físico Matemáticas y de las Ingenierías (DCFMI)
-                </div>
-                <div class="row g-3">
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DCFMI/Ing Civil Blanco-04.svg"
-                                    alt="Ingeniería Civil"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">Civ</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Ingeniería Civil</h5>
-                                <!-- <a href="doc/cronograma_civil.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DCFMI/ICO Blanco-04.svg"
-                                    alt="Ingeniería en Computación"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">Comp</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Ingeniería en Computación</h5>
-                                <!-- <a href="doc/cronograma_computacion.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DCFMI/Ing Eléctrica Electrónica Blanco-04.svg"
-                                    alt="Ingeniería Eléctrica Electrónica"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">EE</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Ingeniería Eléctrica Electrónica</h5>
-                                <!-- <a href="doc/cronograma_electrica.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DCFMI/Ing Industrial Blanco-04.svg"
-                                    alt="Ingeniería Industrial"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">Ind</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Ingeniería Industrial</h5>
-                                <!-- <a href="doc/cronograma_industrial.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DCFMI/Ing Mecánica Blanco-04.svg"
-                                    alt="Ingeniería Mecánica"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">Mec</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Ingeniería Mecánica</h5>
-                                <!-- <a href="doc/cronograma_mecanica.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div><!-- /DCFMI -->
-
-            <!-- ══ DCS ════════════════════════════════════════════════ -->
-            <div class="division-block div-dcs fade-up">
-                <div class="division-header">
-                    <i class="bi bi-globe2"></i>
-                    Ciencias Sociales (DCS)
-                </div>
-                <div class="row g-3">
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DCS/Comunicación y Periodismo Blanco-04.svg"
-                                    alt="Comunicación y Periodismo"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">CyP</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Comunicación y Periodismo</h5>
-                                <!-- <a href="doc/cronograma_comunicacion.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DCS/Derecho Blanco-04.svg" alt="Derecho"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">Der</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Derecho</h5>
-                                <!-- <a href="doc/cronograma_derecho.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DCS/Economía Blanco-04.svg" alt="Economía"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">Eco</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Economía</h5>
-                                <!-- <a href="doc/cronograma_economia.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DCS/PDA Blanco-04.svg"
-                                    alt="Planificación para el Desarrollo Agropecuario"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">PDA</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Planificación para el Desarrollo Agropecuario</h5>
-                                <!-- <a href="doc/cronograma_planificacion.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DCS/Relaciones Internacionales Blanco-04.svg"
-                                    alt="Relaciones Internacionales"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">RI</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Relaciones Internacionales</h5>
-                                <!-- <a href="doc/cronograma_rrii.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DCS/Sociología Blanco-04.svg" alt="Sociología"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">Soc</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Sociología</h5>
-                                <!-- <a href="doc/cronograma_sociologia.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div><!-- /DCS -->
-
-            <!-- ══ DHyA ═══════════════════════════════════════════════ -->
-            <div class="division-block div-dhya fade-up">
-                <div class="division-header">
-                    <i class="bi bi-palette-fill"></i>
-                    Humanidades y Artes (DHyA)
-                </div>
-                <div class="row g-3">
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DHyA/Arquitectura Blanco-04.svg" alt="Arquitectura"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">Arq</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Arquitectura</h5>
-                                <!-- <a href="doc/cronograma_arquitectura.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DHyA/Diseño Industrial Blanco-04.svg"
-                                    alt="Diseño Industrial"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">DI</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Diseño Industrial</h5>
-                                <!-- <a href="doc/cronograma_diseno_industrial.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/DHyA/Pedagogía Blanco-04.svg" alt="Pedagogía"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">Ped</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Pedagogía</h5>
-                                <!-- <a href="doc/cronograma_pedagogia.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div><!-- /DHyA -->
-
-            <!-- ══ SUAyED ══════════════════════════════════════════════
-                 Separado visualmente del bloque escolarizado          -->
-            <div class="division-block div-suayed fade-up">
-                <div class="division-header">
-                    <i class="bi bi-laptop-fill"></i>
-                    Sistema Universidad Abierta y Educación a Distancia (SUAyED)
-                </div>
-                <div class="row g-3">
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/SUAyED/Derecho SUAyED blanco-03.svg"
-                                    alt="Derecho SUAyED"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">Der</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Derecho</h5>
-                                <!-- <a href="doc/cronograma_suayed_derecho.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/SUAyED/Economía SUAyED blanco-03.svg"
-                                    alt="Economía SUAyED"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">Eco</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Economía</h5>
-                                <!-- <a href="doc/cronograma_suayed_economia.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="cronograma-card">
-                            <div class="cc-logo">
-                                <img src="resources/img/carreras-svg/SUAyED/R I  SUAyED blanco-03.svg"
-                                    alt="Relaciones Internacionales SUAyED"
-                                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                                <span class="logo-fallback">RI</span>
-                            </div>
-                            <div class="cc-body">
-                                <h5>Relaciones Internacionales</h5>
-                                <!-- <a href="doc/cronograma_suayed_rrii.pdf" target="_blank" class="btn-cronograma">
-                                    <i class="bi bi-download"></i> Descargar
-                                </a> -->
-                                <a href="" target="_blank" class="btn-cronograma-no-disponible">
-                                    <i class="bi bi-file-earmark-x"></i> No disponible
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div><!-- /SUAyED -->
-
         </div>
     </section>
 
@@ -4553,82 +5465,77 @@
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header" style="background: var(--navy); color: var(--white);">
-                    <h5 class="modal-title" id="CurpiLabel"><i class="bi bi-pencil-square me-2"></i>Cédula Única de
-                        Registro de Primer Ingreso (CURPI)</h5>
+                    <h5 class="modal-title" id="CurpiLabel">
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Cédula Única de Registro de Primer Ingreso (CURPI)
+                    </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Cerrar"></button>
                 </div>
+
                 <div class="modal-body">
                     <p class="modal-lead">
-                        Formulario para recabar información relevante para apoyar tu trayectoria escolar.
-                        El llenado de esta cédula <strong>no sustituye la inscripción</strong>, la cual es un trámite
-                        que se realiza a partir del <strong>24 de enero a un máximo de 15 días</strong>.
+                        La CURPI tiene como propósito identificar las características generales de las alumnas y los
+                        alumnos de nuevo ingreso. Esta información permitirá conocer mejor el perfil de las y los
+                        estudiantes de la FES Aragón y apoyar el seguimiento de sus trayectorias académicas.
                     </p>
-                    <p><i class="bi bi-clock-history"></i> <b>Tiempo de realización:</b> 20 minutos aproximadamente</p>
 
-                    <div class="modal-section-label"><i class="bi bi-list-ol"></i> Instrucciones</div>
+                    <div class="modal-alert alert-teal mb-4">
+                        <i class="bi bi-clock-history"></i>
+                        <div>
+                            <strong>Tiempo estimado de realización:</strong> entre 30 y 45 minutos.<br>
+                            La sesión permite un máximo de <strong>2 horas</strong> para contestar el instrumento.
+                        </div>
+                    </div>
+
+                    <div class="modal-section-label">
+                        <i class="bi bi-list-ol"></i> Instrucciones
+                    </div>
+
                     <ol class="modal-steps">
                         <li>
-                            Accede a la liga del registro del formulario:
-                            <a href="http://132.248.44.93:9090/CURPI" target="_blank">Cédula de Registro</a>
+                            <strong>Crea una cuenta</strong> para poder acceder al instrumento. En la pantalla de inicio
+                            selecciona el botón <strong>“Crear cuenta”</strong> y registra los datos solicitados.
                         </li>
                         <li>
-                            Una vez en el inicio de la página, da clic en el botón verde <b>"Crear cuenta"</b>.
-                            <figure class="modal-media"><img src="resources/img/CURPI/paso 2 - curpi.webp"
-                                    alt="Paso 2 CURPI"></figure>
+                            Una vez creada tu cuenta, <strong>inicia sesión</strong> con tu número de cuenta o correo y la
+                            contraseña que registraste.
                         </li>
                         <li>
-                            Llena el pequeño formulario para la creación de cuenta con tus datos y
-                            <b>¡no se te olviden los datos registrados como correo y contraseña!</b>
-                            <figure class="modal-media"><img src="resources/img/CURPI/paso 3 - curpi.webp"
-                                    alt="Paso 3 CURPI"></figure>
-                        </li>
-                        <li>
-                            Una vez llenes el formulario, da clic en el botón verde <b>"Guardar Alumno"</b>; se cerrará
-                            la ventana emergente, y podrás iniciar sesión con tu correo y contraseña registrados.
-                            <figure class="modal-media"><img src="resources/img/CURPI/paso 4 - curpi.webp"
-                                    alt="Paso 4 CURPI"></figure>
-                        </li>
-                        <li>
-                            Una vez ingreses, el formulario constará de <b>9 secciones</b> diferentes que deberás
-                            contestar con honestidad.
-                            <figure class="modal-media"><img src="resources/img/CURPI/paso 5 - curpi.webp"
-                                    alt="Paso 5 CURPI"></figure>
-                        </li>
-                        <li>
-                            Una vez termines de contestar todas las preguntas solicitadas, da clic en el botón verde
-                            <b>"Finalizar"</b>.
-                            <figure class="modal-media"><img src="resources/img/CURPI/paso 6 - curpi.webp"
-                                    alt="Paso 6 CURPI"></figure>
-                        </li>
-                        <li>
-                            Finalmente, se te redireccionará a una página con un mensaje de <b>¡éxito!</b> y con eso
-                            será suficiente.
-                            <figure class="modal-media"><img src="resources/img/CURPI/paso 7 - curpi.webp"
-                                    alt="Paso 7 CURPI"></figure>
+                            <strong>Contesta el instrumento completo.</strong> Considera disponer de entre 30 y 45 minutos
+                            y evita interrumpir la sesión durante periodos prolongados.
                         </li>
                     </ol>
-                    <div class="modal-alert alert-blush">
+
+                    <div class="modal-alert alert-amber">
                         <i class="bi bi-exclamation-triangle-fill"></i>
                         <div>
-                            El formulario forzosamente debe enviar el mensaje de éxito al final, tras llenar el
-                            cuestionario; en caso de no hacerlo, es por algún problema de inactividad en el desarrollo
-                            del mismo o un mayor tiempo prolongado.
-                            <br><span class="modal-highlight">Para verificar que el formulario fue llenado</span>,
-                            puedes volver a ingresar con tu correo y contraseña: si nuevamente te redirige al mensaje
-                            de éxito, significa que todo está correcto.
+                            <strong>Importante:</strong> conserva la contraseña que registres al crear tu cuenta. La sesión
+                            tiene una duración máxima de 2 horas para completar el formulario.
                         </div>
                     </div>
-                    <div class="modal-section-label"><i class="bi bi-question-circle"></i> Preguntas frecuentes</div>
-                    <div class="modal-faq">
-                        <div class="modal-faq-item">
-                            <div class="faq-q"><i class="bi bi-patch-question-fill"></i> ¿Cómo doy por terminado el
-                                llenado del formulario?</div>
-                            <p class="faq-a">Al finalizar todas las secciones, debes dar clic en el botón "Finalizar".
-                                Esto enviará la información al sistema de la Facultad y quedará registrada
-                                oficialmente.</p>
+
+                    <div class="modal-section-label">
+                        <i class="bi bi-shield-check"></i> Aviso de privacidad
+                    </div>
+
+                    <div class="modal-alert alert-teal">
+                        <i class="bi bi-shield-lock-fill"></i>
+                        <div>
+                            La información proporcionada mediante la CURPI se utiliza para identificar características
+                            generales del alumnado de nuevo ingreso y contribuir al conocimiento de su perfil académico
+                            en la FES Aragón.
                         </div>
                     </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <a href="http://132.248.44.93:9090/PISTA/CURPI/Acceder" target="_blank" rel="noopener"
+                            class="btn btn-primary-custom w-100" style="color: var(--navy) !important;">
+                            <i class="bi bi-box-arrow-up-right me-2"></i>
+                            Acceder al CURPI
+                        </a>
+                    </div>
+
                     <div class="modal-contact">
                         <i class="bi bi-headset"></i>
                         <div>
@@ -4637,6 +5544,7 @@
                                     href="mailto:planeacion.enlace7@aragon.unam.mx">planeacion.enlace7@aragon.unam.mx</a></strong>
                         </div>
                     </div>
+
                     <p class="modal-closing">Gracias y bienvenida(o)s al semestre 2027-I</p>
                 </div>
             </div>
@@ -5627,7 +6535,7 @@
     <div class="modal fade" id="ComunicadoOficial" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="ComunicadoOficialLabel" aria-hidden="true">
 
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
             <div class="modal-content border-0 shadow">
 
                 <!-- Encabezado -->
@@ -5716,7 +6624,83 @@
 
 
                     <!-- ══════════════════════════════════════
-                     AVISO PRINCIPAL — EMA
+                     AVISO PRINCIPAL — CURPI ACTIVO
+                     ══════════════════════════════════════ -->
+                    <div class="p-4 mb-3 rounded-4 position-relative overflow-hidden" style="
+                        background: linear-gradient(135deg, var(--navy) 0%, var(--navy-md) 100%);
+                        color: var(--white);
+                        border-left: 6px solid var(--amber);
+                    ">
+
+                        <div class="d-flex align-items-start gap-3">
+
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="
+                                width: 56px;
+                                height: 56px;
+                                border-radius: 14px;
+                                background: rgba(255, 202, 58, .15);
+                                color: var(--amber);
+                                font-size: 1.7rem;
+                            ">
+                                <i class="bi bi-pencil-square"></i>
+                            </div>
+
+                            <div class="flex-grow-1">
+
+                                <div class="mb-2" style="
+                                    color: var(--amber);
+                                    font-size: .72rem;
+                                    font-weight: 700;
+                                    letter-spacing: .1em;
+                                    text-transform: uppercase;
+                                ">
+                                    Actividad disponible
+                                </div>
+
+                                <h4 class="mb-2" style="color: var(--white); font-size: 1.25rem;">
+                                    ¡Ya puedes realizar tu CURPI!
+                                </h4>
+
+                                <p class="mb-3" style="
+                                    color: rgba(255,255,255,.75);
+                                    font-size: .9rem;
+                                    line-height: 1.65;
+                                ">
+                                    La Cédula Única de Registro de Primer Ingreso (CURPI) ya se encuentra habilitada
+                                    para el alumnado de nuevo ingreso. Completa este registro como parte de tu proceso
+                                    de incorporación a la FES Aragón.
+                                </p>
+
+                                <div class="p-3 mb-3 rounded-3" style="
+                                    background: rgba(25, 130, 196, .12);
+                                    border: 1px solid rgba(25, 130, 196, .35);
+                                ">
+                                    <div class="d-flex gap-2 align-items-start">
+                                        <i class="bi bi-info-circle-fill"
+                                            style="color: var(--teal); font-size: 1.2rem;"></i>
+                                        <div style="
+                                            color: rgba(255,255,255,.85);
+                                            font-size: .85rem;
+                                            line-height: 1.6;
+                                        ">
+                                            Consulta las indicaciones antes de iniciar y asegúrate de completar
+                                            correctamente la información solicitada.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="btn btn-primary-custom" data-bs-toggle="modal"
+                                    data-bs-target="#Curpi">
+                                    <i class="bi bi-arrow-right-circle me-2"></i>
+                                    Consultar indicaciones del CURPI
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ══════════════════════════════════════
+                     AVISO — EMA EN SEPTIEMBRE
                      ══════════════════════════════════════ -->
                     <div class="p-4 mb-0 rounded-4 position-relative overflow-hidden" style="
                         background: linear-gradient(135deg, var(--navy) 0%, var(--navy-md) 100%);
@@ -5746,11 +6730,11 @@
                                     letter-spacing: .1em;
                                     text-transform: uppercase;
                                 ">
-                                    Actividad disponible
+                                    Próxima actividad
                                 </div>
 
                                 <h4 class="mb-2" style="color: var(--white); font-size: 1.25rem;">
-                                    ¡Ya puedes realizar tu Examen Médico Activo (EMA)!
+                                    El Examen Médico Activo (EMA) se habilitará en septiembre
                                 </h4>
 
                                 <p class="mb-3" style="
@@ -5758,70 +6742,18 @@
                                     font-size: .9rem;
                                     line-height: 1.65;
                                 ">
-                                    El alumnado de nuevo ingreso por Pase Reglamentado y
-                                    Examen de Control ya puede realizar el Examen Médico Activo
-                                    correspondiente a su proceso de ingreso a la FES Aragón.
+                                    Por el momento, el Examen Médico Activo (EMA) aún no se encuentra habilitado.
+                                    Su realización estará disponible durante el mes de septiembre.
                                 </p>
 
-                                <!-- Aviso importante -->
-                                <div class="p-3 mb-3 rounded-3" style="
-                                    background: rgba(255, 202, 58, .12);
-                                    border: 1px solid rgba(255, 202, 58, .35);
-                                ">
-
-                                    <div class="d-flex gap-2 align-items-start">
-
-                                        <i class="bi bi-exclamation-triangle-fill"
-                                            style="color: var(--amber); font-size: 1.2rem;"></i>
-
-                                        <div style="
-                                        color: rgba(255,255,255,.85);
-                                        font-size: .85rem;
-                                        line-height: 1.6;
-                                    ">
-
-                                            Al finalizar el EMA deberás <b>descargar e imprimir tu comprobante de
-                                                término (pantalla final)</b>. Este documento deberá presentarse
-                                            impreso el día que te corresponda realizar tu inscripción.
-
-                                            <!-- Disclaimer -->
-                                            <div class="mt-2 pt-2" style="
-                                                border-top: 1px solid rgba(255,255,255,.15);
-                                                color: rgba(255,255,255,.72);
-                                                font-size: .8rem;
-                                            ">
-
-                                                <i class="bi bi-info-circle-fill me-1" style="color: var(--teal);"></i>
-
-                                                <strong style="color: var(--white);">
-                                                    Importante:
-                                                </strong>
-
-                                                completar el Examen Médico Activo no significa que hayas
-                                                concluido tu inscripción a la FES Aragón. El EMA y la
-                                                inscripción son procesos distintos, por lo que deberás
-                                                realizar ambos conforme a las indicaciones correspondientes.
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <button type="button" class="btn btn-primary-custom" data-bs-toggle="modal"
-                                    data-bs-target="#EMADistancia">
-
-                                    <i class="bi bi-arrow-right-circle me-2"></i>
-                                    Consultar indicaciones del EMA
-
+                                <button type="button" class="btn btn-secondary" disabled aria-disabled="true">
+                                    <i class="bi bi-clock me-2"></i>
+                                    Disponible en septiembre
                                 </button>
 
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- Pie -->
@@ -5924,7 +6856,7 @@
                 { lat: 19.475693223460343, lng: -99.04628489595284, name: 'Servicio Médico', type: 'location' },
                 { lat: 19.47383518985359, lng: -99.04413149724418, name: 'La puerta de Manu', type: 'location' },
                 { lat: 19.473765648662013, lng: -99.04429242977878, name: 'Explanada A7 - A11', type: 'explanada', icon: orangeIcon, tooltipClass: 'leaflet-label-tooltip--orange' },
-                { lat: 19.477113741945363, lng: -99.04455807471379, name: 'Entrada Av. Universidad', type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' },
+                { lat: 19.477022923390226, lng: -99.04426707936253, name: 'Entrada Av. Universidad', type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' },
                 { lat: 19.476321589902124, lng: -99.04686134401935, name: 'Entrada Bosque de Africa', type: 'entrance', icon: greenIcon, tooltipClass: 'leaflet-label-tooltip--green' },
                 { lat: 19.476284286184235, lng: -99.04654604696283, name: 'Cajas', type: 'cajas', icon: yellowIcon, tooltipClass: 'leaflet-label-tooltip--yellow' }
             ];
@@ -6045,6 +6977,107 @@
         });
     </script>
 
+    <!-- Senderos Seguros — mapa Leaflet en sección Conoce la FES (eager init) -->
+    <script>
+        (function () {
+            var mapSenderosSection = null;
+
+            function initSenderosSection() {
+                if (mapSenderosSection) return;
+                var container = document.getElementById('map-senderos-section');
+                if (!container) return;
+
+                mapSenderosSection = L.map('map-senderos-section').setView([19.4745, -99.0455], 15);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(mapSenderosSection);
+
+                var rutaSegura1 = [
+                    [19.476303, -99.046742],
+                    [19.477340, -99.051576],
+                    [19.472058, -99.053936],
+                    [19.472518, -99.054338]
+                ];
+
+                var rutaSegura2 = [
+                    [19.477138, -99.044323],
+                    [19.477790, -99.047182],
+                    [19.484968, -99.044047],
+                    [19.485646, -99.047823],
+                    [19.485545, -99.047912]
+                ];
+
+                function haversineKm(a, b) {
+                    var toRad = function (d) { return d * Math.PI / 180; };
+                    var R = 6371;
+                    var dLat = toRad(b[0] - a[0]);
+                    var dLng = toRad(b[1] - a[1]);
+                    var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                        Math.cos(toRad(a[0])) * Math.cos(toRad(b[0])) *
+                        Math.sin(dLng / 2) * Math.sin(dLng / 2);
+                    return 2 * R * Math.asin(Math.sqrt(h));
+                }
+
+                function totalKm(coords) {
+                    var km = 0;
+                    for (var i = 1; i < coords.length; i++) km += haversineKm(coords[i - 1], coords[i]);
+                    return km;
+                }
+
+                var capaRuta1 = L.polyline(rutaSegura1, { color: '#00296b', weight: 6, opacity: 0.85, lineJoin: 'round' })
+                    .bindPopup('<strong style="color:#00296b;">Ruta 1</strong><br>Bosques &rarr; Metro Nezahualc&oacute;yotl<br>Distancia: ' + totalKm(rutaSegura1).toFixed(2) + ' km');
+
+                var mkInicio1 = L.circleMarker(rutaSegura1[0], { radius: 9, color: '#00296b', fillColor: '#00296b', fillOpacity: 1, weight: 2 })
+                    .bindPopup('<strong>Inicio</strong><br>Salida Bosques');
+                var mkFin1 = L.circleMarker(rutaSegura1[rutaSegura1.length - 1], { radius: 9, color: '#00296b', fillColor: '#ffffff', fillOpacity: 1, weight: 3 })
+                    .bindPopup('<strong>Fin</strong><br>Metro Nezahualc&oacute;yotl');
+
+                var grupoRuta1 = L.featureGroup([capaRuta1, mkInicio1, mkFin1]).addTo(mapSenderosSection);
+
+                var capaRuta2 = L.polyline(rutaSegura2, { color: '#2E7D32', weight: 6, opacity: 0.85, lineJoin: 'round' })
+                    .bindPopup('<strong style="color:#2E7D32;">Ruta 2</strong><br>Av. Universidad &rarr; Metro Impulsora<br>Distancia: ' + totalKm(rutaSegura2).toFixed(2) + ' km');
+
+                var mkInicio2 = L.circleMarker(rutaSegura2[0], { radius: 9, color: '#2E7D32', fillColor: '#2E7D32', fillOpacity: 1, weight: 2 })
+                    .bindPopup('<strong>Inicio</strong><br>Salida Av. Universidad');
+                var mkFin2 = L.circleMarker(rutaSegura2[rutaSegura2.length - 1], { radius: 9, color: '#2E7D32', fillColor: '#ffffff', fillOpacity: 1, weight: 3 })
+                    .bindPopup('<strong>Fin</strong><br>Metro Impulsora');
+
+                var grupoRuta2 = L.featureGroup([capaRuta2, mkInicio2, mkFin2]).addTo(mapSenderosSection);
+
+                var mkBahia = L.circleMarker([19.47711058599236, -99.04574699435274], {
+                    radius: 11, color: '#e67e00', fillColor: '#e67e00', fillOpacity: 1, weight: 3
+                }).bindPopup(
+                    '<strong style="color:#e67e00;"> Bah&iacute;a Vehicular</strong><br>' +
+                    'Transporte Seguro &harr; Metro Impulsora<br>' +
+                    '<small>A un costado de la Cl&iacute;nica Odontol&oacute;gica</small><br>' +
+                    '<small><strong>$6 por viaje</strong> &bull; Credencial vigente</small>'
+                );
+
+                var grupoBahia = L.featureGroup([mkBahia]).addTo(mapSenderosSection);
+
+                mapSenderosSection.fitBounds(
+                    L.featureGroup([grupoRuta1, grupoRuta2, grupoBahia]).getBounds(),
+                    { padding: [30, 30] }
+                );
+
+                L.control.layers(null, {
+                    '<span style="color:#00296b;font-weight:700;">&bull; Ruta 1: Bosques &rarr; Metro Neza</span>': grupoRuta1,
+                    '<span style="color:#2E7D32;font-weight:700;">&bull; Ruta 2: Av. Universidad &rarr; Metro Impulsora</span>': grupoRuta2,
+                    '<span style="color:#e67e00;font-weight:700;">&bull; Bah&iacute;a Vehicular (Transporte Seguro)</span>': grupoBahia
+                }, { collapsed: false }).addTo(mapSenderosSection);
+
+                L.control.scale({ imperial: false, metric: true }).addTo(mapSenderosSection);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initSenderosSection);
+            } else {
+                initSenderosSection();
+            }
+        })();
+    </script>
+
     <!-- Senderos Seguros — mapa Leaflet en modal (lazy init) -->
     <script>
         (function () {
@@ -6144,6 +7177,7 @@
             });
         })();
     </script>
+
 
 </body>
 
